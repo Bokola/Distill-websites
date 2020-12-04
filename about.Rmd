@@ -1,7 +1,7 @@
 ---
-title: "About this blog"
+title: "Just me doing what I like"
 description: |
-  Some additional details about the blog
+  I share what I learn, be it school, work, and everyday experiences
 ---
 
 ```{r setup, include=FALSE}

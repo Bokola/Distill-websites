@@ -1,0 +1,2480 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>data munging with data.table</title>
+  
+  <meta property="description" itemprop="description" content="A quick glimpse into data.table for data manipulation."/>
+  
+  
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2020-12-04"/>
+  <meta property="article:created" itemprop="dateCreated" content="2020-12-04"/>
+  <meta name="article:author" content="Basil Okola"/>
+  
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="data munging with data.table"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="A quick glimpse into data.table for data manipulation."/>
+  <meta property="og:locale" content="en_US"/>
+  
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="data munging with data.table"/>
+  <meta property="twitter:description" content="A quick glimpse into data.table for data manipulation."/>
+  
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft"]}},"value":[{"type":"character","attributes":{},"value":["data munging with data.table"]},{"type":"character","attributes":{},"value":["A quick glimpse into data.table for data manipulation.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Basil Okola"]},{"type":"character","attributes":{},"value":["https://github.com/Bokola"]}]}]},{"type":"character","attributes":{},"value":["12-04-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"logical","attributes":{},"value":[true]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["data-munging-withdatatable_files/anchor-4.2.2/anchor.min.js","data-munging-withdatatable_files/bowser-1.9.3/bowser.min.js","data-munging-withdatatable_files/distill-2.2.21/template.v2.js","data-munging-withdatatable_files/jquery-1.11.3/jquery.min.js","data-munging-withdatatable_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+  
+  <style type="text/css">
+  
+  body {
+    background-color: white;
+  }
+  
+  .pandoc-table {
+    width: 100%;
+  }
+  
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+  
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+  
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+  
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+  
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+  
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+  
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+  
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+  
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+  
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+  
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+  
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+  
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .shaded .shaded-content {
+    background: white;
+  }
+  
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+  
+  d-appendix {
+    padding-top: 30px;
+  }
+  
+  d-article>p>img {
+    width: 100%;
+  }
+  
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+  
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+  
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+  
+  /* Tweak code blocks */
+  
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+  
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+  
+  d-article div.sourceCode {
+    background-color: white;
+  }
+  
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+  
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  d-article pre a {
+    border-bottom: none;
+  }
+  
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+  
+  @media(min-width: 768px) {
+  
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+  
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+  
+  d-article pre {
+    font-size: 14px;
+  }
+  
+  }
+  
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  
+  /* CSS for d-contents */
+  
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+  
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+  
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+  
+  .d-contents li {
+    list-style-type: none
+  }
+  
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+  
+  .d-contents ul {
+    padding-left: 1em
+  }
+  
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+  
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+  
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+  
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+  
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+  
+  
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+  
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+  
+  
+  /* Figure */
+  
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+  
+  .figure img {
+    width: 100%;
+  }
+  
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+  
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+  
+  /* Citations */
+  
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+  
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+  
+  
+  /* Tweak 1000px media break to show more text */
+  
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+  
+    .grid {
+      grid-column-gap: 16px;
+    }
+  
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+  
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+  
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+  
+  
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+  
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  /* Include appendix styles here so they can be overridden */
+  
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+  
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+  
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+  
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+  
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+  
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+  
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  d-appendix > * {
+    grid-column: text;
+  }
+  
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+  
+  /* Include footnote styles here so they can be overridden */
+  
+  d-footnote-list {
+    contain: layout style;
+  }
+  
+  d-footnote-list > * {
+    grid-column: text;
+  }
+  
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+  
+  
+  
+  /* Anchor.js */
+  
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+  
+  /* Social footer */
+  
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+  
+  .disqus-comments {
+    margin-right: 30px;
+  }
+  
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+  
+  #disqus_thread {
+    margin-top: 30px;
+  }
+  
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+  
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+  
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+  
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+  
+  
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+  
+  
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+  
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+  
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+  
+  /* Styles for posts lists (not auto-injected) */
+  
+  
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+  
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+  
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+  
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+  
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+  
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+  
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+  
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+  
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+  
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+  
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+  
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+  
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+  
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  .posts-list img {
+    opacity: 1;
+  }
+  
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+  
+  .posts-more {
+    clear: both;
+  }
+  
+  
+  .posts-sidebar {
+    font-size: 16px;
+  }
+  
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+  
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+  
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+  
+  .categories li>a {
+    border-bottom: none;
+  }
+  
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+  
+  .categories .active {
+    font-weight: 600;
+  }
+  
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+  
+  
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+  
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+  
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+  
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+  
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+  
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+  
+  
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+  
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+  
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+  
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+  
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+  
+  
+  
+  </style>
+  
+  <script type="application/javascript">
+  
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+  
+  // show body when load is complete
+  function on_load_complete() {
+  
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+  
+  
+    // set body to visible
+    document.body.style.visibility = 'visible';
+  
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+  
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+  
+  function init_distill() {
+  
+    init_common();
+  
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+  
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+  
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+  
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+  
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+  
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+  
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+  
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+  
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+  
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+  
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+  
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+  
+      // capture layout
+      var layout = $(this).attr('data-layout');
+  
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+  
+  
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+  
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+  
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+  
+    // load distill framework
+    load_distill_framework();
+  
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+  
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+  
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+  
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+  
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+  
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+  
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+  
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+  
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+  
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+  
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+  
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+  
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+  
+      // clear polling timer
+      clearInterval(tid);
+  
+      // show body now that everything is ready
+      on_load_complete();
+    }
+  
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+  
+  }
+  
+  function init_downlevel() {
+  
+    init_common();
+  
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+  
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+  
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+  
+    // remove toc
+    $('.d-contents').remove();
+  
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+  
+  
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+  
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+  
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+  
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+  
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+  
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+  
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+  
+    $('body').addClass('downlevel');
+  
+    on_load_complete();
+  }
+  
+  
+  function init_common() {
+  
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+  
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+  
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+  
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+  
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+  
+      }
+    });
+  
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+  
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+  
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+  
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+  
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+  
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+  
+  </script>
+  
+  <!--/radix_placeholder_distill-->
+  <script src="data-munging-withdatatable_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="data-munging-withdatatable_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="data-munging-withdatatable_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="data-munging-withdatatable_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="data-munging-withdatatable_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"data munging with data.table","description":"A quick glimpse into data.table for data manipulation.","authors":[{"author":"Basil Okola","authorURL":"https://github.com/Bokola","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-12-04T00:00:00.000+01:00","citationText":"Okola, 2020"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>data munging with data.table</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>A quick glimpse into data.table for data manipulation.</p></p>
+</div>
+
+<div class="d-byline">
+  Basil Okola <a href="https://github.com/Bokola" class="uri">https://github.com/Bokola</a> 
+  
+<br/>12-04-2020
+</div>
+
+<div class="d-article">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Data table syntax is of the form <code>DT[i, j, by]</code></p>
+<ul>
+<li><code>i</code>: on which row</li>
+<li><code>j</code>: what to do</li>
+<li><code>by</code>: group by what</li>
+</ul>
+<h1 id="data-manipulation">Data Manipulation</h1>
+<ul>
+<li>Just looking</li>
+<li>Removing information</li>
+<li>Adding information</li>
+<li>Reducing information</li>
+<li>Combining information</li>
+</ul>
+<h2 id="just-looking">Just looking</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span> <span class='op'>=</span> <span class='fu'>as.data.table</span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span>
+<span class='co'>#tables()# show loaded tables</span>
+</code></pre>
+</div>
+</div>
+<p>Sorting / ordering rows</p>
+<p>setorder(data.table, …)</p>
+<p><code>-</code>: to sort a variable in descending order</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>setorder</span><span class='op'>(</span><span class='va'>irisDT</span>, <span class='va'>Sepal.Length</span>, <span class='va'>Sepal.Width</span><span class='op'>)</span>
+<span class='va'>irisDT</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1:          4.3         3.0          1.1         0.1  setosa
+2:          4.4         2.9          1.4         0.2  setosa
+3:          4.4         3.0          1.3         0.2  setosa
+4:          4.4         3.2          1.3         0.2  setosa
+5:          4.5         2.3          1.3         0.3  setosa</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>setorder</span><span class='op'>(</span><span class='va'>irisDT</span>, <span class='op'>-</span><span class='va'>Species</span>, <span class='va'>Sepal.Width</span><span class='op'>)</span>
+<span class='va'>irisDT</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:          6.0         2.2          5.0         1.5 virginica
+2:          4.9         2.5          4.5         1.7 virginica
+3:          5.7         2.5          5.0         2.0 virginica
+4:          6.3         2.5          5.0         1.9 virginica
+5:          6.7         2.5          5.8         1.8 virginica</code></pre>
+</div>
+<h2 id="removing-information">Removing information</h2>
+<h3 id="selecting-rows">Selecting rows</h3>
+<p>DT[i, j, by]</p>
+<ul>
+<li><code>i</code>: on which rows?</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:          5.7         2.5            5         2.0 virginica
+2:          6.3         2.5            5         1.9 virginica</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='co'># irisDT[3:4,] #row 3 and 4</span>
+<span class='co'># irisDT[-(1:5)] #delete rows 1:5</span>
+<span class='co'># irisDT[!(1:5)] # using false to delete as well</span>
+<span class='co'># irisDT[.N] # last row</span>
+<span class='co'># irisDT[1:(.N-10)] # all but the last 10 rows</span>
+<span class='co'># irisDT[Species == "virginica"] # based on conditions fulfilled in columns</span>
+<span class='va'>irisDT</span><span class='op'>[</span><span class='va'>Species</span> <span class='op'>%like%</span> <span class='st'>"^v"</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span><span class='co'># using %like% helper function</span>
+<span class='va'>irisDT</span><span class='op'>[</span><span class='va'>Petal.Width</span> <span class='op'>%between%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.3</span>, <span class='fl'>0.4</span><span class='op'>)</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span><span class='co'># values in an interval</span>
+</code></pre>
+</div>
+</div>
+<h3 id="selecting-columns">Selecting columns</h3>
+<p>DT[i, j, by]</p>
+<ul>
+<li><code>j</code>: what to do? -&gt; select columns</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>Species</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span> <span class='co'># returns a vector</span>
+<span class='va'>irisDT</span><span class='op'>[</span>, <span class='st'>"Species"</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span> <span class='co'># returns a dataframe/data.table</span>
+<span class='va'>irisDT</span><span class='op'>[</span>, <span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Species"</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>irisDT</span><span class='op'>[</span>, <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Species"</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>Species</span>, LS <span class='op'>=</span> <span class='va'>Sepal.Length</span><span class='op'>)</span><span class='op'>]</span> <span class='co'># select and rename</span>
+<span class='co'># .() is an alias for list</span>
+
+<span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span><span class='va'>Species</span>, SL <span class='op'>=</span> <span class='va'>Sepal.Length</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>irisDT</span><span class='op'>[</span><span class='va'>Species</span> <span class='op'>==</span> <span class='st'>"virginica"</span> <span class='op'>&amp;</span> <span class='va'>Sepal.Length</span> <span class='op'>&gt;</span> <span class='fl'>7</span> <span class='op'>&amp;</span> <span class='va'>Sepal.Width</span> <span class='op'>&lt;</span> <span class='fl'>3</span>, <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Species"</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>irisDT</span><span class='op'>[</span><span class='va'>Species</span> <span class='op'>==</span> <span class='st'>"virginica"</span> <span class='op'>&amp;</span>
+<span class='va'>Sepal.Length</span> <span class='op'>&gt;</span> <span class='fl'>7</span> <span class='op'>&amp;</span><span class='va'>Sepal.Width</span> <span class='op'>&lt;</span> <span class='fl'>3</span>,<span class='fu'>.</span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Sepal.Width</span>, <span class='va'>Petal.Length</span>, <span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<h2 id="adding-information">Adding information</h2>
+<h3 id="making-new-columns---preserving-existing-ones">Making new columns - preserving existing ones</h3>
+<p>DT[i, j, by]</p>
+<ul>
+<li><code>j</code>: what to do? -&gt; compute new columns preserving existing ones</li>
+</ul>
+<p>data.table uses a new operator <code>:=</code> to add/update/delete columns (by reference)</p>
+<ol type="1">
+<li>option 1</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>maxLength</span> <span class='op'>:=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Petal.Length</span><span class='op'>)</span><span class='op'>]</span><span class='op'>[</span>,
+          <span class='va'>minWidth</span> <span class='op'>:=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>irisDT</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:          6.0         2.2          5.0         1.5 virginica
+2:          4.9         2.5          4.5         1.7 virginica
+3:          5.7         2.5          5.0         2.0 virginica
+4:          6.3         2.5          5.0         1.9 virginica
+5:          6.7         2.5          5.8         1.8 virginica
+   maxLength minWidth
+1:       7.9      0.1
+2:       7.9      0.1
+3:       7.9      0.1
+4:       7.9      0.1
+5:       7.9      0.1</code></pre>
+</div>
+<ol start="2" type="1">
+<li>option 2</li>
+</ol>
+<p>LHS := RHS form</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"maxLength"</span>, <span class='st'>"minWidth"</span><span class='op'>)</span> <span class='op'>:=</span>
+         <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+           <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Petal.Length</span><span class='op'>)</span>,
+           <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span>, <span class='va'>Petal.Width</span><span class='op'>)</span>
+         <span class='op'>)</span><span class='op'>]</span>
+
+<span class='va'>irisDT</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:          6.0         2.2          5.0         1.5 virginica
+2:          4.9         2.5          4.5         1.7 virginica
+3:          5.7         2.5          5.0         2.0 virginica
+4:          6.3         2.5          5.0         1.9 virginica
+5:          6.7         2.5          5.8         1.8 virginica
+   maxLength minWidth
+1:       7.9      0.1
+2:       7.9      0.1
+3:       7.9      0.1
+4:       7.9      0.1
+5:       7.9      0.1</code></pre>
+</div>
+<ol start="3" type="1">
+<li>Option 3</li>
+</ol>
+<p>Functional form</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>`:=`</span> <span class='op'>(</span>
+  maxLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Petal.Length</span><span class='op'>)</span>,
+  minWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span>, <span class='va'>Petal.Width</span><span class='op'>)</span>
+<span class='op'>)</span><span class='op'>]</span>
+<span class='va'>irisDT</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:          6.0         2.2          5.0         1.5 virginica
+2:          4.9         2.5          4.5         1.7 virginica
+3:          5.7         2.5          5.0         2.0 virginica
+4:          6.3         2.5          5.0         1.9 virginica
+5:          6.7         2.5          5.8         1.8 virginica
+   maxLength minWidth
+1:       7.9      0.1
+2:       7.9      0.1
+3:       7.9      0.1
+4:       7.9      0.1
+5:       7.9      0.1</code></pre>
+</div>
+<h3 id="making-new-columns---dropping-existing-ones">Making new columns - dropping existing ones</h3>
+<p>DT[i, j, by]</p>
+<ul>
+<li><code>j</code>: what to do? -&gt; compute new columns dropping existing ones</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>maxLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>pmax</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Petal.Length</span><span class='op'>)</span>,
+minWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>pmin</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span>, <span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   maxLength minWidth
+1:       6.0      1.5
+2:       4.9      1.7
+3:       5.7      2.0
+4:       6.3      1.9
+5:       6.7      1.8</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>newIris</span> <span class='op'>&lt;-</span> <span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>Sepal.Area <span class='op'>=</span> <span class='va'>Sepal.Width</span> <span class='op'>*</span> <span class='va'>Sepal.Length</span>,
+Petal.Area <span class='op'>=</span> <span class='va'>Petal.Width</span> <span class='op'>*</span> <span class='va'>Petal.Length</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>newIris</span><span class='op'>[</span>, <span class='va'>Area.Ratio</span> <span class='op'>:=</span> <span class='va'>Petal.Area</span> <span class='op'>/</span> <span class='va'>Sepal.Area</span><span class='op'>]</span>
+<span class='va'>newIris</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Area Petal.Area Area.Ratio
+1:      13.20       7.50  0.5681818
+2:      12.25       7.65  0.6244898
+3:      14.25      10.00  0.7017544
+4:      15.75       9.50  0.6031746
+5:      16.75      10.44  0.6232836</code></pre>
+</div>
+<h2 id="reducing-information">Reducing information</h2>
+<h3 id="summarizing-rows">Summarizing rows</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>meanSepalLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span><span class='op'>)</span>,
+           meanSepalWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span><span class='op'>)</span>,
+           meanPetalLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Petal.Length</span><span class='op'>)</span>,
+           meanPetalWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   meanSepalLength meanSepalWidth meanPetalLength meanPetalWidth
+1:        5.843333       3.057333           3.758       1.199333</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>nSamples <span class='op'>=</span> <span class='va'>.N</span>, nSpecies <span class='op'>=</span> <span class='fu'>uniqueN</span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span><span class='op'>)</span>
+       <span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   nSamples nSpecies
+1:      150        3</code></pre>
+</div>
+<h3 id="summarizing-rows-with-filtering">Summarizing rows with filtering</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='va'>Species</span> <span class='op'>==</span> <span class='st'>"versicolor"</span>,<span class='fu'>.</span><span class='op'>(</span>
+  meanSepalLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span><span class='op'>)</span>,
+           meanSepalWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span><span class='op'>)</span>,
+           meanPetalLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Petal.Length</span><span class='op'>)</span>,
+           meanPetalWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Petal.Width</span><span class='op'>)</span>
+<span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   meanSepalLength meanSepalWidth meanPetalLength meanPetalWidth
+1:           5.936           2.77            4.26          1.326</code></pre>
+</div>
+<h3 id="grouping-by-one-or-more-variables">Grouping by one or more variables</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>meanSepalLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span><span class='op'>)</span>,
+meanSepalWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span><span class='op'>)</span>,
+meanPetalLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Petal.Length</span><span class='op'>)</span>,
+meanPetalWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='st'>"Species"</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species meanSepalLength meanSepalWidth meanPetalLength
+1:  virginica           6.588          2.974           5.552
+2: versicolor           5.936          2.770           4.260
+3:     setosa           5.006          3.428           1.462
+   meanPetalWidth
+1:          2.026
+2:          1.326
+3:          0.246</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>nSamples <span class='op'>=</span> <span class='va'>.N</span>, nSpecies <span class='op'>=</span> <span class='fu'>uniqueN</span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species nSamples nSpecies
+1:  virginica       50        1
+2: versicolor       50        1
+3:     setosa       50        1</code></pre>
+</div>
+<h2 id="combining-information">Combining information</h2>
+<h3 id="joining-2-data.tables">joining 2 data.tables</h3>
+<p><strong>Inner join</strong>: return all rows from x where there are matching values in y and all columns from x and y. In case of multiple matches between x and y, all combinations of the matches are returned.<br></p>
+<p><strong>Full join</strong>: return all rows and columns from both x and y. <br></p>
+<p><strong>Left join</strong>: return all rows from x and all columns from x and y. In case of multiple matches between x and y, all combinations of the matches are returned.<br></p>
+<p><strong>Right join</strong>: return all rows from y and all columns from x and y. In case of multiple matches between x and y, all combinations of the matches are returned.<br></p>
+<p>DT[i, on]</p>
+<ul>
+<li><code>i</code>: join to which data.table?</li>
+<li><code>on</code>: join key columns?</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>data.table</span><span class='op'>(</span>id <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>5</span>, <span class='fl'>6</span><span class='op'>)</span>,
+x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>9</span>, <span class='fl'>12</span>, <span class='fl'>14</span>, <span class='fl'>21</span>, <span class='fl'>8</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   id  x
+1:  1  9
+2:  2 12
+3:  4 14
+4:  5 21
+5:  6  8</code></pre>
+<div class="sourceCode">
+<pre><code><span class='op'>(</span><span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>data.table</span><span class='op'>(</span>id <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>6</span><span class='op'>)</span>,
+y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8</span>, <span class='fl'>14</span>, <span class='fl'>19</span>, <span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   id  y
+1:  1  8
+2:  3 14
+3:  4 19
+4:  6  2
+5:  6  4</code></pre>
+</div>
+<h3 id="inner-join---data.table">inner join - data.table</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>y</span><span class='op'>[</span><span class='va'>x</span>, on <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span>, nomatch <span class='op'>=</span> <span class='fl'>0</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  y  x
+1:  1  8  9
+2:  4 19 14
+3:  6  2  8
+4:  6  4  8</code></pre>
+</div>
+<h3 id="full-join---merge">full join - merge</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>merge.data.table</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span>, by <span class='op'>=</span> <span class='st'>"id"</span>, all <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   id  x  y
+1:  1  9  8
+2:  2 12 NA
+3:  3 NA 14
+4:  4 14 19
+5:  5 21 NA
+6:  6  8  2
+7:  6  8  4</code></pre>
+</div>
+<h3 id="left-join---merge">left join - merge</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>merge.data.table</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span>, by <span class='op'>=</span> <span class='st'>"id"</span>, all.x <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   id  x  y
+1:  1  9  8
+2:  2 12 NA
+3:  4 14 19
+4:  5 21 NA
+5:  6  8  2
+6:  6  8  4</code></pre>
+</div>
+<h4 id="left-join---data.table">left join - data.table</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>y</span><span class='op'>[</span><span class='va'>x</span>, on <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  y  x
+1:  1  8  9
+2:  2 NA 12
+3:  4 19 14
+4:  5 NA 21
+5:  6  2  8
+6:  6  4  8</code></pre>
+</div>
+<h3 id="right-join---merge">right join - merge</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>data.table</span><span class='fu'>::</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/merge.html'>merge.data.table</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span>, by <span class='op'>=</span> <span class='st'>"id"</span>, all.y <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   id  x  y
+1:  1  9  8
+2:  3 NA 14
+3:  4 14 19
+4:  6  8  2
+5:  6  8  4</code></pre>
+</div>
+<h3 id="right-jpin---data.table">right jpin - data.table</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>x</span><span class='op'>[</span><span class='va'>y</span>, on <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  x  y
+1:  1  9  8
+2:  3 NA 14
+3:  4 14 19
+4:  6  8  2
+5:  6  8  4</code></pre>
+</div>
+<h3 id="antijoin---data.table">antijoin - data.table</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>x</span><span class='op'>[</span><span class='op'>!</span><span class='va'>y</span>, on <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  x
+1:  2 12
+2:  5 21</code></pre>
+</div>
+<h1 id="keys">Keys</h1>
+<p>No need of the on argument when performing a join</p>
+<ul>
+<li>Sorts the data.table in memory by the key column(s)</li>
+<li>Multiple columns can be set and used as keys</li>
+<li>Useful functions:</li>
+<li>setkey(DT, …) or setkeyv(DT, keys)</li>
+<li>haskey(DT)</li>
+<li>key(DT</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>setkey</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>id</span><span class='op'>)</span>
+<span class='fu'>setkey</span><span class='op'>(</span><span class='va'>y</span>, <span class='st'>"id"</span><span class='op'>)</span>
+<span class='fu'>haskey</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'>haskey</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre><code><span class='fu'>key</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'>key</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;id&quot;</code></pre>
+<pre><code>[1] &quot;id&quot;</code></pre>
+</div>
+<h2 id="joins-with-keys-already-specified">joins with keys already specified</h2>
+<p>Inner join x and y</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>x</span><span class='op'>[</span><span class='va'>y</span>, nomatch <span class='op'>=</span> <span class='fl'>0</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  x  y
+1:  1  9  8
+2:  4 14 19
+3:  6  8  2
+4:  6  8  4</code></pre>
+</div>
+<p>Right join x and y</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>x</span><span class='op'>[</span><span class='va'>y</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  x  y
+1:  1  9  8
+2:  3 NA 14
+3:  4 14 19
+4:  6  8  2
+5:  6  8  4</code></pre>
+</div>
+<p>Left join x and y</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>y</span><span class='op'>[</span><span class='va'>x</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  y  x
+1:  1  8  9
+2:  2 NA 12
+3:  4 19 14
+4:  5 NA 21
+5:  6  2  8
+6:  6  4  8</code></pre>
+</div>
+<h2 id="exercise-3">Exercise 3</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://r-datatable.com'>data.table</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>starwars</span><span class='op'>)</span>
+<span class='va'>starwarsDT</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>starwars</span><span class='op'>)</span>
+<span class='va'>starwarsDT</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>             name height mass hair_color skin_color eye_color
+1: Luke Skywalker    172   77      blond       fair      blue
+   birth_year  sex    gender homeworld species
+1:         19 male masculine  Tatooine   Human
+                                                                                         films
+1: The Empire Strikes Back,Revenge of the Sith,Return of the Jedi,A New Hope,The Force Awakens
+                            vehicles               starships
+1: Snowspeeder,Imperial Speeder Bike X-wing,Imperial shuttle</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>starwarsDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>min <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>mass</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>,
+               max <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>mass</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>,
+               nobs <span class='op'>=</span> <span class='va'>.N</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='va'>homeworld</span><span class='op'>]</span><span class='op'>[</span><span class='va'>nobs</span> <span class='op'>&gt;</span><span class='fl'>1</span><span class='op'>]</span> 
+</code></pre>
+</div>
+<pre><code>    homeworld   min   max nobs
+ 1:  Tatooine  32.0 136.0   10
+ 2:     Naboo  32.0  85.0   11
+ 3:  Alderaan  49.0  79.0    3
+ 4:  Kashyyyk 112.0 136.0    2
+ 5:  Corellia  77.0  80.0    2
+ 6:      &lt;NA&gt;  17.0 140.0   10
+ 7:    Kamino  78.2  88.0    3
+ 8: Coruscant  50.0  50.0    3
+ 9:    Ryloth  55.0  55.0    2
+10:    Mirial  50.0  56.2    2</code></pre>
+</div>
+<h1 id="reshaping-data-with-data.table">Reshaping data with data.table</h1>
+<ul>
+<li><p>Tidy data</p>
+<ul>
+<li>Each variable is a column -Each observation is a row</li>
+<li>Each value is a cell</li>
+</ul></li>
+<li><p>Two fundamental verbs</p>
+<ul>
+<li><code>melt()</code>: ‘Wide’ -&gt; ‘long’ data</li>
+<li><code>dcast()</code>: ‘long’ -&gt; ‘wide’ data</li>
+</ul></li>
+</ul>
+<p><strong>Wide format</strong></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>,<span class='op'>]</span>, n <span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+Sepal.Length
+</th>
+<th style="text-align:right;">
+Sepal.Width
+</th>
+<th style="text-align:right;">
+Petal.Length
+</th>
+<th style="text-align:right;">
+Petal.Width
+</th>
+<th style="text-align:left;">
+Species
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+3.5
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4.7
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+1.3
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>melt(wide_df, id.vars = 'grouping variable', variable.name = 'measures_across_grouping_var',value.name = 'value_name_as_desired')</code></p>
+<p><strong>Long to wide</strong></p>
+<p><code>dcast(long_df, group ~ atttribute, value.var = "value")</code></p>
+<h1 id="separating-and-uniting-information">Separating and uniting information</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisUnited</span> <span class='op'>&lt;-</span> <span class='va'>irisDT</span><span class='op'>[</span> , <span class='va'>Sepal.Length.Width</span> <span class='op'>:=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='st'>"/"</span>, <span class='va'>Sepal.Width</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>irisUnited</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:          6.0         2.2          5.0         1.5 virginica
+2:          4.9         2.5          4.5         1.7 virginica
+3:          5.7         2.5          5.0         2.0 virginica
+4:          6.3         2.5          5.0         1.9 virginica
+5:          6.7         2.5          5.8         1.8 virginica
+   maxLength minWidth Sepal.Length.Width
+1:       7.9      0.1              6/2.2
+2:       7.9      0.1            4.9/2.5
+3:       7.9      0.1            5.7/2.5
+4:       7.9      0.1            6.3/2.5
+5:       7.9      0.1            6.7/2.5</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisSeparated</span> <span class='op'>=</span> <span class='va'>irisUnited</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Sepal.Length'</span>, <span class='st'>'Sepal.Width'</span><span class='op'>)</span> <span class='op'>:=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/tstrsplit.html'>tstrsplit</a></span><span class='op'>(</span><span class='va'>Sepal.Length.Width</span>, <span class='st'>"/"</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>irisSeparated</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:            6         2.2          5.0         1.5 virginica
+2:          4.9         2.5          4.5         1.7 virginica
+3:          5.7         2.5          5.0         2.0 virginica
+4:          6.3         2.5          5.0         1.9 virginica
+5:          6.7         2.5          5.8         1.8 virginica
+   maxLength minWidth Sepal.Length.Width
+1:       7.9      0.1              6/2.2
+2:       7.9      0.1            4.9/2.5
+3:       7.9      0.1            5.7/2.5
+4:       7.9      0.1            6.3/2.5
+5:       7.9      0.1            6.7/2.5</code></pre>
+</div>
+<h1 id="hands-on-session">Hands-on session</h1>
+<p>Exercise 1</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"relig_income"</span><span class='op'>)</span>
+<span class='va'>a</span> <span class='op'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>relig_income</span><span class='op'>)</span>
+<span class='va'>a</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>             religion &lt;$10k $10-20k $20-30k $30-40k $40-50k $50-75k
+1:           Agnostic    27      34      60      81      76     137
+2:            Atheist    12      27      37      52      35      70
+3:           Buddhist    27      21      30      34      33      58
+4:           Catholic   418     617     732     670     638    1116
+5: Don’t know/refused    15      14      15      11      10      35
+   $75-100k $100-150k &gt;150k Don&#39;t know/refused
+1:      122       109    84                 96
+2:       73        59    74                 76
+3:       62        39    53                 54
+4:      949       792   633               1489
+5:       21        17    18                116</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>b</span> <span class='op'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/melt.data.table.html'>melt</a></span><span class='op'>(</span><span class='va'>a</span>, id.vars <span class='op'>=</span> <span class='st'>"religion"</span>, variable.name <span class='op'>=</span> <span class='st'>"income_category"</span>, value.name <span class='op'>=</span> <span class='st'>"n"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Exercise 2</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"storms"</span><span class='op'>)</span>
+<span class='va'>aa</span> <span class='op'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>storms</span><span class='op'>)</span>
+<span class='va'>aa</span><span class='op'>[</span>, <span class='va'>date</span><span class='op'>:=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>year</span>, <span class='st'>"-"</span>, <span class='va'>month</span>,<span class='st'>"-"</span>, <span class='va'>day</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<h1 id="useful-symbols-functions">Useful symbols/ functions</h1>
+<ul>
+<li><code>.SD</code>: Subset of Data for each group
+<ul>
+<li>.SD along with lapply can be used to apply any function to multiple columns by group</li>
+</ul></li>
+<li><code>.SDcols</code>: Columns of the data.table that are included in .SD</li>
+<li>na.omit(): returns the object with incomplete cases removed</li>
+</ul>
+<h2 id="summarizing-for-specific-condition">Summarizing for specific condition</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>cols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>irisDT</span>, <span class='va'>is.numeric</span><span class='op'>)</span>
+<span class='va'>cols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>cols</span><span class='op'>)</span><span class='op'>[</span><span class='va'>cols</span><span class='op'>]</span>
+<span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>.SD</span>, <span class='va'>mean</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='va'>Species</span>, .SDcols <span class='op'>=</span> <span class='va'>cols</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species Petal.Length Petal.Width maxLength minWidth
+1:  virginica        5.552       2.026       7.9      0.1
+2: versicolor        4.260       1.326       7.9      0.1
+3:     setosa        1.462       0.246       7.9      0.1</code></pre>
+</div>
+<h2 id="summarizing-for-specific-variable-of-interest">Summarizing for specific variable of interest</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>.SD</span>, <span class='va'>mean</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='va'>Species</span>, .SDcols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Petal.Length"</span>, <span class='st'>"Petal.Width"</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species Petal.Length Petal.Width
+1:  virginica        5.552       2.026
+2: versicolor        4.260       1.326
+3:     setosa        1.462       0.246</code></pre>
+</div>
+<h2 id="summarizing-all-columns">Summarizing all columns</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span>recursive <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'>.</span><span class='op'>(</span>mean <span class='op'>=</span> <span class='va'>mean</span>, sd <span class='op'>=</span> <span class='va'>sd</span>, min <span class='op'>=</span> <span class='va'>min</span>, max <span class='op'>=</span> <span class='va'>max</span><span class='op'>)</span>, 
+                                           <span class='kw'>function</span><span class='op'>(</span><span class='va'>f</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>.SD</span>, <span class='va'>f</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='va'>Species</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species mean.Sepal.Length mean.Sepal.Width mean.Petal.Length
+1:  virginica                NA               NA             5.552
+2: versicolor                NA               NA             4.260
+3:     setosa                NA               NA             1.462
+4:       &lt;NA&gt;                NA               NA                NA
+5:       &lt;NA&gt;                NA               NA                NA
+   mean.Petal.Width mean.maxLength mean.minWidth
+1:            2.026            7.9           0.1
+2:            1.326            7.9           0.1
+3:            0.246            7.9           0.1
+4:               NA             NA            NA
+5:               NA             NA            NA
+   mean.Sepal.Length.Width sd.Sepal.Length sd.Sepal.Width
+1:                      NA       0.6358796      0.3224966
+2:                      NA       0.5161711      0.3137983
+3:                      NA       0.3524897      0.3790644
+4:                      NA              NA             NA
+5:                      NA              NA             NA
+   sd.Petal.Length sd.Petal.Width sd.maxLength sd.minWidth
+1:       0.5518947      0.2746501            0           0
+2:       0.4699110      0.1977527            0           0
+3:       0.1736640      0.1053856            0           0
+4:              NA             NA           NA          NA
+5:              NA             NA           NA          NA
+   sd.Sepal.Length.Width min.Sepal.Length min.Sepal.Width
+1:                    NA              4.9             2.2
+2:                    NA              4.9               2
+3:                    NA              4.3             2.3
+4:                    NA             &lt;NA&gt;            &lt;NA&gt;
+5:                    NA             &lt;NA&gt;            &lt;NA&gt;
+   min.Petal.Length min.Petal.Width min.maxLength min.minWidth
+1:              4.5             1.4           7.9          0.1
+2:              3.0             1.0           7.9          0.1
+3:              1.0             0.1           7.9          0.1
+4:               NA              NA            NA           NA
+5:               NA              NA            NA           NA
+   min.Sepal.Length.Width max.Sepal.Length max.Sepal.Width
+1:                4.9/2.5              7.9             3.8
+2:                4.9/2.4                7             3.4
+3:                  4.3/3              5.8             4.4
+4:                   &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+5:                   &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+   max.Petal.Length max.Petal.Width max.maxLength max.minWidth
+1:              6.9             2.5           7.9          0.1
+2:              5.1             1.8           7.9          0.1
+3:              1.9             0.6           7.9          0.1
+4:               NA              NA            NA           NA
+5:               NA              NA            NA           NA
+   max.Sepal.Length.Width
+1:                7.9/3.8
+2:                  7/3.2
+3:                  5/3.6
+4:                   &lt;NA&gt;
+5:                   &lt;NA&gt;</code></pre>
+</div>
+<h1 id="hands-on-3">Hands-on 3</h1>
+<p>Exercise 1 - Compute the minimum, maximum, median and mean for all numeric columns</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"starwars"</span><span class='op'>)</span>
+<span class='va'>starwarsDT</span> <span class='op'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>starwars</span><span class='op'>)</span>
+<span class='va'>cols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>starwarsDT</span>, <span class='va'>is.numeric</span><span class='op'>)</span>
+<span class='va'>cols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>cols</span><span class='op'>)</span><span class='op'>[</span><span class='va'>cols</span><span class='op'>]</span>
+
+<span class='va'>starwarsDT</span><span class='op'>[</span>, <span class='va'>height</span><span class='op'>:=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>height</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='va'>starwarsDT</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span>recursive <span class='op'>=</span> <span class='cn'>F</span>,
+                    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'>.</span><span class='op'>(</span>min <span class='op'>=</span> <span class='va'>min</span>, max <span class='op'>=</span> <span class='va'>max</span>, median <span class='op'>=</span> <span class='va'>median</span>, mean <span class='op'>=</span> <span class='va'>mean</span><span class='op'>)</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>f</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>.SD</span>, <span class='va'>f</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>homeworld</span>, <span class='va'>species</span><span class='op'>)</span>, .SDcols <span class='op'>=</span> <span class='va'>cols</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   homeworld species min.height min.mass min.birth_year max.height
+1:  Tatooine   Human        163       NA             19        202
+2:  Tatooine   Droid         97       32             NA        167
+3:     Naboo   Droid         96       32             33         96
+4:  Alderaan   Human        150       NA             NA        191
+5:   Stewjon   Human        182       77             57        182
+   max.mass max.birth_year median.height median.mass
+1:       NA             82         180.5          NA
+2:       75             NA         132.0        53.5
+3:       32             33          96.0        32.0
+4:       NA             NA         188.0          NA
+5:       77             57         182.0        77.0
+   median.birth_year mean.height mean.mass mean.birth_year
+1:             44.45    179.2500        NA          47.475
+2:                NA    132.0000      53.5              NA
+3:             33.00     96.0000      32.0          33.000
+4:                NA    176.3333        NA              NA
+5:             57.00    182.0000      77.0          57.000</code></pre>
+</div>
+<p>Exercise 2 - all colnames to upper case</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>starwarsDT</span> <span class='op'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>starwars</span><span class='op'>)</span>
+<span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/setattr.html'>setnames</a></span><span class='op'>(</span><span class='va'>starwarsDT</span>, <span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>toupper</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>starwarsDT</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Convert all character columns to upper case</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>cols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>starwarsDT</span>, <span class='va'>is.character</span><span class='op'>)</span>
+<span class='va'>cols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>cols</span><span class='op'>)</span><span class='op'>[</span><span class='va'>cols</span><span class='op'>]</span>
+<span class='va'>starwarsDT</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>.SD</span>, <span class='va'>toupper</span><span class='op'>)</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>             NAME HEIGHT MASS HAIR_COLOR  SKIN_COLOR EYE_COLOR
+1: LUKE SKYWALKER    172   77      BLOND        FAIR      BLUE
+2:          C-3PO    167   75       &lt;NA&gt;        GOLD    YELLOW
+3:          R2-D2     96   32       &lt;NA&gt; WHITE, BLUE       RED
+4:    DARTH VADER    202  136       NONE       WHITE    YELLOW
+5:    LEIA ORGANA    150   49      BROWN       LIGHT     BROWN
+   BIRTH_YEAR    SEX    GENDER HOMEWORLD SPECIES
+1:         19   MALE MASCULINE  TATOOINE   HUMAN
+2:        112   NONE MASCULINE  TATOOINE   DROID
+3:         33   NONE MASCULINE     NABOO   DROID
+4:       41.9   MALE MASCULINE  TATOOINE   HUMAN
+5:         19 FEMALE  FEMININE  ALDERAAN   HUMAN
+                                                                                                                                                        FILMS
+1:                                               C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;, &quot;THE FORCE AWAKENS&quot;)
+2:                      C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;)
+3: C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;, &quot;THE FORCE AWAKENS&quot;)
+4:                                                                    C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;)
+5:                                               C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;, &quot;THE FORCE AWAKENS&quot;)
+                                    VEHICLES
+1: C(&quot;SNOWSPEEDER&quot;, &quot;IMPERIAL SPEEDER BIKE&quot;)
+2:                              CHARACTER(0)
+3:                              CHARACTER(0)
+4:                              CHARACTER(0)
+5:                     IMPERIAL SPEEDER BIKE
+                         STARSHIPS
+1: C(&quot;X-WING&quot;, &quot;IMPERIAL SHUTTLE&quot;)
+2:                    CHARACTER(0)
+3:                    CHARACTER(0)
+4:                 TIE ADVANCED X1
+5:                    CHARACTER(0)</code></pre>
+</div>
+<p>Exercise 3</p>
+<ul>
+<li>Remove the data which have NA for the numeric variables</li>
+<li>Group the data by all character variables</li>
+<li>Compute the mean for <code>ts_diameter</code> and <code>hu_diameter</code></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>stormsDT</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>storms</span><span class='op'>)</span>
+<span class='va'>numericCols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>stormsDT</span>, <span class='va'>is.numeric</span><span class='op'>)</span>
+<span class='va'>numericCols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>numericCols</span><span class='op'>)</span><span class='op'>[</span><span class='va'>numericCols</span><span class='op'>]</span>
+<span class='va'>stormsDTNew</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/na.omit.data.table.html'>na.omit</a></span><span class='op'>(</span><span class='va'>stormsDT</span>, cols <span class='op'>=</span> <span class='va'>numericCols</span><span class='op'>)</span>
+<span class='va'>characterCols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>stormsDTNew</span>, <span class='va'>is.character</span><span class='op'>)</span>
+<span class='va'>characterCols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>characterCols</span><span class='op'>)</span><span class='op'>[</span><span class='va'>characterCols</span><span class='op'>]</span>
+<span class='va'>colsOfInterest</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ts_diameter"</span>, <span class='st'>"hu_diameter"</span><span class='op'>)</span>
+<span class='va'>stormsDTNew</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>.SD</span>, <span class='va'>mean</span><span class='op'>)</span>, .SDcols <span class='op'>=</span> <span class='va'>colsOfInterest</span>, by <span class='op'>=</span> <span class='va'>characterCols</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>     name              status ts_diameter hu_diameter
+1:   Alex tropical depression     0.00000      0.0000
+2:   Alex      tropical storm   150.80013      0.0000
+3:   Alex           hurricane   304.40871     63.5669
+4: Bonnie tropical depression     0.00000      0.0000
+5: Bonnie      tropical storm    75.40637      0.0000</code></pre>
+</div>
+<p><code>.SD</code>: Subset of data - choose row by ordinal position</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='co'># irisDT[, .SD[1L]]</span>
+<span class='co'># irisDT[, .SD[1L], by = Species]</span>
+<span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>1L</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='va'>Species</span>, .SDcols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Petal.Length"</span>, <span class='st'>"Petal.Width"</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species Petal.Length Petal.Width
+1:  virginica          5.0         1.5
+2: versicolor          3.5         1.0
+3:     setosa          1.3         0.3</code></pre>
+</div>
+<p><code>.SD</code>: Subset of Data - select top entries (in each group)</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/setorder.html'>order</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>Sepal.Length</span><span class='op'>)</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:          7.9         3.8          6.4         2.0 virginica
+2:          7.7         2.6          6.9         2.3 virginica
+   maxLength minWidth Sepal.Length.Width
+1:       7.9      0.1            7.9/3.8
+2:       7.9      0.1            7.7/2.6</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/which.min.html'>which.max</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span><span class='op'>)</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='va'>Species</span>, .SDcols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal.Length"</span>,<span class='st'>"Sepal.Width"</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species Sepal.Length Sepal.Width
+1:  virginica          7.9         3.8
+2: versicolor            7         3.2
+3:     setosa          5.8           4</code></pre>
+</div>
+<h1 id="multiple-if-else-statements">Multiple if else statements</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>text</span> <span class='op'>:=</span> <span class='op'>{</span>
+  <span class='kw'>if</span><span class='op'>(</span><span class='va'>Sepal.Length</span> <span class='op'>&gt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>Sepal.Width</span> <span class='op'>&gt;</span> <span class='fl'>4</span><span class='op'>)</span> <span class='st'>"sepal length and width is larger than 4"</span>
+  <span class='kw'>else</span> <span class='kw'>if</span><span class='op'>(</span><span class='va'>Petal.Length</span> <span class='op'>&lt;</span> <span class='fl'>2</span> <span class='op'>&amp;</span> <span class='va'>Petal.Width</span> <span class='op'>&lt;</span> <span class='fl'>2</span><span class='op'>)</span> <span class='st'>"petal length and width is smaller than 2"</span>
+  <span class='kw'>else</span> <span class='st'>"other"</span>
+<span class='op'>}</span>, by <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>Species</span>, <span class='va'>Sepal.Length</span>, <span class='va'>Sepal.Width</span>, <span class='va'>Petal.Length</span>, <span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>]</span><span class='op'>[</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='va'>text</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>                                       text Sepal.Length Sepal.Width
+1:                                    other            6         2.2
+2: petal length and width is smaller than 2          4.5         2.3
+3:  sepal length and width is larger than 4          5.2         4.1
+4:                                     &lt;NA&gt;         &lt;NA&gt;        &lt;NA&gt;
+5:                                     &lt;NA&gt;         &lt;NA&gt;        &lt;NA&gt;
+   Petal.Length Petal.Width   Species maxLength minWidth
+1:          5.0         1.5 virginica       7.9      0.1
+2:          1.3         0.3    setosa       7.9      0.1
+3:          1.5         0.1    setosa       7.9      0.1
+4:           NA          NA      &lt;NA&gt;        NA       NA
+5:           NA          NA      &lt;NA&gt;        NA       NA
+   Sepal.Length.Width
+1:              6/2.2
+2:            4.5/2.3
+3:            5.2/4.1
+4:               &lt;NA&gt;
+5:               &lt;NA&gt;</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>bin_iris</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>sl</span>, <span class='va'>sw</span>, <span class='va'>pl</span>, <span class='va'>pw</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='kw'>if</span><span class='op'>(</span><span class='va'>sl</span> <span class='op'>&gt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>sw</span> <span class='op'>&gt;</span> <span class='fl'>4</span><span class='op'>)</span> <span class='st'>"sepal length and width is larger than 4"</span>
+  <span class='kw'>else</span> <span class='kw'>if</span><span class='op'>(</span><span class='va'>pl</span> <span class='op'>&lt;</span> <span class='fl'>2</span> <span class='op'>&amp;</span> <span class='va'>pw</span> <span class='op'>&lt;</span> <span class='fl'>2</span><span class='op'>)</span> <span class='st'>"petal length and width is smaller than 2"</span>
+  <span class='kw'>else</span> <span class='st'>"other"</span>
+<span class='op'>}</span>
+<span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>text</span> <span class='op'>:=</span> <span class='fu'>bin_iris</span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Sepal.Width</span>, <span class='va'>Petal.Length</span>, <span class='va'>Petal.Width</span><span class='op'>)</span>, 
+       by <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>Species</span>, <span class='va'>Sepal.Length</span>, <span class='va'>Sepal.Width</span>, <span class='va'>Petal.Length</span>, <span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>]</span><span class='op'>[</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='va'>text</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>                                       text Sepal.Length Sepal.Width
+1:                                    other            6         2.2
+2: petal length and width is smaller than 2          4.5         2.3
+3:  sepal length and width is larger than 4          5.2         4.1
+4:                                     &lt;NA&gt;         &lt;NA&gt;        &lt;NA&gt;
+5:                                     &lt;NA&gt;         &lt;NA&gt;        &lt;NA&gt;
+   Petal.Length Petal.Width   Species maxLength minWidth
+1:          5.0         1.5 virginica       7.9      0.1
+2:          1.3         0.3    setosa       7.9      0.1
+3:          1.5         0.1    setosa       7.9      0.1
+4:           NA          NA      &lt;NA&gt;        NA       NA
+5:           NA          NA      &lt;NA&gt;        NA       NA
+   Sepal.Length.Width
+1:              6/2.2
+2:            4.5/2.3
+3:            5.2/4.1
+4:               &lt;NA&gt;
+5:               &lt;NA&gt;</code></pre>
+</div>
+<h1 id="hands---on-4">Hands - on 4</h1>
+<p>Exercise 1</p>
+<p>Print the fifth row for each species.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>starwarsDT</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>starwars</span><span class='op'>)</span>
+<span class='va'>starwarsDT</span><span class='op'>[</span>, <span class='kw'>if</span><span class='op'>(</span><span class='va'>.N</span> <span class='op'>&gt;=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>5L</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='va'>species</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   species               name height mass hair_color  skin_color
+1:   Human Beru Whitesun lars    165   75      brown       light
+2:   Droid             R4-P17     96   NA       none silver, red
+   eye_color birth_year    sex   gender homeworld
+1:      blue         47 female feminine  Tatooine
+2: red, blue         NA   none feminine      &lt;NA&gt;
+                                                 films vehicles
+1: Attack of the Clones,Revenge of the Sith,A New Hope         
+2:            Attack of the Clones,Revenge of the Sith         
+   starships
+1:          
+2:          </code></pre>
+</div>
+<p>Exercise 2</p>
+<ul>
+<li>Consider the columns name, status and pressure.</li>
+<li>Print for each storm, the 5 entries with the lowest pressure.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>stormsDT</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>storms</span><span class='op'>)</span>
+<span class='va'>stormsDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span><span class='va'>name</span>, <span class='va'>status</span>, <span class='va'>pressure</span><span class='op'>)</span><span class='op'>]</span><span class='op'>[</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/setorder.html'>order</a></span><span class='op'>(</span><span class='va'>name</span>, <span class='va'>pressure</span><span class='op'>)</span><span class='op'>]</span><span class='op'>[</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='va'>.N</span><span class='op'>)</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='va'>name</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>       name              status pressure
+1: AL011993 tropical depression      999
+2: AL011993 tropical depression      999
+3: AL011993 tropical depression      999
+4: AL011993 tropical depression      999
+5: AL011993 tropical depression     1000</code></pre>
+</div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
