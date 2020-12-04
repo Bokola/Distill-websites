@@ -86,7 +86,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-<title>More into data.table: Welcome to Demo Distill</title>
+<title>More into data.table: A deeper look into data.table functionalities</title>
 
 <meta property="description" itemprop="description" content="Welcome to our new blog, More into data.table. We hope you enjoy &#10;reading what we have to say!"/>
 
@@ -97,7 +97,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta name="article:author" content="Basil Okola"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="More into data.table: Welcome to Demo Distill"/>
+<meta property="og:title" content="More into data.table: A deeper look into data.table functionalities"/>
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="Welcome to our new blog, More into data.table. We hope you enjoy &#10;reading what we have to say!"/>
 <meta property="og:locale" content="en_US"/>
@@ -105,14 +105,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="More into data.table: Welcome to Demo Distill"/>
+<meta property="twitter:title" content="More into data.table: A deeper look into data.table functionalities"/>
 <meta property="twitter:description" content="Welcome to our new blog, More into data.table. We hope you enjoy &#10;reading what we have to say!"/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Welcome to Demo Distill"]},{"type":"character","attributes":{},"value":["Welcome to our new blog, More into data.table. We hope you enjoy \nreading what we have to say!"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Basil Okola"]},{"type":"character","attributes":{},"value":["https://example.com/norajones"]},{"type":"character","attributes":{},"value":["Spacely Sprockets"]},{"type":"character","attributes":{},"value":["https://example.com/spacelysprokets"]}]}]},{"type":"character","attributes":{},"value":["2020-12-04"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["A deeper look into data.table functionalities"]},{"type":"character","attributes":{},"value":["Welcome to our new blog, More into data.table. We hope you enjoy \nreading what we have to say!"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Basil Okola"]},{"type":"character","attributes":{},"value":["https://github.com/Bokola"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["https://example.com/spacelysprokets"]}]}]},{"type":"character","attributes":{},"value":["2020-12-04"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2013,7 +2013,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Welcome to Demo Distill","description":"Welcome to our new blog, More into data.table. We hope you enjoy \nreading what we have to say!","authors":[{"author":"Basil Okola","authorURL":"https://example.com/norajones","affiliation":"Spacely Sprockets","affiliationURL":"https://example.com/spacelysprokets","orcidID":""}],"publishedDate":"2020-12-04T00:00:00.000+01:00","citationText":"Okola, 2020"}
+{"title":"A deeper look into data.table functionalities","description":"Welcome to our new blog, More into data.table. We hope you enjoy \nreading what we have to say!","authors":[{"author":"Basil Okola","authorURL":"https://github.com/Bokola","affiliation":"&nbsp;","affiliationURL":"https://example.com/spacelysprokets","orcidID":""}],"publishedDate":"2020-12-04T00:00:00.000+01:00","citationText":"Okola, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2036,20 +2036,2125 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Welcome to Demo Distill</h1>
+<h1>A deeper look into data.table functionalities</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 <p><p>Welcome to our new blog, More into data.table. We hope you enjoy reading what we have to say!</p></p>
 </div>
 
 <div class="d-byline">
-  Basil Okola <a href="https://example.com/norajones" class="uri">https://example.com/norajones</a> (Spacely Sprockets)<a href="https://example.com/spacelysprokets" class="uri">https://example.com/spacelysprokets</a>
+  Basil Okola <a href="https://github.com/Bokola" class="uri">https://github.com/Bokola</a> 
   
 <br/>2020-12-04
 </div>
 
 <div class="d-article">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Data table syntax is of the form <code>DT[i, j, by]</code></p>
+<ul>
+<li><code>i</code>: on which row</li>
+<li><code>j</code>: what to do</li>
+<li><code>by</code>: group by what</li>
+</ul>
+<h1 id="data-manipulation">Data Manipulation</h1>
+<ul>
+<li>Just looking</li>
+<li>Removing information</li>
+<li>Adding information</li>
+<li>Reducing information</li>
+<li>Combining information</li>
+</ul>
+<h2 id="just-looking">Just looking</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span> <span class='op'>=</span> <span class='fu'>as.data.table</span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span>
+<span class='fu'>tables</span><span class='op'>(</span><span class='op'>)</span> <span class='co'># show loaded tables</span>
+</code></pre>
+</div>
+<pre><code>     NAME NROW NCOL MB
+1: irisDT  150    5  0
+                                                        COLS KEY
+1: Sepal.Length,Sepal.Width,Petal.Length,Petal.Width,Species    
+Total: 0MB</code></pre>
+</div>
+<p>Sorting / ordering rows</p>
+<p>setorder(data.table, …)</p>
+<p><code>-</code>: to sort a variable in descending order</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>setorder</span><span class='op'>(</span><span class='va'>irisDT</span>, <span class='va'>Sepal.Length</span>, <span class='va'>Sepal.Width</span><span class='op'>)</span>
+<span class='va'>irisDT</span>
+</code></pre>
+</div>
+<pre><code>     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+  1:          4.3         3.0          1.1         0.1    setosa
+  2:          4.4         2.9          1.4         0.2    setosa
+  3:          4.4         3.0          1.3         0.2    setosa
+  4:          4.4         3.2          1.3         0.2    setosa
+  5:          4.5         2.3          1.3         0.3    setosa
+ ---                                                            
+146:          7.7         2.6          6.9         2.3 virginica
+147:          7.7         2.8          6.7         2.0 virginica
+148:          7.7         3.0          6.1         2.3 virginica
+149:          7.7         3.8          6.7         2.2 virginica
+150:          7.9         3.8          6.4         2.0 virginica</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>setorder</span><span class='op'>(</span><span class='va'>irisDT</span>, <span class='op'>-</span><span class='va'>Species</span>, <span class='va'>Sepal.Width</span><span class='op'>)</span>
+<span class='va'>irisDT</span>
+</code></pre>
+</div>
+<pre><code>     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+  1:          6.0         2.2          5.0         1.5 virginica
+  2:          4.9         2.5          4.5         1.7 virginica
+  3:          5.7         2.5          5.0         2.0 virginica
+  4:          6.3         2.5          5.0         1.9 virginica
+  5:          6.7         2.5          5.8         1.8 virginica
+ ---                                                            
+146:          5.4         3.9          1.3         0.4    setosa
+147:          5.8         4.0          1.2         0.2    setosa
+148:          5.2         4.1          1.5         0.1    setosa
+149:          5.5         4.2          1.4         0.2    setosa
+150:          5.7         4.4          1.5         0.4    setosa</code></pre>
+</div>
+<h2 id="removing-information">Removing information</h2>
+<h3 id="selecting-rows">Selecting rows</h3>
+<p>DT[i, j, by]</p>
+<ul>
+<li><code>i</code>: on which rows?</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:          5.7         2.5            5         2.0 virginica
+2:          6.3         2.5            5         1.9 virginica</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span>,<span class='op'>]</span> <span class='co'>#row 3 and 4</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:          5.7         2.5            5         2.0 virginica
+2:          6.3         2.5            5         1.9 virginica</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='op'>-</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>]</span> <span class='co'>#delete rows 1:5</span>
+</code></pre>
+</div>
+<pre><code>     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+  1:          6.1         2.6          5.6         1.4 virginica
+  2:          7.7         2.6          6.9         2.3 virginica
+  3:          5.8         2.7          5.1         1.9 virginica
+  4:          5.8         2.7          5.1         1.9 virginica
+  5:          6.3         2.7          4.9         1.8 virginica
+ ---                                                            
+141:          5.4         3.9          1.3         0.4    setosa
+142:          5.8         4.0          1.2         0.2    setosa
+143:          5.2         4.1          1.5         0.1    setosa
+144:          5.5         4.2          1.4         0.2    setosa
+145:          5.7         4.4          1.5         0.4    setosa</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='op'>!</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>]</span> <span class='co'># using false to delete as well</span>
+</code></pre>
+</div>
+<pre><code>     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+  1:          6.1         2.6          5.6         1.4 virginica
+  2:          7.7         2.6          6.9         2.3 virginica
+  3:          5.8         2.7          5.1         1.9 virginica
+  4:          5.8         2.7          5.1         1.9 virginica
+  5:          6.3         2.7          4.9         1.8 virginica
+ ---                                                            
+141:          5.4         3.9          1.3         0.4    setosa
+142:          5.8         4.0          1.2         0.2    setosa
+143:          5.2         4.1          1.5         0.1    setosa
+144:          5.5         4.2          1.4         0.2    setosa
+145:          5.7         4.4          1.5         0.4    setosa</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='va'>.N</span><span class='op'>]</span> <span class='co'># last row</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1:          5.7         4.4          1.5         0.4  setosa</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='op'>(</span><span class='va'>.N</span><span class='op'>-</span><span class='fl'>10</span><span class='op'>)</span><span class='op'>]</span> <span class='co'># all but the last 10 rows</span>
+</code></pre>
+</div>
+<pre><code>     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+  1:          6.0         2.2          5.0         1.5 virginica
+  2:          4.9         2.5          4.5         1.7 virginica
+  3:          5.7         2.5          5.0         2.0 virginica
+  4:          6.3         2.5          5.0         1.9 virginica
+  5:          6.7         2.5          5.8         1.8 virginica
+ ---                                                            
+136:          4.9         3.6          1.4         0.1    setosa
+137:          5.0         3.6          1.4         0.2    setosa
+138:          5.1         3.7          1.5         0.4    setosa
+139:          5.3         3.7          1.5         0.2    setosa
+140:          5.4         3.7          1.5         0.2    setosa</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='va'>Species</span> <span class='op'>==</span> <span class='st'>"virginica"</span><span class='op'>]</span> <span class='co'># based on conditions fulfilled in columns</span>
+</code></pre>
+</div>
+<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+ 1:          6.0         2.2          5.0         1.5 virginica
+ 2:          4.9         2.5          4.5         1.7 virginica
+ 3:          5.7         2.5          5.0         2.0 virginica
+ 4:          6.3         2.5          5.0         1.9 virginica
+ 5:          6.7         2.5          5.8         1.8 virginica
+ 6:          6.1         2.6          5.6         1.4 virginica
+ 7:          7.7         2.6          6.9         2.3 virginica
+ 8:          5.8         2.7          5.1         1.9 virginica
+ 9:          5.8         2.7          5.1         1.9 virginica
+10:          6.3         2.7          4.9         1.8 virginica
+11:          6.4         2.7          5.3         1.9 virginica
+12:          5.6         2.8          4.9         2.0 virginica
+13:          5.8         2.8          5.1         2.4 virginica
+14:          6.2         2.8          4.8         1.8 virginica
+15:          6.3         2.8          5.1         1.5 virginica
+16:          6.4         2.8          5.6         2.1 virginica
+17:          6.4         2.8          5.6         2.2 virginica
+18:          7.4         2.8          6.1         1.9 virginica
+19:          7.7         2.8          6.7         2.0 virginica
+20:          6.3         2.9          5.6         1.8 virginica
+21:          7.3         2.9          6.3         1.8 virginica
+22:          5.9         3.0          5.1         1.8 virginica
+23:          6.0         3.0          4.8         1.8 virginica
+24:          6.1         3.0          4.9         1.8 virginica
+25:          6.5         3.0          5.8         2.2 virginica
+26:          6.5         3.0          5.5         1.8 virginica
+27:          6.5         3.0          5.2         2.0 virginica
+28:          6.7         3.0          5.2         2.3 virginica
+29:          6.8         3.0          5.5         2.1 virginica
+30:          7.1         3.0          5.9         2.1 virginica
+31:          7.2         3.0          5.8         1.6 virginica
+32:          7.6         3.0          6.6         2.1 virginica
+33:          7.7         3.0          6.1         2.3 virginica
+34:          6.4         3.1          5.5         1.8 virginica
+35:          6.7         3.1          5.6         2.4 virginica
+36:          6.9         3.1          5.4         2.1 virginica
+37:          6.9         3.1          5.1         2.3 virginica
+38:          6.4         3.2          5.3         2.3 virginica
+39:          6.5         3.2          5.1         2.0 virginica
+40:          6.8         3.2          5.9         2.3 virginica
+41:          6.9         3.2          5.7         2.3 virginica
+42:          7.2         3.2          6.0         1.8 virginica
+43:          6.3         3.3          6.0         2.5 virginica
+44:          6.7         3.3          5.7         2.1 virginica
+45:          6.7         3.3          5.7         2.5 virginica
+46:          6.2         3.4          5.4         2.3 virginica
+47:          6.3         3.4          5.6         2.4 virginica
+48:          7.2         3.6          6.1         2.5 virginica
+49:          7.7         3.8          6.7         2.2 virginica
+50:          7.9         3.8          6.4         2.0 virginica
+    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='va'>Species</span> <span class='op'>%like%</span> <span class='st'>"^v"</span><span class='op'>]</span> <span class='co'># using %like% helper function</span>
+</code></pre>
+</div>
+<pre><code>     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+  1:          6.0         2.2          5.0         1.5  virginica
+  2:          4.9         2.5          4.5         1.7  virginica
+  3:          5.7         2.5          5.0         2.0  virginica
+  4:          6.3         2.5          5.0         1.9  virginica
+  5:          6.7         2.5          5.8         1.8  virginica
+  6:          6.1         2.6          5.6         1.4  virginica
+  7:          7.7         2.6          6.9         2.3  virginica
+  8:          5.8         2.7          5.1         1.9  virginica
+  9:          5.8         2.7          5.1         1.9  virginica
+ 10:          6.3         2.7          4.9         1.8  virginica
+ 11:          6.4         2.7          5.3         1.9  virginica
+ 12:          5.6         2.8          4.9         2.0  virginica
+ 13:          5.8         2.8          5.1         2.4  virginica
+ 14:          6.2         2.8          4.8         1.8  virginica
+ 15:          6.3         2.8          5.1         1.5  virginica
+ 16:          6.4         2.8          5.6         2.1  virginica
+ 17:          6.4         2.8          5.6         2.2  virginica
+ 18:          7.4         2.8          6.1         1.9  virginica
+ 19:          7.7         2.8          6.7         2.0  virginica
+ 20:          6.3         2.9          5.6         1.8  virginica
+ 21:          7.3         2.9          6.3         1.8  virginica
+ 22:          5.9         3.0          5.1         1.8  virginica
+ 23:          6.0         3.0          4.8         1.8  virginica
+ 24:          6.1         3.0          4.9         1.8  virginica
+ 25:          6.5         3.0          5.8         2.2  virginica
+ 26:          6.5         3.0          5.5         1.8  virginica
+ 27:          6.5         3.0          5.2         2.0  virginica
+ 28:          6.7         3.0          5.2         2.3  virginica
+ 29:          6.8         3.0          5.5         2.1  virginica
+ 30:          7.1         3.0          5.9         2.1  virginica
+ 31:          7.2         3.0          5.8         1.6  virginica
+ 32:          7.6         3.0          6.6         2.1  virginica
+ 33:          7.7         3.0          6.1         2.3  virginica
+ 34:          6.4         3.1          5.5         1.8  virginica
+ 35:          6.7         3.1          5.6         2.4  virginica
+ 36:          6.9         3.1          5.4         2.1  virginica
+ 37:          6.9         3.1          5.1         2.3  virginica
+ 38:          6.4         3.2          5.3         2.3  virginica
+ 39:          6.5         3.2          5.1         2.0  virginica
+ 40:          6.8         3.2          5.9         2.3  virginica
+ 41:          6.9         3.2          5.7         2.3  virginica
+ 42:          7.2         3.2          6.0         1.8  virginica
+ 43:          6.3         3.3          6.0         2.5  virginica
+ 44:          6.7         3.3          5.7         2.1  virginica
+ 45:          6.7         3.3          5.7         2.5  virginica
+ 46:          6.2         3.4          5.4         2.3  virginica
+ 47:          6.3         3.4          5.6         2.4  virginica
+ 48:          7.2         3.6          6.1         2.5  virginica
+ 49:          7.7         3.8          6.7         2.2  virginica
+ 50:          7.9         3.8          6.4         2.0  virginica
+ 51:          5.0         2.0          3.5         1.0 versicolor
+ 52:          6.0         2.2          4.0         1.0 versicolor
+ 53:          6.2         2.2          4.5         1.5 versicolor
+ 54:          5.0         2.3          3.3         1.0 versicolor
+ 55:          5.5         2.3          4.0         1.3 versicolor
+ 56:          6.3         2.3          4.4         1.3 versicolor
+ 57:          4.9         2.4          3.3         1.0 versicolor
+ 58:          5.5         2.4          3.8         1.1 versicolor
+ 59:          5.5         2.4          3.7         1.0 versicolor
+ 60:          5.1         2.5          3.0         1.1 versicolor
+ 61:          5.5         2.5          4.0         1.3 versicolor
+ 62:          5.6         2.5          3.9         1.1 versicolor
+ 63:          6.3         2.5          4.9         1.5 versicolor
+ 64:          5.5         2.6          4.4         1.2 versicolor
+ 65:          5.7         2.6          3.5         1.0 versicolor
+ 66:          5.8         2.6          4.0         1.2 versicolor
+ 67:          5.2         2.7          3.9         1.4 versicolor
+ 68:          5.6         2.7          4.2         1.3 versicolor
+ 69:          5.8         2.7          4.1         1.0 versicolor
+ 70:          5.8         2.7          3.9         1.2 versicolor
+ 71:          6.0         2.7          5.1         1.6 versicolor
+ 72:          5.7         2.8          4.5         1.3 versicolor
+ 73:          5.7         2.8          4.1         1.3 versicolor
+ 74:          6.1         2.8          4.0         1.3 versicolor
+ 75:          6.1         2.8          4.7         1.2 versicolor
+ 76:          6.5         2.8          4.6         1.5 versicolor
+ 77:          6.8         2.8          4.8         1.4 versicolor
+ 78:          5.6         2.9          3.6         1.3 versicolor
+ 79:          5.7         2.9          4.2         1.3 versicolor
+ 80:          6.0         2.9          4.5         1.5 versicolor
+ 81:          6.1         2.9          4.7         1.4 versicolor
+ 82:          6.2         2.9          4.3         1.3 versicolor
+ 83:          6.4         2.9          4.3         1.3 versicolor
+ 84:          6.6         2.9          4.6         1.3 versicolor
+ 85:          5.4         3.0          4.5         1.5 versicolor
+ 86:          5.6         3.0          4.5         1.5 versicolor
+ 87:          5.6         3.0          4.1         1.3 versicolor
+ 88:          5.7         3.0          4.2         1.2 versicolor
+ 89:          5.9         3.0          4.2         1.5 versicolor
+ 90:          6.1         3.0          4.6         1.4 versicolor
+ 91:          6.6         3.0          4.4         1.4 versicolor
+ 92:          6.7         3.0          5.0         1.7 versicolor
+ 93:          6.7         3.1          4.4         1.4 versicolor
+ 94:          6.7         3.1          4.7         1.5 versicolor
+ 95:          6.9         3.1          4.9         1.5 versicolor
+ 96:          5.9         3.2          4.8         1.8 versicolor
+ 97:          6.4         3.2          4.5         1.5 versicolor
+ 98:          7.0         3.2          4.7         1.4 versicolor
+ 99:          6.3         3.3          4.7         1.6 versicolor
+100:          6.0         3.4          4.5         1.6 versicolor
+     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='va'>Petal.Width</span> <span class='op'>%between%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.3</span>, <span class='fl'>0.4</span><span class='op'>)</span><span class='op'>]</span> <span class='co'># values in an interval</span>
+</code></pre>
+</div>
+<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+ 1:          4.5         2.3          1.3         0.3  setosa
+ 2:          4.8         3.0          1.4         0.3  setosa
+ 3:          4.6         3.4          1.4         0.3  setosa
+ 4:          5.0         3.4          1.6         0.4  setosa
+ 5:          5.4         3.4          1.5         0.4  setosa
+ 6:          5.0         3.5          1.3         0.3  setosa
+ 7:          5.1         3.5          1.4         0.3  setosa
+ 8:          5.1         3.7          1.5         0.4  setosa
+ 9:          5.1         3.8          1.5         0.3  setosa
+10:          5.1         3.8          1.9         0.4  setosa
+11:          5.7         3.8          1.7         0.3  setosa
+12:          5.4         3.9          1.7         0.4  setosa
+13:          5.4         3.9          1.3         0.4  setosa
+14:          5.7         4.4          1.5         0.4  setosa</code></pre>
+</div>
+<h3 id="selecting-columns">Selecting columns</h3>
+<p>DT[i, j, by]</p>
+<ul>
+<li><code>j</code>: what to do? -&gt; select columns</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>Species</span><span class='op'>]</span> <span class='co'># returns a vector</span>
+</code></pre>
+</div>
+<pre><code>  [1] virginica  virginica  virginica  virginica  virginica 
+  [6] virginica  virginica  virginica  virginica  virginica 
+ [11] virginica  virginica  virginica  virginica  virginica 
+ [16] virginica  virginica  virginica  virginica  virginica 
+ [21] virginica  virginica  virginica  virginica  virginica 
+ [26] virginica  virginica  virginica  virginica  virginica 
+ [31] virginica  virginica  virginica  virginica  virginica 
+ [36] virginica  virginica  virginica  virginica  virginica 
+ [41] virginica  virginica  virginica  virginica  virginica 
+ [46] virginica  virginica  virginica  virginica  virginica 
+ [51] versicolor versicolor versicolor versicolor versicolor
+ [56] versicolor versicolor versicolor versicolor versicolor
+ [61] versicolor versicolor versicolor versicolor versicolor
+ [66] versicolor versicolor versicolor versicolor versicolor
+ [71] versicolor versicolor versicolor versicolor versicolor
+ [76] versicolor versicolor versicolor versicolor versicolor
+ [81] versicolor versicolor versicolor versicolor versicolor
+ [86] versicolor versicolor versicolor versicolor versicolor
+ [91] versicolor versicolor versicolor versicolor versicolor
+ [96] versicolor versicolor versicolor versicolor versicolor
+[101] setosa     setosa     setosa     setosa     setosa    
+[106] setosa     setosa     setosa     setosa     setosa    
+[111] setosa     setosa     setosa     setosa     setosa    
+[116] setosa     setosa     setosa     setosa     setosa    
+[121] setosa     setosa     setosa     setosa     setosa    
+[126] setosa     setosa     setosa     setosa     setosa    
+[131] setosa     setosa     setosa     setosa     setosa    
+[136] setosa     setosa     setosa     setosa     setosa    
+[141] setosa     setosa     setosa     setosa     setosa    
+[146] setosa     setosa     setosa     setosa     setosa    
+Levels: setosa versicolor virginica</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='st'>"Species"</span><span class='op'>]</span> <span class='co'># returns a dataframe/data.table</span>
+</code></pre>
+</div>
+<pre><code>       Species
+  1: virginica
+  2: virginica
+  3: virginica
+  4: virginica
+  5: virginica
+ ---          
+146:    setosa
+147:    setosa
+148:    setosa
+149:    setosa
+150:    setosa</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Species"</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>     Sepal.Length Sepal.Width Petal.Length Petal.Width
+  1:          6.0         2.2          5.0         1.5
+  2:          4.9         2.5          4.5         1.7
+  3:          5.7         2.5          5.0         2.0
+  4:          6.3         2.5          5.0         1.9
+  5:          6.7         2.5          5.8         1.8
+ ---                                                  
+146:          5.4         3.9          1.3         0.4
+147:          5.8         4.0          1.2         0.2
+148:          5.2         4.1          1.5         0.1
+149:          5.5         4.2          1.4         0.2
+150:          5.7         4.4          1.5         0.4</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Species"</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>     Sepal.Length Sepal.Width Petal.Length Petal.Width
+  1:          6.0         2.2          5.0         1.5
+  2:          4.9         2.5          4.5         1.7
+  3:          5.7         2.5          5.0         2.0
+  4:          6.3         2.5          5.0         1.9
+  5:          6.7         2.5          5.8         1.8
+ ---                                                  
+146:          5.4         3.9          1.3         0.4
+147:          5.8         4.0          1.2         0.2
+148:          5.2         4.1          1.5         0.1
+149:          5.5         4.2          1.4         0.2
+150:          5.7         4.4          1.5         0.4</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>Species</span>, LS <span class='op'>=</span> <span class='va'>Sepal.Length</span><span class='op'>)</span><span class='op'>]</span> <span class='co'># select and rename</span>
+</code></pre>
+</div>
+<pre><code>       Species  LS
+  1: virginica 6.0
+  2: virginica 4.9
+  3: virginica 5.7
+  4: virginica 6.3
+  5: virginica 6.7
+ ---              
+146:    setosa 5.4
+147:    setosa 5.8
+148:    setosa 5.2
+149:    setosa 5.5
+150:    setosa 5.7</code></pre>
+<div class="sourceCode">
+<pre><code><span class='co'># .() is an alias for list</span>
+
+<span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span><span class='va'>Species</span>, SL <span class='op'>=</span> <span class='va'>Sepal.Length</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>       Species  SL
+  1: virginica 6.0
+  2: virginica 4.9
+  3: virginica 5.7
+  4: virginica 6.3
+  5: virginica 6.7
+ ---              
+146:    setosa 5.4
+147:    setosa 5.8
+148:    setosa 5.2
+149:    setosa 5.5
+150:    setosa 5.7</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='va'>Species</span> <span class='op'>==</span> <span class='st'>"virginica"</span> <span class='op'>&amp;</span> <span class='va'>Sepal.Length</span> <span class='op'>&gt;</span> <span class='fl'>7</span> <span class='op'>&amp;</span> <span class='va'>Sepal.Width</span> <span class='op'>&lt;</span> <span class='fl'>3</span>, <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Species"</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width
+1:          7.7         2.6          6.9         2.3
+2:          7.4         2.8          6.1         1.9
+3:          7.7         2.8          6.7         2.0
+4:          7.3         2.9          6.3         1.8</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='va'>Species</span> <span class='op'>==</span> <span class='st'>"virginica"</span> <span class='op'>&amp;</span>
+<span class='va'>Sepal.Length</span> <span class='op'>&gt;</span> <span class='fl'>7</span> <span class='op'>&amp;</span><span class='va'>Sepal.Width</span> <span class='op'>&lt;</span> <span class='fl'>3</span>,<span class='fu'>.</span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Sepal.Width</span>, <span class='va'>Petal.Length</span>, <span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width
+1:          7.7         2.6          6.9         2.3
+2:          7.4         2.8          6.1         1.9
+3:          7.7         2.8          6.7         2.0
+4:          7.3         2.9          6.3         1.8</code></pre>
+</div>
+<h2 id="adding-information">Adding information</h2>
+<h3 id="making-new-columns---preserving-existing-ones">Making new columns - preserving existing ones</h3>
+<p>DT[i, j, by]</p>
+<ul>
+<li><code>j</code>: what to do? -&gt; compute new columns preserving existing ones</li>
+</ul>
+<p>data.table uses a new operator <code>:=</code> to add/update/delete columns (by reference)</p>
+<ol type="1">
+<li>option 1</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>maxLength</span> <span class='op'>:=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Petal.Length</span><span class='op'>)</span><span class='op'>]</span><span class='op'>[</span>,
+          <span class='va'>minWidth</span> <span class='op'>:=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>irisDT</span>
+</code></pre>
+</div>
+<pre><code>     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+  1:          6.0         2.2          5.0         1.5 virginica
+  2:          4.9         2.5          4.5         1.7 virginica
+  3:          5.7         2.5          5.0         2.0 virginica
+  4:          6.3         2.5          5.0         1.9 virginica
+  5:          6.7         2.5          5.8         1.8 virginica
+ ---                                                            
+146:          5.4         3.9          1.3         0.4    setosa
+147:          5.8         4.0          1.2         0.2    setosa
+148:          5.2         4.1          1.5         0.1    setosa
+149:          5.5         4.2          1.4         0.2    setosa
+150:          5.7         4.4          1.5         0.4    setosa
+     maxLength minWidth
+  1:       7.9      0.1
+  2:       7.9      0.1
+  3:       7.9      0.1
+  4:       7.9      0.1
+  5:       7.9      0.1
+ ---                   
+146:       7.9      0.1
+147:       7.9      0.1
+148:       7.9      0.1
+149:       7.9      0.1
+150:       7.9      0.1</code></pre>
+</div>
+<ol start="2" type="1">
+<li>option 2</li>
+</ol>
+<p>LHS := RHS form</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"maxLength"</span>, <span class='st'>"minWidth"</span><span class='op'>)</span> <span class='op'>:=</span>
+         <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+           <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Petal.Length</span><span class='op'>)</span>,
+           <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span>, <span class='va'>Petal.Width</span><span class='op'>)</span>
+         <span class='op'>)</span><span class='op'>]</span>
+
+<span class='va'>irisDT</span>
+</code></pre>
+</div>
+<pre><code>     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+  1:          6.0         2.2          5.0         1.5 virginica
+  2:          4.9         2.5          4.5         1.7 virginica
+  3:          5.7         2.5          5.0         2.0 virginica
+  4:          6.3         2.5          5.0         1.9 virginica
+  5:          6.7         2.5          5.8         1.8 virginica
+ ---                                                            
+146:          5.4         3.9          1.3         0.4    setosa
+147:          5.8         4.0          1.2         0.2    setosa
+148:          5.2         4.1          1.5         0.1    setosa
+149:          5.5         4.2          1.4         0.2    setosa
+150:          5.7         4.4          1.5         0.4    setosa
+     maxLength minWidth
+  1:       7.9      0.1
+  2:       7.9      0.1
+  3:       7.9      0.1
+  4:       7.9      0.1
+  5:       7.9      0.1
+ ---                   
+146:       7.9      0.1
+147:       7.9      0.1
+148:       7.9      0.1
+149:       7.9      0.1
+150:       7.9      0.1</code></pre>
+</div>
+<ol start="3" type="1">
+<li>Option 3</li>
+</ol>
+<p>Functional form</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>`:=`</span> <span class='op'>(</span>
+  maxLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Petal.Length</span><span class='op'>)</span>,
+  minWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span>, <span class='va'>Petal.Width</span><span class='op'>)</span>
+<span class='op'>)</span><span class='op'>]</span>
+<span class='va'>irisDT</span>
+</code></pre>
+</div>
+<pre><code>     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+  1:          6.0         2.2          5.0         1.5 virginica
+  2:          4.9         2.5          4.5         1.7 virginica
+  3:          5.7         2.5          5.0         2.0 virginica
+  4:          6.3         2.5          5.0         1.9 virginica
+  5:          6.7         2.5          5.8         1.8 virginica
+ ---                                                            
+146:          5.4         3.9          1.3         0.4    setosa
+147:          5.8         4.0          1.2         0.2    setosa
+148:          5.2         4.1          1.5         0.1    setosa
+149:          5.5         4.2          1.4         0.2    setosa
+150:          5.7         4.4          1.5         0.4    setosa
+     maxLength minWidth
+  1:       7.9      0.1
+  2:       7.9      0.1
+  3:       7.9      0.1
+  4:       7.9      0.1
+  5:       7.9      0.1
+ ---                   
+146:       7.9      0.1
+147:       7.9      0.1
+148:       7.9      0.1
+149:       7.9      0.1
+150:       7.9      0.1</code></pre>
+</div>
+<h3 id="making-new-columns---dropping-existing-ones">Making new columns - dropping existing ones</h3>
+<p>DT[i, j, by]</p>
+<ul>
+<li><code>j</code>: what to do? -&gt; compute new columns dropping existing ones</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>maxLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>pmax</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Petal.Length</span><span class='op'>)</span>,
+minWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>pmin</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span>, <span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>     maxLength minWidth
+  1:       6.0      1.5
+  2:       4.9      1.7
+  3:       5.7      2.0
+  4:       6.3      1.9
+  5:       6.7      1.8
+ ---                   
+146:       5.4      0.4
+147:       5.8      0.2
+148:       5.2      0.1
+149:       5.5      0.2
+150:       5.7      0.4</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>newIris</span> <span class='op'>&lt;-</span> <span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>Sepal.Area <span class='op'>=</span> <span class='va'>Sepal.Width</span> <span class='op'>*</span> <span class='va'>Sepal.Length</span>,
+Petal.Area <span class='op'>=</span> <span class='va'>Petal.Width</span> <span class='op'>*</span> <span class='va'>Petal.Length</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>newIris</span><span class='op'>[</span>, <span class='va'>Area.Ratio</span> <span class='op'>:=</span> <span class='va'>Petal.Area</span> <span class='op'>/</span> <span class='va'>Sepal.Area</span><span class='op'>]</span>
+<span class='va'>newIris</span>
+</code></pre>
+</div>
+<pre><code>     Sepal.Area Petal.Area  Area.Ratio
+  1:      13.20       7.50 0.568181818
+  2:      12.25       7.65 0.624489796
+  3:      14.25      10.00 0.701754386
+  4:      15.75       9.50 0.603174603
+  5:      16.75      10.44 0.623283582
+ ---                                  
+146:      21.06       0.52 0.024691358
+147:      23.20       0.24 0.010344828
+148:      21.32       0.15 0.007035647
+149:      23.10       0.28 0.012121212
+150:      25.08       0.60 0.023923445</code></pre>
+</div>
+<h2 id="reducing-information">Reducing information</h2>
+<h3 id="summarizing-rows">Summarizing rows</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>meanSepalLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span><span class='op'>)</span>,
+           meanSepalWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span><span class='op'>)</span>,
+           meanPetalLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Petal.Length</span><span class='op'>)</span>,
+           meanPetalWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   meanSepalLength meanSepalWidth meanPetalLength meanPetalWidth
+1:        5.843333       3.057333           3.758       1.199333</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>nSamples <span class='op'>=</span> <span class='va'>.N</span>, nSpecies <span class='op'>=</span> <span class='fu'>uniqueN</span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span><span class='op'>)</span>
+       <span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   nSamples nSpecies
+1:      150        3</code></pre>
+</div>
+<h3 id="summarizing-rows-with-filtering">Summarizing rows with filtering</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='va'>Species</span> <span class='op'>==</span> <span class='st'>"versicolor"</span>,<span class='fu'>.</span><span class='op'>(</span>
+  meanSepalLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span><span class='op'>)</span>,
+           meanSepalWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span><span class='op'>)</span>,
+           meanPetalLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Petal.Length</span><span class='op'>)</span>,
+           meanPetalWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Petal.Width</span><span class='op'>)</span>
+<span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   meanSepalLength meanSepalWidth meanPetalLength meanPetalWidth
+1:           5.936           2.77            4.26          1.326</code></pre>
+</div>
+<h3 id="grouping-by-one-or-more-variables">Grouping by one or more variables</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>meanSepalLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span><span class='op'>)</span>,
+meanSepalWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span><span class='op'>)</span>,
+meanPetalLength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Petal.Length</span><span class='op'>)</span>,
+meanPetalWidth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='st'>"Species"</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species meanSepalLength meanSepalWidth meanPetalLength
+1:  virginica           6.588          2.974           5.552
+2: versicolor           5.936          2.770           4.260
+3:     setosa           5.006          3.428           1.462
+   meanPetalWidth
+1:          2.026
+2:          1.326
+3:          0.246</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>nSamples <span class='op'>=</span> <span class='va'>.N</span>, nSpecies <span class='op'>=</span> <span class='fu'>uniqueN</span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species nSamples nSpecies
+1:  virginica       50        1
+2: versicolor       50        1
+3:     setosa       50        1</code></pre>
+</div>
+<h2 id="combining-information">Combining information</h2>
+<h3 id="joining-2-data.tables">joining 2 data.tables</h3>
+<p><strong>Inner join</strong>: return all rows from x where there are matching values in y and all columns from x and y. In case of multiple matches between x and y, all combinations of the matches are returned.<br></p>
+<p><strong>Full join</strong>: return all rows and columns from both x and y. <br></p>
+<p><strong>Left join</strong>: return all rows from x and all columns from x and y. In case of multiple matches between x and y, all combinations of the matches are returned.<br></p>
+<p><strong>Right join</strong>: return all rows from y and all columns from x and y. In case of multiple matches between x and y, all combinations of the matches are returned.<br></p>
+<p>DT[i, on]</p>
+<ul>
+<li><code>i</code>: join to which data.table?</li>
+<li><code>on</code>: join key columns?</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>data.table</span><span class='op'>(</span>id <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>5</span>, <span class='fl'>6</span><span class='op'>)</span>,
+x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>9</span>, <span class='fl'>12</span>, <span class='fl'>14</span>, <span class='fl'>21</span>, <span class='fl'>8</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   id  x
+1:  1  9
+2:  2 12
+3:  4 14
+4:  5 21
+5:  6  8</code></pre>
+<div class="sourceCode">
+<pre><code><span class='op'>(</span><span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>data.table</span><span class='op'>(</span>id <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>6</span><span class='op'>)</span>,
+y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8</span>, <span class='fl'>14</span>, <span class='fl'>19</span>, <span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   id  y
+1:  1  8
+2:  3 14
+3:  4 19
+4:  6  2
+5:  6  4</code></pre>
+</div>
+<h3 id="inner-join---data.table">inner join - data.table</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>y</span><span class='op'>[</span><span class='va'>x</span>, on <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span>, nomatch <span class='op'>=</span> <span class='fl'>0</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  y  x
+1:  1  8  9
+2:  4 19 14
+3:  6  2  8
+4:  6  4  8</code></pre>
+</div>
+<h3 id="full-join---merge">full join - merge</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>merge.data.table</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span>, by <span class='op'>=</span> <span class='st'>"id"</span>, all <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   id  x  y
+1:  1  9  8
+2:  2 12 NA
+3:  3 NA 14
+4:  4 14 19
+5:  5 21 NA
+6:  6  8  2
+7:  6  8  4</code></pre>
+</div>
+<h3 id="left-join---merge">left join - merge</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>merge.data.table</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span>, by <span class='op'>=</span> <span class='st'>"id"</span>, all.x <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   id  x  y
+1:  1  9  8
+2:  2 12 NA
+3:  4 14 19
+4:  5 21 NA
+5:  6  8  2
+6:  6  8  4</code></pre>
+</div>
+<h4 id="left-join---data.table">left join - data.table</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>y</span><span class='op'>[</span><span class='va'>x</span>, on <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  y  x
+1:  1  8  9
+2:  2 NA 12
+3:  4 19 14
+4:  5 NA 21
+5:  6  2  8
+6:  6  4  8</code></pre>
+</div>
+<h3 id="right-join---merge">right join - merge</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>data.table</span><span class='fu'>::</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/merge.html'>merge.data.table</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span>, by <span class='op'>=</span> <span class='st'>"id"</span>, all.y <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   id  x  y
+1:  1  9  8
+2:  3 NA 14
+3:  4 14 19
+4:  6  8  2
+5:  6  8  4</code></pre>
+</div>
+<h3 id="right-jpin---data.table">right jpin - data.table</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>x</span><span class='op'>[</span><span class='va'>y</span>, on <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  x  y
+1:  1  9  8
+2:  3 NA 14
+3:  4 14 19
+4:  6  8  2
+5:  6  8  4</code></pre>
+</div>
+<h3 id="antijoin---data.table">antijoin - data.table</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>x</span><span class='op'>[</span><span class='op'>!</span><span class='va'>y</span>, on <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  x
+1:  2 12
+2:  5 21</code></pre>
+</div>
+<h1 id="keys">Keys</h1>
+<p>No need of the on argument when performing a join</p>
+<ul>
+<li>Sorts the data.table in memory by the key column(s)</li>
+<li>Multiple columns can be set and used as keys</li>
+<li>Useful functions:</li>
+<li>setkey(DT, …) or setkeyv(DT, keys)</li>
+<li>haskey(DT)</li>
+<li>key(DT</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>setkey</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>id</span><span class='op'>)</span>
+<span class='fu'>setkey</span><span class='op'>(</span><span class='va'>y</span>, <span class='st'>"id"</span><span class='op'>)</span>
+<span class='fu'>haskey</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'>haskey</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre><code><span class='fu'>key</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'>key</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;id&quot;</code></pre>
+<pre><code>[1] &quot;id&quot;</code></pre>
+</div>
+<h2 id="joins-with-keys-already-specified">joins with keys already specified</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='co'># Inner join x and y</span>
+<span class='va'>x</span><span class='op'>[</span><span class='va'>y</span>, nomatch <span class='op'>=</span> <span class='fl'>0</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  x  y
+1:  1  9  8
+2:  4 14 19
+3:  6  8  2
+4:  6  8  4</code></pre>
+<div class="sourceCode">
+<pre><code><span class='co'># Right join x and y</span>
+<span class='va'>x</span><span class='op'>[</span><span class='va'>y</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  x  y
+1:  1  9  8
+2:  3 NA 14
+3:  4 14 19
+4:  6  8  2
+5:  6  8  4</code></pre>
+<div class="sourceCode">
+<pre><code><span class='co'># Left join x and y</span>
+<span class='va'>y</span><span class='op'>[</span><span class='va'>x</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   id  y  x
+1:  1  8  9
+2:  2 NA 12
+3:  4 19 14
+4:  5 NA 21
+5:  6  2  8
+6:  6  4  8</code></pre>
+</div>
+<h2 id="exercise-3">Exercise 3</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://r-datatable.com'>data.table</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>starwars</span><span class='op'>)</span>
+<span class='va'>starwarsDT</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>starwars</span><span class='op'>)</span>
+<span class='va'>starwarsDT</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>             name height mass hair_color skin_color eye_color
+1: Luke Skywalker    172   77      blond       fair      blue
+   birth_year  sex    gender homeworld species
+1:         19 male masculine  Tatooine   Human
+                                                                                         films
+1: The Empire Strikes Back,Revenge of the Sith,Return of the Jedi,A New Hope,The Force Awakens
+                            vehicles               starships
+1: Snowspeeder,Imperial Speeder Bike X-wing,Imperial shuttle</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>starwarsDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>min <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>mass</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>,
+               max <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>mass</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>,
+               nobs <span class='op'>=</span> <span class='va'>.N</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='va'>homeworld</span><span class='op'>]</span><span class='op'>[</span><span class='va'>nobs</span> <span class='op'>&gt;</span><span class='fl'>1</span><span class='op'>]</span> 
+</code></pre>
+</div>
+<pre><code>    homeworld   min   max nobs
+ 1:  Tatooine  32.0 136.0   10
+ 2:     Naboo  32.0  85.0   11
+ 3:  Alderaan  49.0  79.0    3
+ 4:  Kashyyyk 112.0 136.0    2
+ 5:  Corellia  77.0  80.0    2
+ 6:      &lt;NA&gt;  17.0 140.0   10
+ 7:    Kamino  78.2  88.0    3
+ 8: Coruscant  50.0  50.0    3
+ 9:    Ryloth  55.0  55.0    2
+10:    Mirial  50.0  56.2    2</code></pre>
+</div>
+<h1 id="reshaping-data-with-data.table">Reshaping data with data.table</h1>
+<ul>
+<li><p>Tidy data</p>
+<ul>
+<li>Each variable is a column -Each observation is a row</li>
+<li>Each value is a cell</li>
+</ul></li>
+<li><p>Two fundamental verbs</p>
+<ul>
+<li><code>melt()</code>: ‘Wide’ -&gt; ‘long’ data</li>
+<li><code>dcast()</code>: ‘long’ -&gt; ‘wide’ data</li>
+</ul></li>
+</ul>
+<p><strong>Wide format</strong></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>,<span class='op'>]</span>, n <span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+Sepal.Length
+</th>
+<th style="text-align:right;">
+Sepal.Width
+</th>
+<th style="text-align:right;">
+Petal.Length
+</th>
+<th style="text-align:right;">
+Petal.Width
+</th>
+<th style="text-align:left;">
+Species
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+3.5
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4.7
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+1.3
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>melt(wide_df, id.vars = 'grouping variable', variable.name = 'measures_across_grouping_var',value.name = 'value_name_as_desired')</code></p>
+<p><strong>Long to wide</strong></p>
+<p><code>dcast(long_df, group ~ atttribute, value.var = "value")</code></p>
+<h1 id="separating-and-uniting-information">Separating and uniting information</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisUnited</span> <span class='op'>&lt;-</span> <span class='va'>irisDT</span><span class='op'>[</span> , <span class='va'>Sepal.Length.Width</span> <span class='op'>:=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='st'>"/"</span>, <span class='va'>Sepal.Width</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>irisUnited</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:          6.0         2.2          5.0         1.5 virginica
+2:          4.9         2.5          4.5         1.7 virginica
+3:          5.7         2.5          5.0         2.0 virginica
+4:          6.3         2.5          5.0         1.9 virginica
+5:          6.7         2.5          5.8         1.8 virginica
+   maxLength minWidth Sepal.Length.Width
+1:       7.9      0.1              6/2.2
+2:       7.9      0.1            4.9/2.5
+3:       7.9      0.1            5.7/2.5
+4:       7.9      0.1            6.3/2.5
+5:       7.9      0.1            6.7/2.5</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisSeparated</span> <span class='op'>=</span> <span class='va'>irisUnited</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Sepal.Length'</span>, <span class='st'>'Sepal.Width'</span><span class='op'>)</span> <span class='op'>:=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/tstrsplit.html'>tstrsplit</a></span><span class='op'>(</span><span class='va'>Sepal.Length.Width</span>, <span class='st'>"/"</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>irisSeparated</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:            6         2.2          5.0         1.5 virginica
+2:          4.9         2.5          4.5         1.7 virginica
+3:          5.7         2.5          5.0         2.0 virginica
+4:          6.3         2.5          5.0         1.9 virginica
+5:          6.7         2.5          5.8         1.8 virginica
+   maxLength minWidth Sepal.Length.Width
+1:       7.9      0.1              6/2.2
+2:       7.9      0.1            4.9/2.5
+3:       7.9      0.1            5.7/2.5
+4:       7.9      0.1            6.3/2.5
+5:       7.9      0.1            6.7/2.5</code></pre>
+</div>
+<h1 id="hands-on-session">Hands-on session</h1>
+<p>Exercise 1</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"relig_income"</span><span class='op'>)</span>
+<span class='va'>a</span> <span class='op'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>relig_income</span><span class='op'>)</span>
+<span class='va'>a</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>                   religion &lt;$10k $10-20k $20-30k $30-40k $40-50k
+ 1:                Agnostic    27      34      60      81      76
+ 2:                 Atheist    12      27      37      52      35
+ 3:                Buddhist    27      21      30      34      33
+ 4:                Catholic   418     617     732     670     638
+ 5:      Don’t know/refused    15      14      15      11      10
+ 6:        Evangelical Prot   575     869    1064     982     881
+ 7:                   Hindu     1       9       7       9      11
+ 8: Historically Black Prot   228     244     236     238     197
+ 9:       Jehovah&#39;s Witness    20      27      24      24      21
+10:                  Jewish    19      19      25      25      30
+    $50-75k $75-100k $100-150k &gt;150k Don&#39;t know/refused
+ 1:     137      122       109    84                 96
+ 2:      70       73        59    74                 76
+ 3:      58       62        39    53                 54
+ 4:    1116      949       792   633               1489
+ 5:      35       21        17    18                116
+ 6:    1486      949       723   414               1529
+ 7:      34       47        48    54                 37
+ 8:     223      131        81    78                339
+ 9:      30       15        11     6                 37
+10:      95       69        87   151                162</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>b</span> <span class='op'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/melt.data.table.html'>melt</a></span><span class='op'>(</span><span class='va'>a</span>, id.vars <span class='op'>=</span> <span class='st'>"religion"</span>, variable.name <span class='op'>=</span> <span class='st'>"income_category"</span>, value.name <span class='op'>=</span> <span class='st'>"n"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Exercise 2</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"storms"</span><span class='op'>)</span>
+<span class='va'>aa</span> <span class='op'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>storms</span><span class='op'>)</span>
+<span class='va'>aa</span><span class='op'>[</span>, <span class='va'>date</span><span class='op'>:=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>year</span>, <span class='st'>"-"</span>, <span class='va'>month</span>,<span class='st'>"-"</span>, <span class='va'>day</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<h1 id="useful-symbols-functions">Useful symbols/ functions</h1>
+<ul>
+<li><code>.SD</code>: Subset of Data for each group
+<ul>
+<li>.SD along with lapply can be used to apply any function to multiple columns by group</li>
+</ul></li>
+<li><code>.SDcols</code>: Columns of the data.table that are included in .SD</li>
+<li>na.omit(): returns the object with incomplete cases removed</li>
+</ul>
+<h2 id="summarizing-for-specific-condition">Summarizing for specific condition</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>cols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>irisDT</span>, <span class='va'>is.numeric</span><span class='op'>)</span>
+<span class='va'>cols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>cols</span><span class='op'>)</span><span class='op'>[</span><span class='va'>cols</span><span class='op'>]</span>
+<span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>.SD</span>, <span class='va'>mean</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='va'>Species</span>, .SDcols <span class='op'>=</span> <span class='va'>cols</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species Petal.Length Petal.Width maxLength minWidth
+1:  virginica        5.552       2.026       7.9      0.1
+2: versicolor        4.260       1.326       7.9      0.1
+3:     setosa        1.462       0.246       7.9      0.1</code></pre>
+</div>
+<h2 id="summarizing-for-specific-variable-of-interest">Summarizing for specific variable of interest</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>.SD</span>, <span class='va'>mean</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='va'>Species</span>, .SDcols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Petal.Length"</span>, <span class='st'>"Petal.Width"</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species Petal.Length Petal.Width
+1:  virginica        5.552       2.026
+2: versicolor        4.260       1.326
+3:     setosa        1.462       0.246</code></pre>
+</div>
+<h2 id="summarizing-all-columns">Summarizing all columns</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span>recursive <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'>.</span><span class='op'>(</span>mean <span class='op'>=</span> <span class='va'>mean</span>, sd <span class='op'>=</span> <span class='va'>sd</span>, min <span class='op'>=</span> <span class='va'>min</span>, max <span class='op'>=</span> <span class='va'>max</span><span class='op'>)</span>, 
+                                           <span class='kw'>function</span><span class='op'>(</span><span class='va'>f</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>.SD</span>, <span class='va'>f</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='va'>Species</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species mean.Sepal.Length mean.Sepal.Width mean.Petal.Length
+1:  virginica                NA               NA             5.552
+2: versicolor                NA               NA             4.260
+3:     setosa                NA               NA             1.462
+   mean.Petal.Width mean.maxLength mean.minWidth
+1:            2.026            7.9           0.1
+2:            1.326            7.9           0.1
+3:            0.246            7.9           0.1
+   mean.Sepal.Length.Width sd.Sepal.Length sd.Sepal.Width
+1:                      NA       0.6358796      0.3224966
+2:                      NA       0.5161711      0.3137983
+3:                      NA       0.3524897      0.3790644
+   sd.Petal.Length sd.Petal.Width sd.maxLength sd.minWidth
+1:       0.5518947      0.2746501            0           0
+2:       0.4699110      0.1977527            0           0
+3:       0.1736640      0.1053856            0           0
+   sd.Sepal.Length.Width min.Sepal.Length min.Sepal.Width
+1:                    NA              4.9             2.2
+2:                    NA              4.9               2
+3:                    NA              4.3             2.3
+   min.Petal.Length min.Petal.Width min.maxLength min.minWidth
+1:              4.5             1.4           7.9          0.1
+2:              3.0             1.0           7.9          0.1
+3:              1.0             0.1           7.9          0.1
+   min.Sepal.Length.Width max.Sepal.Length max.Sepal.Width
+1:                4.9/2.5              7.9             3.8
+2:                4.9/2.4                7             3.4
+3:                  4.3/3              5.8             4.4
+   max.Petal.Length max.Petal.Width max.maxLength max.minWidth
+1:              6.9             2.5           7.9          0.1
+2:              5.1             1.8           7.9          0.1
+3:              1.9             0.6           7.9          0.1
+   max.Sepal.Length.Width
+1:                7.9/3.8
+2:                  7/3.2
+3:                  5/3.6</code></pre>
+</div>
+<h1 id="hands-on-3">Hands-on 3</h1>
+<p>Exercise 1 - Compute the minimum, maximum, median and mean for all numeric columns</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"starwars"</span><span class='op'>)</span>
+<span class='va'>starwarsDT</span> <span class='op'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>starwars</span><span class='op'>)</span>
+<span class='va'>cols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>starwarsDT</span>, <span class='va'>is.numeric</span><span class='op'>)</span>
+<span class='va'>cols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>cols</span><span class='op'>)</span><span class='op'>[</span><span class='va'>cols</span><span class='op'>]</span>
+
+<span class='va'>starwarsDT</span><span class='op'>[</span>, <span class='va'>height</span><span class='op'>:=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>height</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='va'>starwarsDT</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span>recursive <span class='op'>=</span> <span class='cn'>F</span>,
+                    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'>.</span><span class='op'>(</span>min <span class='op'>=</span> <span class='va'>min</span>, max <span class='op'>=</span> <span class='va'>max</span>, median <span class='op'>=</span> <span class='va'>median</span>, mean <span class='op'>=</span> <span class='va'>mean</span><span class='op'>)</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>f</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>.SD</span>, <span class='va'>f</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>homeworld</span>, <span class='va'>species</span><span class='op'>)</span>, .SDcols <span class='op'>=</span> <span class='va'>cols</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>         homeworld        species min.height min.mass min.birth_year
+ 1:       Tatooine          Human        163       NA           19.0
+ 2:       Tatooine          Droid         97     32.0             NA
+ 3:          Naboo          Droid         96     32.0           33.0
+ 4:       Alderaan          Human        150       NA             NA
+ 5:        Stewjon          Human        182     77.0           57.0
+ 6:         Eriadu          Human        180       NA           64.0
+ 7:       Kashyyyk        Wookiee        228    112.0             NA
+ 8:       Corellia          Human        170     77.0           21.0
+ 9:          Rodia         Rodian        173     74.0           44.0
+10:      Nal Hutta           Hutt        175   1358.0          600.0
+11:     Bestine IV          Human        180    110.0             NA
+12:           &lt;NA&gt; Yoda&#39;s species         66     17.0          896.0
+13:          Naboo          Human        157       NA             NA
+14:         Kamino          Human        183     78.2           31.5
+15:           &lt;NA&gt;          Droid         NA       NA             NA
+16:      Trandosha     Trandoshan        190    113.0           53.0
+17:        Socorro          Human        177     79.0           31.0
+18:         Bespin          Human        175     79.0           37.0
+19:       Mon Cala   Mon Calamari        180     83.0           41.0
+20:      Chandrila          Human        150       NA           48.0
+21:           &lt;NA&gt;          Human         NA       NA             NA
+22:          Endor           Ewok         88     20.0            8.0
+23:        Sullust      Sullustan        160     68.0             NA
+24: Cato Neimoidia      Neimodian        191     90.0             NA
+25:      Coruscant          Human        167       NA             NA
+26:          Naboo         Gungan        196       NA             NA
+27:          Naboo           &lt;NA&gt;        183       NA             NA
+28:       Toydaria      Toydarian        137       NA             NA
+29:      Malastare            Dug        112     40.0             NA
+30:       Dathomir         Zabrak        175     80.0           54.0
+31:         Ryloth        Twi&#39;lek        178       NA             NA
+32:        Vulpter     Vulptereen         94     45.0             NA
+33:        Troiken          Xexto        122       NA             NA
+34:           Tund          Toong        163     65.0             NA
+35:     Haruun Kal          Human        188     84.0           72.0
+36:          Cerea         Cerean        198     82.0           92.0
+37:    Glee Anselm       Nautolan        196     87.0             NA
+38:       Iridonia         Zabrak        171       NA             NA
+39:      Coruscant     Tholothian        184     50.0             NA
+40:        Iktotch       Iktotchi        188       NA             NA
+41:        Quermia       Quermian        264       NA             NA
+42:          Dorin        Kel Dor        188     80.0           22.0
+43:       Champala       Chagrian        196       NA             NA
+44:       Geonosis      Geonosian        183     80.0             NA
+45:         Mirial       Mirialan        166     50.0           40.0
+46:        Serenno          Human        193     80.0          102.0
+47:   Concord Dawn          Human        183     79.0           66.0
+48:          Zolan       Clawdite        168     55.0             NA
+49:           Ojom       Besalisk        198    102.0             NA
+50:         Kamino       Kaminoan        213       NA             NA
+51:    Aleen Minor         Aleena         79     15.0             NA
+52:          Skako        Skakoan        193     48.0             NA
+53:     Muunilinst           Muun        191       NA             NA
+54:          Shili        Togruta        178     57.0             NA
+55:          Kalee        Kaleesh        216    159.0             NA
+56:         Umbara           &lt;NA&gt;        178     48.0             NA
+57:         Utapau         Pau&#39;an        206     80.0             NA
+58:           &lt;NA&gt;           &lt;NA&gt;         NA       NA             NA
+         homeworld        species min.height min.mass min.birth_year
+    max.height max.mass max.birth_year median.height median.mass
+ 1:        202       NA           82.0         180.5          NA
+ 2:        167     75.0             NA         132.0        53.5
+ 3:         96     32.0           33.0          96.0        32.0
+ 4:        191       NA             NA         188.0          NA
+ 5:        182     77.0           57.0         182.0        77.0
+ 6:        180       NA           64.0         180.0          NA
+ 7:        234    136.0             NA         231.0       124.0
+ 8:        180     80.0           29.0         175.0        78.5
+ 9:        173     74.0           44.0         173.0        74.0
+10:        175   1358.0          600.0         175.0      1358.0
+11:        180    110.0             NA         180.0       110.0
+12:         66     17.0          896.0          66.0        17.0
+13:        185       NA             NA         165.0          NA
+14:        183     78.2           31.5         183.0        78.2
+15:         NA       NA             NA            NA          NA
+16:        190    113.0           53.0         190.0       113.0
+17:        177     79.0           31.0         177.0        79.0
+18:        175     79.0           37.0         175.0        79.0
+19:        180     83.0           41.0         180.0        83.0
+20:        150       NA           48.0         150.0          NA
+21:         NA       NA             NA            NA          NA
+22:         88     20.0            8.0          88.0        20.0
+23:        160     68.0             NA         160.0        68.0
+24:        191     90.0             NA         191.0        90.0
+25:        170       NA             NA         168.5          NA
+26:        224       NA             NA         206.0          NA
+27:        183       NA             NA         183.0          NA
+28:        137       NA             NA         137.0          NA
+29:        112     40.0             NA         112.0        40.0
+30:        175     80.0           54.0         175.0        80.0
+31:        180       NA             NA         179.0          NA
+32:         94     45.0             NA          94.0        45.0
+33:        122       NA             NA         122.0          NA
+34:        163     65.0             NA         163.0        65.0
+35:        188     84.0           72.0         188.0        84.0
+36:        198     82.0           92.0         198.0        82.0
+37:        196     87.0             NA         196.0        87.0
+38:        171       NA             NA         171.0          NA
+39:        184     50.0             NA         184.0        50.0
+40:        188       NA             NA         188.0          NA
+41:        264       NA             NA         264.0          NA
+42:        188     80.0           22.0         188.0        80.0
+43:        196       NA             NA         196.0          NA
+44:        183     80.0             NA         183.0        80.0
+45:        170     56.2           58.0         168.0        53.1
+46:        193     80.0          102.0         193.0        80.0
+47:        183     79.0           66.0         183.0        79.0
+48:        168     55.0             NA         168.0        55.0
+49:        198    102.0             NA         198.0       102.0
+50:        229       NA             NA         221.0          NA
+51:         79     15.0             NA          79.0        15.0
+52:        193     48.0             NA         193.0        48.0
+53:        191       NA             NA         191.0          NA
+54:        178     57.0             NA         178.0        57.0
+55:        216    159.0             NA         216.0       159.0
+56:        178     48.0             NA         178.0        48.0
+57:        206     80.0             NA         206.0        80.0
+58:         NA       NA             NA            NA          NA
+    max.height max.mass max.birth_year median.height median.mass
+    median.birth_year mean.height mean.mass mean.birth_year
+ 1:             44.45    179.2500        NA          47.475
+ 2:                NA    132.0000      53.5              NA
+ 3:             33.00     96.0000      32.0          33.000
+ 4:                NA    176.3333        NA              NA
+ 5:             57.00    182.0000      77.0          57.000
+ 6:             64.00    180.0000        NA          64.000
+ 7:                NA    231.0000     124.0              NA
+ 8:             25.00    175.0000      78.5          25.000
+ 9:             44.00    173.0000      74.0          44.000
+10:            600.00    175.0000    1358.0         600.000
+11:                NA    180.0000     110.0              NA
+12:            896.00     66.0000      17.0         896.000
+13:                NA    168.4000        NA              NA
+14:             31.50    183.0000      78.2          31.500
+15:                NA          NA        NA              NA
+16:             53.00    190.0000     113.0          53.000
+17:             31.00    177.0000      79.0          31.000
+18:             37.00    175.0000      79.0          37.000
+19:             41.00    180.0000      83.0          41.000
+20:             48.00    150.0000        NA          48.000
+21:                NA          NA        NA              NA
+22:              8.00     88.0000      20.0           8.000
+23:                NA    160.0000      68.0              NA
+24:                NA    191.0000      90.0              NA
+25:                NA    168.5000        NA              NA
+26:                NA    208.6667        NA              NA
+27:                NA    183.0000        NA              NA
+28:                NA    137.0000        NA              NA
+29:                NA    112.0000      40.0              NA
+30:             54.00    175.0000      80.0          54.000
+31:                NA    179.0000        NA              NA
+32:                NA     94.0000      45.0              NA
+33:                NA    122.0000        NA              NA
+34:                NA    163.0000      65.0              NA
+35:             72.00    188.0000      84.0          72.000
+36:             92.00    198.0000      82.0          92.000
+37:                NA    196.0000      87.0              NA
+38:                NA    171.0000        NA              NA
+39:                NA    184.0000      50.0              NA
+40:                NA    188.0000        NA              NA
+41:                NA    264.0000        NA              NA
+42:             22.00    188.0000      80.0          22.000
+43:                NA    196.0000        NA              NA
+44:                NA    183.0000      80.0              NA
+45:             49.00    168.0000      53.1          49.000
+46:            102.00    193.0000      80.0         102.000
+47:             66.00    183.0000      79.0          66.000
+48:                NA    168.0000      55.0              NA
+49:                NA    198.0000     102.0              NA
+50:                NA    221.0000        NA              NA
+51:                NA     79.0000      15.0              NA
+52:                NA    193.0000      48.0              NA
+53:                NA    191.0000        NA              NA
+54:                NA    178.0000      57.0              NA
+55:                NA    216.0000     159.0              NA
+56:                NA    178.0000      48.0              NA
+57:                NA    206.0000      80.0              NA
+58:                NA          NA        NA              NA
+    median.birth_year mean.height mean.mass mean.birth_year</code></pre>
+</div>
+<p>Exercise 2 - all colnames to upper case</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>starwarsDT</span> <span class='op'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>starwars</span><span class='op'>)</span>
+<span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/setattr.html'>setnames</a></span><span class='op'>(</span><span class='va'>starwarsDT</span>, <span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>toupper</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>starwarsDT</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Convert all character columns to upper case</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>cols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>starwarsDT</span>, <span class='va'>is.character</span><span class='op'>)</span>
+<span class='va'>cols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>cols</span><span class='op'>)</span><span class='op'>[</span><span class='va'>cols</span><span class='op'>]</span>
+<span class='va'>starwarsDT</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>.SD</span>, <span class='va'>toupper</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>                     NAME HEIGHT MASS    HAIR_COLOR
+ 1:        LUKE SKYWALKER    172   77         BLOND
+ 2:                 C-3PO    167   75          &lt;NA&gt;
+ 3:                 R2-D2     96   32          &lt;NA&gt;
+ 4:           DARTH VADER    202  136          NONE
+ 5:           LEIA ORGANA    150   49         BROWN
+ 6:             OWEN LARS    178  120   BROWN, GREY
+ 7:    BERU WHITESUN LARS    165   75         BROWN
+ 8:                 R5-D4     97   32          &lt;NA&gt;
+ 9:     BIGGS DARKLIGHTER    183   84         BLACK
+10:        OBI-WAN KENOBI    182   77 AUBURN, WHITE
+11:      ANAKIN SKYWALKER    188   84         BLOND
+12:        WILHUFF TARKIN    180 &lt;NA&gt;  AUBURN, GREY
+13:             CHEWBACCA    228  112         BROWN
+14:              HAN SOLO    180   80         BROWN
+15:                GREEDO    173   74          &lt;NA&gt;
+16: JABBA DESILIJIC TIURE    175 1358          &lt;NA&gt;
+17:        WEDGE ANTILLES    170   77         BROWN
+18:      JEK TONO PORKINS    180  110         BROWN
+19:                  YODA     66   17         WHITE
+20:             PALPATINE    170   75          GREY
+21:             BOBA FETT    183 78.2         BLACK
+22:                 IG-88    200  140          NONE
+23:                 BOSSK    190  113          NONE
+24:      LANDO CALRISSIAN    177   79         BLACK
+25:                 LOBOT    175   79          NONE
+26:                ACKBAR    180   83          NONE
+27:            MON MOTHMA    150 &lt;NA&gt;        AUBURN
+28:          ARVEL CRYNYD   &lt;NA&gt; &lt;NA&gt;         BROWN
+29: WICKET SYSTRI WARRICK     88   20         BROWN
+30:             NIEN NUNB    160   68          NONE
+31:          QUI-GON JINN    193   89         BROWN
+32:           NUTE GUNRAY    191   90          NONE
+33:         FINIS VALORUM    170 &lt;NA&gt;         BLOND
+34:         JAR JAR BINKS    196   66          NONE
+35:          ROOS TARPALS    224   82          NONE
+36:            RUGOR NASS    206 &lt;NA&gt;          NONE
+37:              RIC OLIÉ    183 &lt;NA&gt;         BROWN
+38:                 WATTO    137 &lt;NA&gt;         BLACK
+39:               SEBULBA    112   40          NONE
+40:         QUARSH PANAKA    183 &lt;NA&gt;         BLACK
+41:        SHMI SKYWALKER    163 &lt;NA&gt;         BLACK
+42:            DARTH MAUL    175   80          NONE
+43:           BIB FORTUNA    180 &lt;NA&gt;          NONE
+44:           AYLA SECURA    178   55          NONE
+45:              DUD BOLT     94   45          NONE
+46:               GASGANO    122 &lt;NA&gt;          NONE
+47:        BEN QUADINAROS    163   65          NONE
+48:            MACE WINDU    188   84          NONE
+49:          KI-ADI-MUNDI    198   82         WHITE
+50:             KIT FISTO    196   87          NONE
+51:             EETH KOTH    171 &lt;NA&gt;         BLACK
+52:            ADI GALLIA    184   50          NONE
+53:           SAESEE TIIN    188 &lt;NA&gt;          NONE
+54:           YARAEL POOF    264 &lt;NA&gt;          NONE
+55:              PLO KOON    188   80          NONE
+56:            MAS AMEDDA    196 &lt;NA&gt;          NONE
+57:          GREGAR TYPHO    185   85         BLACK
+58:                 CORDÉ    157 &lt;NA&gt;         BROWN
+59:           CLIEGG LARS    183 &lt;NA&gt;         BROWN
+60:     POGGLE THE LESSER    183   80          NONE
+61:       LUMINARA UNDULI    170 56.2         BLACK
+62:         BARRISS OFFEE    166   50         BLACK
+63:                 DORMÉ    165 &lt;NA&gt;         BROWN
+64:                 DOOKU    193   80         WHITE
+65:   BAIL PRESTOR ORGANA    191 &lt;NA&gt;         BLACK
+66:            JANGO FETT    183   79         BLACK
+67:            ZAM WESELL    168   55        BLONDE
+68:       DEXTER JETTSTER    198  102          NONE
+69:               LAMA SU    229   88          NONE
+70:               TAUN WE    213 &lt;NA&gt;          NONE
+71:            JOCASTA NU    167 &lt;NA&gt;         WHITE
+72:         RATTS TYERELL     79   15          NONE
+73:                R4-P17     96 &lt;NA&gt;          NONE
+74:            WAT TAMBOR    193   48          NONE
+75:              SAN HILL    191 &lt;NA&gt;          NONE
+76:              SHAAK TI    178   57          NONE
+77:              GRIEVOUS    216  159          NONE
+78:               TARFFUL    234  136         BROWN
+79:       RAYMUS ANTILLES    188   79         BROWN
+80:             SLY MOORE    178   48          NONE
+81:            TION MEDON    206   80          NONE
+82:                  FINN   &lt;NA&gt; &lt;NA&gt;         BLACK
+83:                   REY   &lt;NA&gt; &lt;NA&gt;         BROWN
+84:           POE DAMERON   &lt;NA&gt; &lt;NA&gt;         BROWN
+85:                   BB8   &lt;NA&gt; &lt;NA&gt;          NONE
+86:        CAPTAIN PHASMA   &lt;NA&gt; &lt;NA&gt;       UNKNOWN
+87:         PADMÉ AMIDALA    165   45         BROWN
+                     NAME HEIGHT MASS    HAIR_COLOR
+             SKIN_COLOR     EYE_COLOR BIRTH_YEAR            SEX
+ 1:                FAIR          BLUE         19           MALE
+ 2:                GOLD        YELLOW        112           NONE
+ 3:         WHITE, BLUE           RED         33           NONE
+ 4:               WHITE        YELLOW       41.9           MALE
+ 5:               LIGHT         BROWN         19         FEMALE
+ 6:               LIGHT          BLUE         52           MALE
+ 7:               LIGHT          BLUE         47         FEMALE
+ 8:          WHITE, RED           RED       &lt;NA&gt;           NONE
+ 9:               LIGHT         BROWN         24           MALE
+10:                FAIR     BLUE-GRAY         57           MALE
+11:                FAIR          BLUE       41.9           MALE
+12:                FAIR          BLUE         64           MALE
+13:             UNKNOWN          BLUE        200           MALE
+14:                FAIR         BROWN         29           MALE
+15:               GREEN         BLACK         44           MALE
+16:    GREEN-TAN, BROWN        ORANGE        600 HERMAPHRODITIC
+17:                FAIR         HAZEL         21           MALE
+18:                FAIR          BLUE       &lt;NA&gt;           MALE
+19:               GREEN         BROWN        896           MALE
+20:                PALE        YELLOW         82           MALE
+21:                FAIR         BROWN       31.5           MALE
+22:               METAL           RED         15           NONE
+23:               GREEN           RED         53           MALE
+24:                DARK         BROWN         31           MALE
+25:               LIGHT          BLUE         37           MALE
+26:        BROWN MOTTLE        ORANGE         41           MALE
+27:                FAIR          BLUE         48         FEMALE
+28:                FAIR         BROWN       &lt;NA&gt;           MALE
+29:               BROWN         BROWN          8           MALE
+30:                GREY         BLACK       &lt;NA&gt;           MALE
+31:                FAIR          BLUE         92           MALE
+32:       MOTTLED GREEN           RED       &lt;NA&gt;           MALE
+33:                FAIR          BLUE         91           MALE
+34:              ORANGE        ORANGE         52           MALE
+35:                GREY        ORANGE       &lt;NA&gt;           MALE
+36:               GREEN        ORANGE       &lt;NA&gt;           MALE
+37:                FAIR          BLUE       &lt;NA&gt;           &lt;NA&gt;
+38:          BLUE, GREY        YELLOW       &lt;NA&gt;           MALE
+39:           GREY, RED        ORANGE       &lt;NA&gt;           MALE
+40:                DARK         BROWN         62           &lt;NA&gt;
+41:                FAIR         BROWN         72         FEMALE
+42:                 RED        YELLOW         54           MALE
+43:                PALE          PINK       &lt;NA&gt;           MALE
+44:                BLUE         HAZEL         48         FEMALE
+45:          BLUE, GREY        YELLOW       &lt;NA&gt;           MALE
+46:         WHITE, BLUE         BLACK       &lt;NA&gt;           MALE
+47: GREY, GREEN, YELLOW        ORANGE       &lt;NA&gt;           MALE
+48:                DARK         BROWN         72           MALE
+49:                PALE        YELLOW         92           MALE
+50:               GREEN         BLACK       &lt;NA&gt;           MALE
+51:               BROWN         BROWN       &lt;NA&gt;           MALE
+52:                DARK          BLUE       &lt;NA&gt;         FEMALE
+53:                PALE        ORANGE       &lt;NA&gt;           MALE
+54:               WHITE        YELLOW       &lt;NA&gt;           MALE
+55:              ORANGE         BLACK         22           MALE
+56:                BLUE          BLUE       &lt;NA&gt;           MALE
+57:                DARK         BROWN       &lt;NA&gt;           MALE
+58:               LIGHT         BROWN       &lt;NA&gt;         FEMALE
+59:                FAIR          BLUE         82           MALE
+60:               GREEN        YELLOW       &lt;NA&gt;           MALE
+61:              YELLOW          BLUE         58         FEMALE
+62:              YELLOW          BLUE         40         FEMALE
+63:               LIGHT         BROWN       &lt;NA&gt;         FEMALE
+64:                FAIR         BROWN        102           MALE
+65:                 TAN         BROWN         67           MALE
+66:                 TAN         BROWN         66           MALE
+67: FAIR, GREEN, YELLOW        YELLOW       &lt;NA&gt;         FEMALE
+68:               BROWN        YELLOW       &lt;NA&gt;           MALE
+69:                GREY         BLACK       &lt;NA&gt;           MALE
+70:                GREY         BLACK       &lt;NA&gt;         FEMALE
+71:                FAIR          BLUE       &lt;NA&gt;         FEMALE
+72:          GREY, BLUE       UNKNOWN       &lt;NA&gt;           MALE
+73:         SILVER, RED     RED, BLUE       &lt;NA&gt;           NONE
+74:         GREEN, GREY       UNKNOWN       &lt;NA&gt;           MALE
+75:                GREY          GOLD       &lt;NA&gt;           MALE
+76:    RED, BLUE, WHITE         BLACK       &lt;NA&gt;         FEMALE
+77:        BROWN, WHITE GREEN, YELLOW       &lt;NA&gt;           MALE
+78:               BROWN          BLUE       &lt;NA&gt;           MALE
+79:               LIGHT         BROWN       &lt;NA&gt;           MALE
+80:                PALE         WHITE       &lt;NA&gt;           &lt;NA&gt;
+81:                GREY         BLACK       &lt;NA&gt;           MALE
+82:                DARK          DARK       &lt;NA&gt;           MALE
+83:               LIGHT         HAZEL       &lt;NA&gt;         FEMALE
+84:               LIGHT         BROWN       &lt;NA&gt;           MALE
+85:                NONE         BLACK       &lt;NA&gt;           NONE
+86:             UNKNOWN       UNKNOWN       &lt;NA&gt;           &lt;NA&gt;
+87:               LIGHT         BROWN         46         FEMALE
+             SKIN_COLOR     EYE_COLOR BIRTH_YEAR            SEX
+       GENDER      HOMEWORLD        SPECIES
+ 1: MASCULINE       TATOOINE          HUMAN
+ 2: MASCULINE       TATOOINE          DROID
+ 3: MASCULINE          NABOO          DROID
+ 4: MASCULINE       TATOOINE          HUMAN
+ 5:  FEMININE       ALDERAAN          HUMAN
+ 6: MASCULINE       TATOOINE          HUMAN
+ 7:  FEMININE       TATOOINE          HUMAN
+ 8: MASCULINE       TATOOINE          DROID
+ 9: MASCULINE       TATOOINE          HUMAN
+10: MASCULINE        STEWJON          HUMAN
+11: MASCULINE       TATOOINE          HUMAN
+12: MASCULINE         ERIADU          HUMAN
+13: MASCULINE       KASHYYYK        WOOKIEE
+14: MASCULINE       CORELLIA          HUMAN
+15: MASCULINE          RODIA         RODIAN
+16: MASCULINE      NAL HUTTA           HUTT
+17: MASCULINE       CORELLIA          HUMAN
+18: MASCULINE     BESTINE IV          HUMAN
+19: MASCULINE           &lt;NA&gt; YODA&#39;S SPECIES
+20: MASCULINE          NABOO          HUMAN
+21: MASCULINE         KAMINO          HUMAN
+22: MASCULINE           &lt;NA&gt;          DROID
+23: MASCULINE      TRANDOSHA     TRANDOSHAN
+24: MASCULINE        SOCORRO          HUMAN
+25: MASCULINE         BESPIN          HUMAN
+26: MASCULINE       MON CALA   MON CALAMARI
+27:  FEMININE      CHANDRILA          HUMAN
+28: MASCULINE           &lt;NA&gt;          HUMAN
+29: MASCULINE          ENDOR           EWOK
+30: MASCULINE        SULLUST      SULLUSTAN
+31: MASCULINE           &lt;NA&gt;          HUMAN
+32: MASCULINE CATO NEIMOIDIA      NEIMODIAN
+33: MASCULINE      CORUSCANT          HUMAN
+34: MASCULINE          NABOO         GUNGAN
+35: MASCULINE          NABOO         GUNGAN
+36: MASCULINE          NABOO         GUNGAN
+37:      &lt;NA&gt;          NABOO           &lt;NA&gt;
+38: MASCULINE       TOYDARIA      TOYDARIAN
+39: MASCULINE      MALASTARE            DUG
+40:      &lt;NA&gt;          NABOO           &lt;NA&gt;
+41:  FEMININE       TATOOINE          HUMAN
+42: MASCULINE       DATHOMIR         ZABRAK
+43: MASCULINE         RYLOTH        TWI&#39;LEK
+44:  FEMININE         RYLOTH        TWI&#39;LEK
+45: MASCULINE        VULPTER     VULPTEREEN
+46: MASCULINE        TROIKEN          XEXTO
+47: MASCULINE           TUND          TOONG
+48: MASCULINE     HARUUN KAL          HUMAN
+49: MASCULINE          CEREA         CEREAN
+50: MASCULINE    GLEE ANSELM       NAUTOLAN
+51: MASCULINE       IRIDONIA         ZABRAK
+52:  FEMININE      CORUSCANT     THOLOTHIAN
+53: MASCULINE        IKTOTCH       IKTOTCHI
+54: MASCULINE        QUERMIA       QUERMIAN
+55: MASCULINE          DORIN        KEL DOR
+56: MASCULINE       CHAMPALA       CHAGRIAN
+57: MASCULINE          NABOO          HUMAN
+58:  FEMININE          NABOO          HUMAN
+59: MASCULINE       TATOOINE          HUMAN
+60: MASCULINE       GEONOSIS      GEONOSIAN
+61:  FEMININE         MIRIAL       MIRIALAN
+62:  FEMININE         MIRIAL       MIRIALAN
+63:  FEMININE          NABOO          HUMAN
+64: MASCULINE        SERENNO          HUMAN
+65: MASCULINE       ALDERAAN          HUMAN
+66: MASCULINE   CONCORD DAWN          HUMAN
+67:  FEMININE          ZOLAN       CLAWDITE
+68: MASCULINE           OJOM       BESALISK
+69: MASCULINE         KAMINO       KAMINOAN
+70:  FEMININE         KAMINO       KAMINOAN
+71:  FEMININE      CORUSCANT          HUMAN
+72: MASCULINE    ALEEN MINOR         ALEENA
+73:  FEMININE           &lt;NA&gt;          DROID
+74: MASCULINE          SKAKO        SKAKOAN
+75: MASCULINE     MUUNILINST           MUUN
+76:  FEMININE          SHILI        TOGRUTA
+77: MASCULINE          KALEE        KALEESH
+78: MASCULINE       KASHYYYK        WOOKIEE
+79: MASCULINE       ALDERAAN          HUMAN
+80:      &lt;NA&gt;         UMBARA           &lt;NA&gt;
+81: MASCULINE         UTAPAU         PAU&#39;AN
+82: MASCULINE           &lt;NA&gt;          HUMAN
+83:  FEMININE           &lt;NA&gt;          HUMAN
+84: MASCULINE           &lt;NA&gt;          HUMAN
+85: MASCULINE           &lt;NA&gt;          DROID
+86:      &lt;NA&gt;           &lt;NA&gt;           &lt;NA&gt;
+87:  FEMININE          NABOO          HUMAN
+       GENDER      HOMEWORLD        SPECIES
+                                                                                                                                                         FILMS
+ 1:                                               C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;, &quot;THE FORCE AWAKENS&quot;)
+ 2:                      C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;)
+ 3: C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;, &quot;THE FORCE AWAKENS&quot;)
+ 4:                                                                    C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;)
+ 5:                                               C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;, &quot;THE FORCE AWAKENS&quot;)
+ 6:                                                                                             C(&quot;ATTACK OF THE CLONES&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;A NEW HOPE&quot;)
+ 7:                                                                                             C(&quot;ATTACK OF THE CLONES&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;A NEW HOPE&quot;)
+ 8:                                                                                                                                                 A NEW HOPE
+ 9:                                                                                                                                                 A NEW HOPE
+10:                      C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;)
+11:                                                                                     C(&quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;)
+12:                                                                                                                     C(&quot;REVENGE OF THE SITH&quot;, &quot;A NEW HOPE&quot;)
+13:                                               C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;, &quot;THE FORCE AWAKENS&quot;)
+14:                                                                      C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;, &quot;THE FORCE AWAKENS&quot;)
+15:                                                                                                                                                 A NEW HOPE
+16:                                                                                                C(&quot;THE PHANTOM MENACE&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;)
+17:                                                                                           C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;RETURN OF THE JEDI&quot;, &quot;A NEW HOPE&quot;)
+18:                                                                                                                                                 A NEW HOPE
+19:                                    C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;)
+20:                                    C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;, &quot;RETURN OF THE JEDI&quot;)
+21:                                                                                 C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;ATTACK OF THE CLONES&quot;, &quot;RETURN OF THE JEDI&quot;)
+22:                                                                                                                                    THE EMPIRE STRIKES BACK
+23:                                                                                                                                    THE EMPIRE STRIKES BACK
+24:                                                                                                         C(&quot;THE EMPIRE STRIKES BACK&quot;, &quot;RETURN OF THE JEDI&quot;)
+25:                                                                                                                                    THE EMPIRE STRIKES BACK
+26:                                                                                                               C(&quot;RETURN OF THE JEDI&quot;, &quot;THE FORCE AWAKENS&quot;)
+27:                                                                                                                                         RETURN OF THE JEDI
+28:                                                                                                                                         RETURN OF THE JEDI
+29:                                                                                                                                         RETURN OF THE JEDI
+30:                                                                                                                                         RETURN OF THE JEDI
+31:                                                                                                                                         THE PHANTOM MENACE
+32:                                                                                     C(&quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;)
+33:                                                                                                                                         THE PHANTOM MENACE
+34:                                                                                                            C(&quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;)
+35:                                                                                                                                         THE PHANTOM MENACE
+36:                                                                                                                                         THE PHANTOM MENACE
+37:                                                                                                                                         THE PHANTOM MENACE
+38:                                                                                                            C(&quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;)
+39:                                                                                                                                         THE PHANTOM MENACE
+40:                                                                                                                                         THE PHANTOM MENACE
+41:                                                                                                            C(&quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;)
+42:                                                                                                                                         THE PHANTOM MENACE
+43:                                                                                                                                         RETURN OF THE JEDI
+44:                                                                                     C(&quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;)
+45:                                                                                                                                         THE PHANTOM MENACE
+46:                                                                                                                                         THE PHANTOM MENACE
+47:                                                                                                                                         THE PHANTOM MENACE
+48:                                                                                     C(&quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;)
+49:                                                                                     C(&quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;)
+50:                                                                                     C(&quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;)
+51:                                                                                                             C(&quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;)
+52:                                                                                                             C(&quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;)
+53:                                                                                                             C(&quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;)
+54:                                                                                                                                         THE PHANTOM MENACE
+55:                                                                                     C(&quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;)
+56:                                                                                                            C(&quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;)
+57:                                                                                                                                       ATTACK OF THE CLONES
+58:                                                                                                                                       ATTACK OF THE CLONES
+59:                                                                                                                                       ATTACK OF THE CLONES
+60:                                                                                                           C(&quot;ATTACK OF THE CLONES&quot;, &quot;REVENGE OF THE SITH&quot;)
+61:                                                                                                           C(&quot;ATTACK OF THE CLONES&quot;, &quot;REVENGE OF THE SITH&quot;)
+62:                                                                                                                                       ATTACK OF THE CLONES
+63:                                                                                                                                       ATTACK OF THE CLONES
+64:                                                                                                           C(&quot;ATTACK OF THE CLONES&quot;, &quot;REVENGE OF THE SITH&quot;)
+65:                                                                                                           C(&quot;ATTACK OF THE CLONES&quot;, &quot;REVENGE OF THE SITH&quot;)
+66:                                                                                                                                       ATTACK OF THE CLONES
+67:                                                                                                                                       ATTACK OF THE CLONES
+68:                                                                                                                                       ATTACK OF THE CLONES
+69:                                                                                                                                       ATTACK OF THE CLONES
+70:                                                                                                                                       ATTACK OF THE CLONES
+71:                                                                                                                                       ATTACK OF THE CLONES
+72:                                                                                                                                         THE PHANTOM MENACE
+73:                                                                                                           C(&quot;ATTACK OF THE CLONES&quot;, &quot;REVENGE OF THE SITH&quot;)
+74:                                                                                                                                       ATTACK OF THE CLONES
+75:                                                                                                                                       ATTACK OF THE CLONES
+76:                                                                                                           C(&quot;ATTACK OF THE CLONES&quot;, &quot;REVENGE OF THE SITH&quot;)
+77:                                                                                                                                        REVENGE OF THE SITH
+78:                                                                                                                                        REVENGE OF THE SITH
+79:                                                                                                                     C(&quot;REVENGE OF THE SITH&quot;, &quot;A NEW HOPE&quot;)
+80:                                                                                                           C(&quot;ATTACK OF THE CLONES&quot;, &quot;REVENGE OF THE SITH&quot;)
+81:                                                                                                                                        REVENGE OF THE SITH
+82:                                                                                                                                          THE FORCE AWAKENS
+83:                                                                                                                                          THE FORCE AWAKENS
+84:                                                                                                                                          THE FORCE AWAKENS
+85:                                                                                                                                          THE FORCE AWAKENS
+86:                                                                                                                                          THE FORCE AWAKENS
+87:                                                                                     C(&quot;ATTACK OF THE CLONES&quot;, &quot;THE PHANTOM MENACE&quot;, &quot;REVENGE OF THE SITH&quot;)
+                                                                                                                                                         FILMS
+                                       VEHICLES
+ 1:   C(&quot;SNOWSPEEDER&quot;, &quot;IMPERIAL SPEEDER BIKE&quot;)
+ 2:                                CHARACTER(0)
+ 3:                                CHARACTER(0)
+ 4:                                CHARACTER(0)
+ 5:                       IMPERIAL SPEEDER BIKE
+ 6:                                CHARACTER(0)
+ 7:                                CHARACTER(0)
+ 8:                                CHARACTER(0)
+ 9:                                CHARACTER(0)
+10:                             TRIBUBBLE BONGO
+11: C(&quot;ZEPHYR-G SWOOP BIKE&quot;, &quot;XJ-6 AIRSPEEDER&quot;)
+12:                                CHARACTER(0)
+13:                                       AT-ST
+14:                                CHARACTER(0)
+15:                                CHARACTER(0)
+16:                                CHARACTER(0)
+17:                                 SNOWSPEEDER
+18:                                CHARACTER(0)
+19:                                CHARACTER(0)
+20:                                CHARACTER(0)
+21:                                CHARACTER(0)
+22:                                CHARACTER(0)
+23:                                CHARACTER(0)
+24:                                CHARACTER(0)
+25:                                CHARACTER(0)
+26:                                CHARACTER(0)
+27:                                CHARACTER(0)
+28:                                CHARACTER(0)
+29:                                CHARACTER(0)
+30:                                CHARACTER(0)
+31:                             TRIBUBBLE BONGO
+32:                                CHARACTER(0)
+33:                                CHARACTER(0)
+34:                                CHARACTER(0)
+35:                                CHARACTER(0)
+36:                                CHARACTER(0)
+37:                                CHARACTER(0)
+38:                                CHARACTER(0)
+39:                                CHARACTER(0)
+40:                                CHARACTER(0)
+41:                                CHARACTER(0)
+42:                                SITH SPEEDER
+43:                                CHARACTER(0)
+44:                                CHARACTER(0)
+45:                                CHARACTER(0)
+46:                                CHARACTER(0)
+47:                                CHARACTER(0)
+48:                                CHARACTER(0)
+49:                                CHARACTER(0)
+50:                                CHARACTER(0)
+51:                                CHARACTER(0)
+52:                                CHARACTER(0)
+53:                                CHARACTER(0)
+54:                                CHARACTER(0)
+55:                                CHARACTER(0)
+56:                                CHARACTER(0)
+57:                                CHARACTER(0)
+58:                                CHARACTER(0)
+59:                                CHARACTER(0)
+60:                                CHARACTER(0)
+61:                                CHARACTER(0)
+62:                                CHARACTER(0)
+63:                                CHARACTER(0)
+64:                            FLITKNOT SPEEDER
+65:                                CHARACTER(0)
+66:                                CHARACTER(0)
+67:                  KORO-2 EXODRIVE AIRSPEEDER
+68:                                CHARACTER(0)
+69:                                CHARACTER(0)
+70:                                CHARACTER(0)
+71:                                CHARACTER(0)
+72:                                CHARACTER(0)
+73:                                CHARACTER(0)
+74:                                CHARACTER(0)
+75:                                CHARACTER(0)
+76:                                CHARACTER(0)
+77:                 TSMEU-6 PERSONAL WHEEL BIKE
+78:                                CHARACTER(0)
+79:                                CHARACTER(0)
+80:                                CHARACTER(0)
+81:                                CHARACTER(0)
+82:                                CHARACTER(0)
+83:                                CHARACTER(0)
+84:                                CHARACTER(0)
+85:                                CHARACTER(0)
+86:                                CHARACTER(0)
+87:                                CHARACTER(0)
+                                       VEHICLES
+                                                                                                                STARSHIPS
+ 1:                                                                                       C(&quot;X-WING&quot;, &quot;IMPERIAL SHUTTLE&quot;)
+ 2:                                                                                                          CHARACTER(0)
+ 3:                                                                                                          CHARACTER(0)
+ 4:                                                                                                       TIE ADVANCED X1
+ 5:                                                                                                          CHARACTER(0)
+ 6:                                                                                                          CHARACTER(0)
+ 7:                                                                                                          CHARACTER(0)
+ 8:                                                                                                          CHARACTER(0)
+ 9:                                                                                                                X-WING
+10: C(&quot;JEDI STARFIGHTER&quot;, &quot;TRADE FEDERATION CRUISER&quot;, &quot;NABOO STAR SKIFF&quot;, &quot;JEDI INTERCEPTOR&quot;, &quot;BELBULLAB-22 STARFIGHTER&quot;)
+11:                                                    C(&quot;TRADE FEDERATION CRUISER&quot;, &quot;JEDI INTERCEPTOR&quot;, &quot;NABOO FIGHTER&quot;)
+12:                                                                                                          CHARACTER(0)
+13:                                                                            C(&quot;MILLENNIUM FALCON&quot;, &quot;IMPERIAL SHUTTLE&quot;)
+14:                                                                            C(&quot;MILLENNIUM FALCON&quot;, &quot;IMPERIAL SHUTTLE&quot;)
+15:                                                                                                          CHARACTER(0)
+16:                                                                                                          CHARACTER(0)
+17:                                                                                                                X-WING
+18:                                                                                                                X-WING
+19:                                                                                                          CHARACTER(0)
+20:                                                                                                          CHARACTER(0)
+21:                                                                                                               SLAVE 1
+22:                                                                                                          CHARACTER(0)
+23:                                                                                                          CHARACTER(0)
+24:                                                                                                     MILLENNIUM FALCON
+25:                                                                                                          CHARACTER(0)
+26:                                                                                                          CHARACTER(0)
+27:                                                                                                          CHARACTER(0)
+28:                                                                                                                A-WING
+29:                                                                                                          CHARACTER(0)
+30:                                                                                                     MILLENNIUM FALCON
+31:                                                                                                          CHARACTER(0)
+32:                                                                                                          CHARACTER(0)
+33:                                                                                                          CHARACTER(0)
+34:                                                                                                          CHARACTER(0)
+35:                                                                                                          CHARACTER(0)
+36:                                                                                                          CHARACTER(0)
+37:                                                                                                  NABOO ROYAL STARSHIP
+38:                                                                                                          CHARACTER(0)
+39:                                                                                                          CHARACTER(0)
+40:                                                                                                          CHARACTER(0)
+41:                                                                                                          CHARACTER(0)
+42:                                                                                                              SCIMITAR
+43:                                                                                                          CHARACTER(0)
+44:                                                                                                          CHARACTER(0)
+45:                                                                                                          CHARACTER(0)
+46:                                                                                                          CHARACTER(0)
+47:                                                                                                          CHARACTER(0)
+48:                                                                                                          CHARACTER(0)
+49:                                                                                                          CHARACTER(0)
+50:                                                                                                          CHARACTER(0)
+51:                                                                                                          CHARACTER(0)
+52:                                                                                                          CHARACTER(0)
+53:                                                                                                          CHARACTER(0)
+54:                                                                                                          CHARACTER(0)
+55:                                                                                                      JEDI STARFIGHTER
+56:                                                                                                          CHARACTER(0)
+57:                                                                                                         NABOO FIGHTER
+58:                                                                                                          CHARACTER(0)
+59:                                                                                                          CHARACTER(0)
+60:                                                                                                          CHARACTER(0)
+61:                                                                                                          CHARACTER(0)
+62:                                                                                                          CHARACTER(0)
+63:                                                                                                          CHARACTER(0)
+64:                                                                                                          CHARACTER(0)
+65:                                                                                                          CHARACTER(0)
+66:                                                                                                          CHARACTER(0)
+67:                                                                                                          CHARACTER(0)
+68:                                                                                                          CHARACTER(0)
+69:                                                                                                          CHARACTER(0)
+70:                                                                                                          CHARACTER(0)
+71:                                                                                                          CHARACTER(0)
+72:                                                                                                          CHARACTER(0)
+73:                                                                                                          CHARACTER(0)
+74:                                                                                                          CHARACTER(0)
+75:                                                                                                          CHARACTER(0)
+76:                                                                                                          CHARACTER(0)
+77:                                                                                              BELBULLAB-22 STARFIGHTER
+78:                                                                                                          CHARACTER(0)
+79:                                                                                                          CHARACTER(0)
+80:                                                                                                          CHARACTER(0)
+81:                                                                                                          CHARACTER(0)
+82:                                                                                                          CHARACTER(0)
+83:                                                                                                          CHARACTER(0)
+84:                                                                                                   T-70 X-WING FIGHTER
+85:                                                                                                          CHARACTER(0)
+86:                                                                                                          CHARACTER(0)
+87:                                                         C(&quot;H-TYPE NUBIAN YACHT&quot;, &quot;NABOO STAR SKIFF&quot;, &quot;NABOO FIGHTER&quot;)
+                                                                                                                STARSHIPS</code></pre>
+</div>
+<p>Exercise 3</p>
+<ul>
+<li>Remove the data which have NA for the numeric variables</li>
+<li>Group the data by all character variables</li>
+<li>Compute the mean for <code>ts_diameter</code> and <code>hu_diameter</code></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>stormsDT</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>storms</span><span class='op'>)</span>
+<span class='va'>numericCols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>stormsDT</span>, <span class='va'>is.numeric</span><span class='op'>)</span>
+<span class='va'>numericCols</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>numericCols</span><span class='op'>)</span><span class='op'>[</span><span class='va'>numericCols</span><span class='op'>]</span>
+<span class='va'>stormsDTNew</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/na.omit.data.table.html'>na.omit</a></span><span class='op'>(</span><span class='va'>stormsDT</span>, cols <span class='op'>=</span> <span class='va'>numericCols</span><span class='op'>)</span>
+<span class='va'>characterCols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>stormsDTNew</span>, <span class='va'>is.character</span><span class='op'>)</span>
+<span class='va'>characterCols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>characterCols</span><span class='op'>)</span><span class='op'>[</span><span class='va'>characterCols</span><span class='op'>]</span>
+<span class='va'>colsOfInterest</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ts_diameter"</span>, <span class='st'>"hu_diameter"</span><span class='op'>)</span>
+<span class='va'>stormsDTNew</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>.SD</span>, <span class='va'>mean</span><span class='op'>)</span>, .SDcols <span class='op'>=</span> <span class='va'>colsOfInterest</span>, by <span class='op'>=</span> <span class='va'>characterCols</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>        name              status ts_diameter hu_diameter
+  1:    Alex tropical depression     0.00000     0.00000
+  2:    Alex      tropical storm   150.80013     0.00000
+  3:    Alex           hurricane   304.40871    63.56690
+  4:  Bonnie tropical depression     0.00000     0.00000
+  5:  Bonnie      tropical storm    75.40637     0.00000
+ ---                                                    
+273: Joaquin      tropical storm   198.92054     0.00000
+274: Joaquin           hurricane   332.98376    85.00923
+275:    Kate tropical depression     0.00000     0.00000
+276:    Kate      tropical storm    85.48651     0.00000
+277:    Kate           hurricane   273.31025    31.64645</code></pre>
+</div>
+<p><code>.SD</code>: Subset of data - choose row by ordinal position</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>1L</span><span class='op'>]</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:            6         2.2            5         1.5 virginica
+   maxLength minWidth Sepal.Length.Width
+1:       7.9      0.1              6/2.2</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>1L</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='va'>Species</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species Sepal.Length Sepal.Width Petal.Length Petal.Width
+1:  virginica            6         2.2          5.0         1.5
+2: versicolor            5           2          3.5         1.0
+3:     setosa          4.5         2.3          1.3         0.3
+   maxLength minWidth Sepal.Length.Width
+1:       7.9      0.1              6/2.2
+2:       7.9      0.1                5/2
+3:       7.9      0.1            4.5/2.3</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>1L</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='va'>Species</span>, .SDcols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Petal.Length"</span>, <span class='st'>"Petal.Width"</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species Petal.Length Petal.Width
+1:  virginica          5.0         1.5
+2: versicolor          3.5         1.0
+3:     setosa          1.3         0.3</code></pre>
+</div>
+<p><code>.SD</code>: Subset of Data - select top entries (in each group)</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/setorder.html'>order</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>Sepal.Length</span><span class='op'>)</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1:          7.9         3.8          6.4         2.0 virginica
+2:          7.7         2.6          6.9         2.3 virginica
+   maxLength minWidth Sepal.Length.Width
+1:       7.9      0.1            7.9/3.8
+2:       7.9      0.1            7.7/2.6</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/which.min.html'>which.max</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span><span class='op'>)</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='va'>Species</span>, .SDcols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal.Length"</span>,<span class='st'>"Sepal.Width"</span><span class='op'>)</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      Species Sepal.Length Sepal.Width
+1:  virginica          7.9         3.8
+2: versicolor            7         3.2
+3:     setosa          5.8           4</code></pre>
+</div>
+<h1 id="multiple-if-else-statements">Multiple if else statements</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>text</span> <span class='op'>:=</span> <span class='op'>{</span>
+  <span class='kw'>if</span><span class='op'>(</span><span class='va'>Sepal.Length</span> <span class='op'>&gt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>Sepal.Width</span> <span class='op'>&gt;</span> <span class='fl'>4</span><span class='op'>)</span> <span class='st'>"sepal length and width is larger than 4"</span>
+  <span class='kw'>else</span> <span class='kw'>if</span><span class='op'>(</span><span class='va'>Petal.Length</span> <span class='op'>&lt;</span> <span class='fl'>2</span> <span class='op'>&amp;</span> <span class='va'>Petal.Width</span> <span class='op'>&lt;</span> <span class='fl'>2</span><span class='op'>)</span> <span class='st'>"petal length and width is smaller than 2"</span>
+  <span class='kw'>else</span> <span class='st'>"other"</span>
+<span class='op'>}</span>, by <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>Species</span>, <span class='va'>Sepal.Length</span>, <span class='va'>Sepal.Width</span>, <span class='va'>Petal.Length</span>, <span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>]</span><span class='op'>[</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='va'>text</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>                                       text Sepal.Length Sepal.Width
+1:                                    other            6         2.2
+2: petal length and width is smaller than 2          4.5         2.3
+3:  sepal length and width is larger than 4          5.2         4.1
+   Petal.Length Petal.Width   Species maxLength minWidth
+1:          5.0         1.5 virginica       7.9      0.1
+2:          1.3         0.3    setosa       7.9      0.1
+3:          1.5         0.1    setosa       7.9      0.1
+   Sepal.Length.Width
+1:              6/2.2
+2:            4.5/2.3
+3:            5.2/4.1</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>bin_iris</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>sl</span>, <span class='va'>sw</span>, <span class='va'>pl</span>, <span class='va'>pw</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='kw'>if</span><span class='op'>(</span><span class='va'>sl</span> <span class='op'>&gt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>sw</span> <span class='op'>&gt;</span> <span class='fl'>4</span><span class='op'>)</span> <span class='st'>"sepal length and width is larger than 4"</span>
+  <span class='kw'>else</span> <span class='kw'>if</span><span class='op'>(</span><span class='va'>pl</span> <span class='op'>&lt;</span> <span class='fl'>2</span> <span class='op'>&amp;</span> <span class='va'>pw</span> <span class='op'>&lt;</span> <span class='fl'>2</span><span class='op'>)</span> <span class='st'>"petal length and width is smaller than 2"</span>
+  <span class='kw'>else</span> <span class='st'>"other"</span>
+<span class='op'>}</span>
+<span class='va'>irisDT</span><span class='op'>[</span>, <span class='va'>text</span> <span class='op'>:=</span> <span class='fu'>bin_iris</span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Sepal.Width</span>, <span class='va'>Petal.Length</span>, <span class='va'>Petal.Width</span><span class='op'>)</span>, 
+       by <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>Species</span>, <span class='va'>Sepal.Length</span>, <span class='va'>Sepal.Width</span>, <span class='va'>Petal.Length</span>, <span class='va'>Petal.Width</span><span class='op'>)</span><span class='op'>]</span><span class='op'>[</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='va'>text</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>                                       text Sepal.Length Sepal.Width
+1:                                    other            6         2.2
+2: petal length and width is smaller than 2          4.5         2.3
+3:  sepal length and width is larger than 4          5.2         4.1
+   Petal.Length Petal.Width   Species maxLength minWidth
+1:          5.0         1.5 virginica       7.9      0.1
+2:          1.3         0.3    setosa       7.9      0.1
+3:          1.5         0.1    setosa       7.9      0.1
+   Sepal.Length.Width
+1:              6/2.2
+2:            4.5/2.3
+3:            5.2/4.1</code></pre>
+</div>
+<h1 id="hands---on-4">Hands - on 4</h1>
+<p>Exercise 1</p>
+<p>Print the fifth row for each species.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>starwarsDT</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>starwars</span><span class='op'>)</span>
+<span class='va'>starwarsDT</span><span class='op'>[</span>, <span class='kw'>if</span><span class='op'>(</span><span class='va'>.N</span> <span class='op'>&gt;=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>5L</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='va'>species</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>   species               name height mass hair_color  skin_color
+1:   Human Beru Whitesun lars    165   75      brown       light
+2:   Droid             R4-P17     96   NA       none silver, red
+   eye_color birth_year    sex   gender homeworld
+1:      blue         47 female feminine  Tatooine
+2: red, blue         NA   none feminine      &lt;NA&gt;
+                                                 films vehicles
+1: Attack of the Clones,Revenge of the Sith,A New Hope         
+2:            Attack of the Clones,Revenge of the Sith         
+   starships
+1:          
+2:          </code></pre>
+</div>
+<p>Exercise 2</p>
+<ul>
+<li>Consider the columns name, status and pressure.</li>
+<li>Print for each storm, the 5 entries with the lowest pressure.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>stormsDT</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>storms</span><span class='op'>)</span>
+<span class='va'>stormsDT</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span><span class='va'>name</span>, <span class='va'>status</span>, <span class='va'>pressure</span><span class='op'>)</span><span class='op'>]</span><span class='op'>[</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/setorder.html'>order</a></span><span class='op'>(</span><span class='va'>name</span>, <span class='va'>pressure</span><span class='op'>)</span><span class='op'>]</span><span class='op'>[</span>, <span class='va'>.SD</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='va'>.N</span><span class='op'>)</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='va'>name</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>         name              status pressure
+  1: AL011993 tropical depression      999
+  2: AL011993 tropical depression      999
+  3: AL011993 tropical depression      999
+  4: AL011993 tropical depression      999
+  5: AL011993 tropical depression     1000
+ ---                                      
+978:     Zeta      tropical storm      994
+979:     Zeta      tropical storm      994
+980:     Zeta      tropical storm      994
+981:     Zeta      tropical storm      994
+982:     Zeta      tropical storm      994</code></pre>
+</div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

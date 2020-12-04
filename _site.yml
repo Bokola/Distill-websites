@@ -1,8 +1,9 @@
-name: "Distill websites"
+name: "Data manipulation with data.table"
 title: "More into data.table"
 description: |
-  More into data.table
+  A deeper dive into data.table package for data manipulation
 output_dir: "_site"
+base_url: https://bokola214.netlify.app/
 navbar:
   right:
     - text: "Home"
