@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>data analytics with R</title>
+    <link>https://bokola214.netlify.app/</link>
+    <atom:link href="https://bokola214.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
+    <description>A deeper dive into data.table package for data manipulation
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Fri, 04 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>A deeper look into data.table functionalities</title>
+      <dc:creator>Basil Okola</dc:creator>
+      <link>https://bokola214.netlify.app/posts/welcome</link>
+      <description>Welcome to our new blog, More into data.table. We hope you enjoy 
+reading what we have to say!</description>
+      <guid>https://bokola214.netlify.app/posts/welcome</guid>
+      <pubDate>Fri, 04 Dec 2020 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>data munging with data.table</title>
+      <dc:creator>Basil Okola</dc:creator>
+      <link>https://bokola214.netlify.app/posts/2020-12-04-data-munging-withdatatable</link>
+      <description>A quick glimpse into data.table for data manipulation.</description>
+      <category>Data manipulation</category>
+      <guid>https://bokola214.netlify.app/posts/2020-12-04-data-munging-withdatatable</guid>
+      <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

@@ -22,5 +22,5 @@ collections:
     categories_metadata: true
     authours_metadata: true
     citations: false
-    subscribe: _subscibe.html
+    subscribe: _subscribe.html
 output: distill::distill_article
