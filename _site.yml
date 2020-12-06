@@ -13,9 +13,10 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
+comments: true
 collections:
   posts:
-    disqus: data_analytics
+    disqus: bokola214-netlify-app.disqus.com/
     share: [twitter, linkedin]
     feed_items_max: 50
     categories: true
