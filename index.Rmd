@@ -1,5 +1,5 @@
 ---
-title: "Basil Owiti Okola"
+title: "Basil Okola"
 image: "owiti.png"
 links:
   - label: GitHub

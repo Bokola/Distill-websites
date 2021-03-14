@@ -3,19 +3,19 @@ title: "Basil Okola"
 output_dir: _site
 description: |
   Basil Okola's personal website
-twitter:
-  site: "@okolaowiti"
+# twitter:
+#   site: "@okolaowiti"
 # repository_url: https://github.com/jhelvy/jhelvy.github.io
 # repository_url: https://github.com/bokola/Distill-websites
 base_url: https://bokola214.netlify.app/
-creative_commons: CC BY-SA
+# creative_commons: CC BY-SA
 navbar:
   # search: false
   right:
-    - icon: fa-home
+    - text: "Home"
       href: index.html
     - text: "Portfolio"
-      href: about.html
+      href: portfolio.html
     # - text: "Research"
     #   menu:
     #     - text: "Highlights"
@@ -40,7 +40,7 @@ navbar:
       href: https://github.com/bokola
     - icon: fab fa-twitter
       href: https://twitter.com/okolaowiti
-      - icon: fab fa-linkedin-in
+    - icon: fab fa-linkedin-in
       href: https://www.linkedin.com/in/basil-owiti-8a32347a/
 
 collections:
