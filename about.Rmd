@@ -1,9 +1,7 @@
 ---
-title: "Just me doing what I like"
-description: |
-  I share what I learn, be it school, work, and everyday experiences
+title: "Portfolio"
+listing:
+  posts:
+    - 2020-12-04-data-munging-withdatatable
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```

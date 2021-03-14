@@ -1,6 +1,6 @@
 ---
 title: "Basil Owiti Okola"
-image: "images/owiti.png"
+image: "owiti.png"
 links:
   - label: GitHub
     url: "https://github.com/bokola"
@@ -10,17 +10,16 @@ links:
     url: "https://www.linkedin.com/in/basil-owiti-8a32347a/"
   - label: ORCID iD
     url: "https://orcid.org/0000-0002-1047-9700"
+    - label: Email
+    url: "mailto:bokola214@gmail.com"
 base_url: https://bokola214.netlify.app/
-preview: images/owiti.png
-twitter:
-  creator: "@okolaowiti"
 site: distill::distill_website
 output:
   postcards::trestles
 ---
 
-### Welcome to my personal website!
+### Hello!
 
-I am a Kenyan currently living in Belgium as a student at [Hasselt University](https://www.uhasselt.be), enrolled into  Master of Science degree in Statistics and data science, specializing in Biostatistics. When not in class or coding, I enjoy body workouts, running and beer sampling.
+Welcome to my personal (work in progress) site. I am student at [Hasselt University](https://www.uhasselt.be), enrolled into  Master of Science degree in Statistics and data science, specializing in Biostatistics. I use R, SAS and Python for statistical analysis and visualizations. Kindly find some of those in the portfolio tab. I am also looking to collaborate in publishable work, so do reach out!
 
 I hold an undergraduate BS Applied Statistics degree from [Maseno University](https://www.maseno.ac.ke/index/) having previously held roles in data management and analysis at [Kemri-Wellcome Trust](https://kemri-wellcome.org/)

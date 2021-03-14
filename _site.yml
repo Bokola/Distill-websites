@@ -1,9 +1,8 @@
-name: "bokola.com"
-title: "bokola.com"
-theme: css/jhelvy.css
+name: "distill-site"
+title: "Basil Okola"
 output_dir: _site
 description: |
-  The personal website of Basil Owiti Okola
+  Basil Okola's personal website
 twitter:
   site: "@okolaowiti"
 # repository_url: https://github.com/jhelvy/jhelvy.github.io
@@ -11,24 +10,24 @@ twitter:
 base_url: https://bokola214.netlify.app/
 creative_commons: CC BY-SA
 navbar:
-  search: false
+  # search: false
   right:
     - icon: fa-home
       href: index.html
-    - text: "About"
+    - text: "Portfolio"
       href: about.html
-    - text: "Research"
-      menu:
-        - text: "Highlights"
-          href: research-highlights.html
-        - text: "Publications"
-          href: publications.html
-        # - text: "Lab"
-        #   href: lab.html
-    - text: "Studies"
-      href: studies.html
-    - text: "Blog"
-      href: blog.html
+    # - text: "Research"
+    #   menu:
+    #     - text: "Highlights"
+    #       href: research-highlights.html
+    #     - text: "Publications"
+    #       href: publications.html
+    #     # - text: "Lab"
+    #     #   href: lab.html
+    # - text: "Studies"
+    #   href: studies.html
+    # - text: "Blog"
+    #   href: blog.html
     # - text: "Misc"
     #   menu:
     #     - text: "Dance"
@@ -41,9 +40,14 @@ navbar:
       href: https://github.com/bokola
     - icon: fab fa-twitter
       href: https://twitter.com/okolaowiti
+      - icon: fab fa-linkedin-in
+      href: https://www.linkedin.com/in/basil-owiti-8a32347a/
 
-output:
-  distill::distill_article:
-    includes:
-      in_header:
-      - _includes/header.html
+collections:
+  posts:
+    categories: true
+    categories_metadata: true
+    authors_metadata: false
+    share: [twitter, linkedin]
+output: distill::distill_article
+theme: theme.css
