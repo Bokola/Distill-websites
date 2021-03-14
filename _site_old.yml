@@ -1,0 +1,27 @@
+
+name: "data-analytics"
+title: "data analytics with R"
+description: |
+  A deeper dive into data.table package for data manipulation
+output_dir: "_site"
+base_url: https://bokola214.netlify.app/
+navbar:
+  right:
+    - icon: fa fa-rss
+      href: index.xml
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+comments: true
+collections:
+  posts:
+    disqus: bokola214-netlify-app.disqus.com/
+    share: [twitter, linkedin]
+    feed_items_max: 50
+    categories: true
+    categories_metadata: true
+    authours_metadata: true
+    citations: false
+    subscribe: _subscribe.html
+output: distill::distill_article
