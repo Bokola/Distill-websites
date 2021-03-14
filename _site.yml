@@ -7,7 +7,7 @@ description: |
 twitter:
   site: "@okolaowiti"
 # repository_url: https://github.com/jhelvy/jhelvy.github.io
-repository_url: https://github.com/bokola/Distill-websites
+# repository_url: https://github.com/bokola/Distill-websites
 base_url: https://bokola214.netlify.app/
 creative_commons: CC BY-SA
 navbar:
