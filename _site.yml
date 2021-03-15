@@ -1,6 +1,6 @@
-name: "distill-site"
+name: "Distill websites"
 title: "Basil Okola"
-output_dir: _site
+output_dir: "_site"
 description: |
   Basil Okola's personal website
 # twitter:

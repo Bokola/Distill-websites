@@ -1,0 +1,6 @@
+---
+title: "Gallery of featured posts"
+listing:
+  posts:
+    - 2020-12-04-data-munging-withdatatable
+---

@@ -1,19 +1,25 @@
 {
   "articles": [
     {
-      "path": "about.html",
-      "title": "About this blog",
-      "description": "Some additional details about the blog",
+      "path": "blog_posts.html",
+      "title": "Blog Posts",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2020-12-04T07:22:19+01:00"
+      "last_modified": "2021-03-15T20:54:16+01:00"
     },
     {
       "path": "index.html",
-      "title": "More into data.table",
+      "title": "Basil Okola",
+      "author": [],
+      "contents": "\r\nHello!\r\nWelcome to my personal (work in progress) site. I am student enrolled into Master of Science degree in Statistics and data science, specializing in biostatistics. I use R, SAS and Python for statistical analysis and visualizations. Kindly find some of those in the portfolio tab. I am also looking to collaborate in projects and publishable work.\r\nI hold an undergraduate BS Applied Statistics degree having previously held roles in data management and analysis.\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-03-15T21:11:14+01:00"
+    },
+    {
+      "path": "portfolio.html",
+      "title": "Portfolio",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2020-12-04T07:22:22+01:00"
+      "last_modified": "2021-03-15T20:53:31+01:00"
     }
   ],
   "collections": ["posts/posts.json"]

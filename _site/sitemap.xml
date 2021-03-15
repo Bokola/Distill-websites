@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
-    <loc>https://bokola214.netlify.app/about.html</loc>
-    <lastmod>2020-12-04T19:09:55+01:00</lastmod>
+    <loc>https://bokola214.netlify.app/blog_posts.html</loc>
+    <lastmod>2021-03-12T04:11:29+01:00</lastmod>
   </url>
   <url>
     <loc>https://bokola214.netlify.app/</loc>
-    <lastmod>2020-12-04T19:49:28+01:00</lastmod>
+    <lastmod>2021-03-15T20:49:07+01:00</lastmod>
   </url>
   <url>
-    <loc>https://bokola214.netlify.app/posts/welcome/</loc>
-    <lastmod>2020-12-04T14:49:38+01:00</lastmod>
+    <loc>https://bokola214.netlify.app/portfolio.html</loc>
+    <lastmod>2021-03-15T15:05:20+01:00</lastmod>
   </url>
   <url>
     <loc>https://bokola214.netlify.app/posts/2020-12-04-data-munging-withdatatable/</loc>
-    <lastmod>2020-12-04T21:20:33+01:00</lastmod>
+    <lastmod>2021-03-15T20:23:57+01:00</lastmod>
+  </url>
+  <url>
+    <loc>https://bokola214.netlify.app/posts/welcome/</loc>
+    <lastmod>2020-12-04T14:49:40+01:00</lastmod>
   </url>
 </urlset>

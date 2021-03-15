@@ -1,0 +1,14 @@
+---
+title: "Research Highlights"
+output: distill::distill_article
+twitter:
+  creator: "@okolaowiti"
+base_url: https://bokola214.netlify.app/
+preview: images/owiti.png
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+This is my research highlights page

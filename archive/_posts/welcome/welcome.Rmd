@@ -1,0 +1,22 @@
+---
+title: "A blog about data analytics and life in general"
+description: |
+  Welcome to our new blog, will be sharing my experiences as a graduate Biostatistics student
+  and skills/tricks acquired overtime. I may be skewed to data analytics so accept my boring narrow scope!
+author:
+  - name: Basil Okola 
+    url: https://github.com/Bokola
+    affiliation: 
+date: 2020-12-04
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+
+
+
+
+
+

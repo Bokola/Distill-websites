@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Basil Okola</title>
+    <link>https://bokola214.netlify.app/</link>
+    <atom:link href="https://bokola214.netlify.app/portfolio.xml" rel="self" type="application/rss+xml"/>
+    <description>Basil Okola's personal website
+</description>
+    <generator>Distill</generator>
+        <lastBuildDate>Fri, 04 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>data munging with data.table</title>
+      <dc:creator>Basil Okola</dc:creator>
+      <link>https://https://bokola214.netlify.app/posts/2020-12-04-data-munging-withdatatable</link>
+      <description>Data manipulation with data.table package.</description>
+      <category>portfolio</category>
+      <category>data exploration</category>
+      <category>presentation</category>
+      <guid>https://bokola214.netlify.app/posts/2020-12-04-data-munging-withdatatable</guid>
+      <pubDate>Fri, 04 Dec 2020 00:00:00 +0000</pubDate>
+      <media:content url="bokola214.netlify.app/posts/2020-12-04-data-munging-withdatatable/data-table.png" medium="image" type="image/png" width="2799" height="1576"/>
+    </item>
+      <title>Welcome to my personal site</title>
+      <dc:creator>Basil Okola</dc:creator>
+      <link>https://bokola214.netlify.app/posts/welcome</link>
+      <description>This is a test post!</description>
+      <guid>https://bokola214.netlify.app/posts/welcome</guid>
+      <pubDate>Sun, 29 Nov 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://bokola214.netlify.app/posts/welcome/IMG-2982.jpg" medium="image" type="image/jpeg"/>
+    </item>
+  </channel>
+</rss>
