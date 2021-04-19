@@ -41,7 +41,7 @@ We chose to model count of days and adjusted for species of the flowers, includi
 We set $\alpha=0.05$, effect size of 1, power set at $1 - \beta = 0.85$ with a right tailed alternative hypothesis. We had to correct for multiple hypothesis test using bonferroni correction. A pilot study of flowers preserved with water was used to estimate mean vase life used for simulating sample size.
 
 
-```{r}
+```{r, echo=FALSE}
 
 home = ifelse(Sys.info()["sysname"] == "Windows",
               Sys.getenv("USERPROFILE"),
@@ -60,9 +60,11 @@ data = readr::read_csv(file.path(data_dir, "G8.pilot.data.csv"))
 
 ```
 
-```{r}
-ests = data %>% group_by(species) %>% summarise(mean = mean(tot.vase.days), variance = var(tot.vase.days)) 
-overall = data %>% summarise(mean = mean(tot.vase.days), variance = var(tot.vase.days))
+```{r, echo=FALSE}
+ests = data %>% group_by(species) %>% summarise(mean = mean(tot.vase.days),
+                                                variance = var(tot.vase.days))
+overall = data %>% summarise(mean = mean(tot.vase.days),
+                             variance = var(tot.vase.days))
 ```
 
 We sampled from a poisson distribution ($Y \sim poisson(\lambda)$) to simulate sample size and power but did not however include random intercepts in the sample size calculation, which overestimated our overall variability.
