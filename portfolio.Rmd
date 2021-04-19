@@ -2,8 +2,7 @@
 title: "Portfolio"
 listing:
   posts:
-    # - 2021-01-04-radial-patterns-in-ggplot2
-    - 2020-12-04-data-munging-withdatatable
-    - 2021-04-19-sample-size-calculation-for-glmm-model-with-a-log-link
+  - 2020-12-04-data-munging-withdatatable
+  - 2021-04-19-sample-size-calculation-for-glmm-model-with-a-log-link
 ---
 
