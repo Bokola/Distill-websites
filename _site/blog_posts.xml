@@ -7,7 +7,21 @@
     <description>Basil Okola's personal website
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 04 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 18 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>sample size calculation for GLMM model with a log link</title>
+      <dc:creator>Basil Okola</dc:creator>
+      <link>https://bokola214.netlify.app/posts/2021-04-19-sample-size-calculation-for-glmm-model-with-a-log-link</link>
+      <description>A simple guide for sample size and power calculation, with a poisson distribution as a case study.</description>
+      <category>sample size</category>
+      <category>power</category>
+      <category>GLMM</category>
+      <category>poisson</category>
+      <category>log link</category>
+      <guid>https://bokola214.netlify.app/posts/2021-04-19-sample-size-calculation-for-glmm-model-with-a-log-link</guid>
+      <pubDate>Sun, 18 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://bokola214.netlify.app/posts/2021-04-19-sample-size-calculation-for-glmm-model-with-a-log-link/figures/unnamed-chunk-5-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>data munging with data.table</title>
       <dc:creator>Basil Okola</dc:creator>

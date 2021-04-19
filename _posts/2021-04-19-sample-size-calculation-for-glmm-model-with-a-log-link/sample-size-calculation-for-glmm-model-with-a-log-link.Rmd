@@ -1,0 +1,126 @@
+---
+title: "sample size calculation for GLMM model with a log link"
+description: |
+  A simple guide for sample size and power calculation, with a poisson distribution as a case study.
+author:
+  - name: Basil Okola
+    url: https://github.com/Bokola
+date: 04-19-2021
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - sample size
+  - power
+  - GLMM
+  - poisson
+  - log link
+---
+
+
+```{r , child="_setup.Rmd"}
+
+```
+
+We were recently tasked with determining sample size and power for a project in one of the courses in the Master of Statistics program.
+Sample size and power calculations have been well documented, and involves following 5 steps:
+
+1. Specify a parameter, hypothesis and test
+
+2. Specify significance level
+
+3. Specify effect size
+
+4. Obtain values or estimates of other parameters needed
+
+5. Specify a target value for power.
+
+The project involved determining from 14 compounds, those that guaranteed a longer vase life for a rose flower when compared to water.
+We chose to model count of days and adjusted for species of the flowers, including some random effects as well.
+
+We set $\alpha=0.05$, effect size of 1, power set at $1 - \beta = 0.85$ with a right tailed alternative hypothesis. We had to correct for multiple hypothesis test using bonferroni correction. A pilot study of flowers preserved with water was used to estimate mean vase life used for simulating sample size.
+
+
+```{r}
+
+home = ifelse(Sys.info()["sysname"] == "Windows",
+              Sys.getenv("USERPROFILE"),
+              Sys.getenv("HOME"))
+home = home %>% gsub("\\\\", "/", .)
+
+data_dir = file.path(
+  home,
+  "Google Drive (basil.okola@student.uhasselt.be)",
+  "MSc. Stats Hasselt",
+  "y1 sem2",
+  "Multivariate and hierarchical data",
+  "sample size calculation"
+)
+data = readr::read_csv(file.path(data_dir, "G8.pilot.data.csv"))
+
+```
+
+```{r}
+ests = data %>% group_by(species) %>% summarise(mean = mean(tot.vase.days), variance = var(tot.vase.days)) 
+overall = data %>% summarise(mean = mean(tot.vase.days), variance = var(tot.vase.days))
+```
+
+We sampled from a poisson distribution ($Y \sim poisson(\lambda)$) to simulate sample size and power but did not however include random intercepts in the sample size calculation, which overestimated our overall variability.
+
+```{r}
+# flower_1 = ests$mean[1]
+# flower_2 = ests$mean[2]
+n_sample = seq(50, 600, 50)
+n = c()
+pval = c()
+powr = c()
+alpha = .05 / 14
+n_simulations = 1:1000
+set.seed(0123)
+for (j in seq_along(n_sample)) {
+  for (i in seq_along(n_simulations)) {
+    treatment = rpois(n_sample[j], lambda = overall$mean + 1)
+    control = rpois(n_sample[j], lambda = overall$mean)
+    sim_data = data.frame(
+      response = c(treatment, control),
+      treatment = rep(c(0, 1), each = n_sample[j]),
+      species = rep(c(0, 1), each = n_sample[j])
+    )
+    pval[i] = summary(glm(
+      response ~ treatment + species,
+      data = sim_data,
+      family = poisson(link = 'log')
+    ))$coeff["treatment", "Pr(>|z|)"]
+    
+  }
+  n = c(n, n_sample[j])
+  powr = c(powr, sum(pval < alpha) / length(n_simulations))
+  out = data.frame(n, powr)
+}
+
+
+knitr::kable(out, caption = "Power as simulated for different sample sizes")
+
+```
+
+
+A visualization of the simulated sample sizes and power is presented:
+
+```{r}
+ggplot(out,aes(x = n, y = powr)) +
+  geom_line(color = 'red', size = 1.5) +
+  geom_hline(aes(yintercept = .85), linetype = 'dashed') +
+  theme_minimal() +
+  # cowplot::theme_minimal_hgrid(rel_small = 1) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "Sample size", y = 'Power')
+```
+
+Additional links on sample size determination:
+
+https://nickch-k.github.io/EconometricsSlides/Week_08/Power_Simulations.html
+https://cran.r-project.org/web/packages/paramtest/vignettes/Simulating-Power.html
+
+Learn more about using Distill at <https://rstudio.github.io/distill>.
+
+
