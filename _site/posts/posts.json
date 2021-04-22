@@ -1,5 +1,27 @@
 [
   {
+    "path": "posts/2021-04-23-parallel-programming/",
+    "title": "Parallel programming",
+    "description": "Running large tasks in parallel in R: Power and Sample size Simulation with parallel package.",
+    "author": [
+      {
+        "name": "Basil Okola",
+        "url": "https://github.com/Bokola"
+      }
+    ],
+    "date": "2021-04-23",
+    "categories": [
+      "parallel programming",
+      "simulation",
+      "sample size",
+      "power"
+    ],
+    "contents": "\r\n\r\nSometimes you get to run repetitive tasks that consume a lot of time and computing memory. A good workaround is distributing these tasks across processors, what is universally referred to as core. parallel package comes in handy in such situations. The only thing you need to do is try bundle your procedures into a function so that you can easily apply them within the parallel library.\r\n\r\n\r\nlibrary(parallel)\r\n\r\n\r\n\r\nParallel programming is achieved by the parallel::mclapply() function. This function does not however work if you are running on windows like I am. For that, you’d have to use parallel::parLapply(). First you register available processors. If using windows:\r\n\r\n\r\ncl = makeCluster(detectCores())\r\n\r\n\r\n\r\nIf in Linux/Damian systems:\r\n\r\n\r\nnumcores = detectCores()\r\n\r\n\r\n\r\nI used parallel programming in a sample-size simulation that saved considerable amount of time, running 1000 simulations at each sample size.\r\n\r\n\r\nset.seed(0123)\r\nsample_power = function(n_sample = seq(50, 450, 25),\r\n                        n_simulations = 1:1000,\r\n                        alpha = 0.05 / 14,\r\n                        effect = 26.57964) {\r\n  set.seed(0123)\r\n  n = c()\r\n  pval = c()\r\n  z = c() # z statistic\r\n  powr = c()\r\n  for (j in seq_along(n_sample)) {\r\n    for (i in seq_along(n_simulations)) {\r\n      treatment = rpois(n_sample[j], lambda = effect + 1.947)\r\n      # Mean of the roses in water (mean from pilot study M = 12.53)\r\n      control = rpois(n_sample[j], lambda = effect)\r\n      sim_data = data.frame(\r\n        response = c(treatment, control),\r\n        treatment = rep(c(0, 1), each = n_sample[j])\r\n        # ,\r\n        # species = rep(c(0, 1), each = n_sample[j])\r\n      )\r\n      z[i] = summary(glm(\r\n        response ~ treatment,\r\n        #+ species,\r\n        data = sim_data,\r\n        family = poisson(link = 'log')\r\n      ))$coeff[\"treatment\", \"z value\"]\r\n      pval[i] =  summary(glm(\r\n        response ~ treatment,\r\n        #+ species,\r\n        data = sim_data,\r\n        family = poisson(link = 'log')\r\n      ))$coeff[\"treatment\", \"Pr(>|z|)\"] / 2\r\n      \r\n    }\r\n    n = c(n, n_sample[j])\r\n    powr = c(powr, sum(pval < alpha) / length(n_simulations))\r\n    out = data.frame(n, powr)\r\n    \r\n  }\r\n  return(out)\r\n}\r\n\r\n\r\n\r\nRunning the function in a normal way using lapply():\r\n\r\n\r\n# normal run\r\nsystem.time({\r\nhh = lapply(seq(50, 500, 50),sample_power)\r\n})\r\n\r\n\r\n   user  system elapsed \r\n 140.65    0.80  143.33 \r\n\r\nUsing parallel:parLapply(). Always remember to stop clusters after your task completes.\r\n\r\n\r\nsystem.time({\r\n  out = parLapply(cl, seq(50, 500, 50),sample_power)\r\n})\r\n\r\n\r\n   user  system elapsed \r\n   0.02    0.02   39.47 \r\n\r\n# remember to stop cluster\r\nstopCluster(cl)\r\n\r\n\r\n\r\nThanks for reading!\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-04-23T01:34:20+02:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2021-04-19-sample-size-calculation-for-glmm-model-with-a-log-link/",
     "title": "sample size calculation for GLMM model with a log link",
     "description": "A simple guide for sample size and power calculation, with a poisson distribution as a case study.",
@@ -19,8 +41,8 @@
     ],
     "contents": "\r\n\r\nWe were recently tasked with determining sample size and power for a project in one of the courses in the Master of Statistics program. Sample size and power calculations have been well documented, and involves following 5 steps:\r\nSpecify a parameter, hypothesis and test\r\nSpecify significance level\r\nSpecify effect size\r\nObtain values or estimates of other parameters needed\r\nSpecify a target value for power.\r\nThe project involved determining from 14 compounds, those that guaranteed a longer vase life for a rose flower when compared to water. We chose to model count of days and adjusted for species of the flowers, including some random effects as well.\r\nWe set \\(\\alpha=0.05\\), effect size of 1, power set at \\(1 - \\beta = 0.85\\) with a right tailed alternative hypothesis. We had to correct for multiple hypothesis test using bonferroni correction. A pilot study of flowers preserved with water was used to estimate mean vase life used for simulating sample size.\r\n\r\n\r\n\r\n\r\n\r\n\r\nWe sampled from a poisson distribution (\\(Y \\sim poisson(\\lambda)\\)) to simulate sample size and power but did not however include random intercepts in the sample size calculation, which overestimated our overall variability.\r\n\r\n\r\n# flower_1 = ests$mean[1]\r\n# flower_2 = ests$mean[2]\r\nn_sample = seq(50, 600, 50)\r\nn = c()\r\npval = c()\r\npowr = c()\r\nalpha = .05 / 14\r\nn_simulations = 1:1000\r\nset.seed(0123)\r\nfor (j in seq_along(n_sample)) {\r\n  for (i in seq_along(n_simulations)) {\r\n    treatment = rpois(n_sample[j], lambda = overall$mean + 1)\r\n    control = rpois(n_sample[j], lambda = overall$mean)\r\n    sim_data = data.frame(\r\n      response = c(treatment, control),\r\n      treatment = rep(c(0, 1), each = n_sample[j]),\r\n      species = rep(c(0, 1), each = n_sample[j])\r\n    )\r\n    pval[i] = summary(glm(\r\n      response ~ treatment + species,\r\n      data = sim_data,\r\n      family = poisson(link = 'log')\r\n    ))$coeff[\"treatment\", \"Pr(>|z|)\"]\r\n    \r\n  }\r\n  n = c(n, n_sample[j])\r\n  powr = c(powr, sum(pval < alpha) / length(n_simulations))\r\n  out = data.frame(n, powr)\r\n}\r\n\r\n\r\nknitr::kable(out, caption = \"Power as simulated for different sample sizes\")\r\n\r\n\r\nTable 1: Power as simulated for different sample sizes\r\nn\r\npowr\r\n50\r\n0.067\r\n100\r\n0.156\r\n150\r\n0.272\r\n200\r\n0.457\r\n250\r\n0.551\r\n300\r\n0.671\r\n350\r\n0.774\r\n400\r\n0.823\r\n450\r\n0.903\r\n500\r\n0.924\r\n550\r\n0.942\r\n600\r\n0.974\r\n\r\nA visualization of the simulated sample sizes and power is presented:\r\n\r\n\r\nggplot(out,aes(x = n, y = powr)) +\r\n  geom_line(color = 'red', size = 1.5) +\r\n  geom_hline(aes(yintercept = .85), linetype = 'dashed') +\r\n  theme_minimal() +\r\n  # cowplot::theme_minimal_hgrid(rel_small = 1) +\r\n  scale_y_continuous(labels = scales::percent) +\r\n  labs(x = \"Sample size\", y = 'Power')\r\n\r\n\r\n\r\n\r\nAdditional links on sample size determination:\r\nhttps://nickch-k.github.io/EconometricsSlides/Week_08/Power_Simulations.html https://cran.r-project.org/web/packages/paramtest/vignettes/Simulating-Power.html\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
     "preview": "posts/2021-04-19-sample-size-calculation-for-glmm-model-with-a-log-link/figures/unnamed-chunk-5-1.png",
-    "last_modified": "2021-04-19T21:52:40+02:00",
-    "input_file": "sample-size-calculation-for-glmm-model-with-a-log-link.utf8.md",
+    "last_modified": "2021-04-19T21:52:41+02:00",
+    "input_file": {},
     "preview_width": 1248,
     "preview_height": 768
   },

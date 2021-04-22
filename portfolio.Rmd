@@ -4,5 +4,6 @@ listing:
   posts:
   - 2020-12-04-data-munging-withdatatable
   - 2021-04-19-sample-size-calculation-for-glmm-model-with-a-log-link
+  - 2021-04-23-parallel-programming
 ---
 

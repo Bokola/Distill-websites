@@ -1,0 +1,169 @@
+---
+title: "Parallel programming"
+description: |
+  Running large tasks in parallel in R: Power and Sample size Simulation with parallel package.
+author:
+  - name: Basil Okola
+    url: https://github.com/Bokola
+date: 04-23-2021
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - parallel programming
+  - simulation
+  - sample size
+  - power
+---
+
+
+
+```{r , child="_setup.Rmd"}
+
+```
+
+
+Sometimes you get to run repetitive tasks that consume a lot of time and computing memory. A good workaround is distributing these tasks
+across processors, what is universally referred to as core. [parallel](https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf) package comes in handy in such situations. The only thing you need to do is try bundle your procedures into a function so that you can easily apply them within the parallel library.
+
+```{r, include=FALSE}
+ipk = function(pkg) {
+  new = libs[!(libs %in% .packages(all.available = TRUE))]
+  if (length(new))
+    (
+      install.packages(new, dependencies = TRUE,
+                       repos = 'https://cran.us.r-project.org')
+    )
+  ddpcr::quiet(sapply(pkg, require, character.only = TRUE))
+}
+libs = c("tidyverse", "magrittr")
+ipk(libs)
+
+home = ifelse(Sys.info()["sysname"] == "Windows",
+              Sys.getenv("USERPROFILE"),
+              Sys.getenv("HOME"))
+home = home %>% gsub("\\\\", "/", .)
+
+data_dir = file.path(
+  home,
+  "Google Drive (basil.okola@student.uhasselt.be)",
+  "MSc. Stats Hasselt",
+  "y1 sem2",
+  "Multivariate and hierarchical data",
+  "sample size calculation"
+)
+data = readr::read_csv(file.path(data_dir, "G8.pilot.data.csv"))
+
+```
+
+```{r, include=FALSE}
+ests = data %>% group_by(species) %>% summarise(mean = mean(tot.vase.days),
+                                                variance = var(tot.vase.days))
+overall = data %>% summarise(mean = mean(tot.vase.days),
+                             variance = var(tot.vase.days))
+species_garden =  data %>% group_by(species, garden) %>% summarise(mean = mean(tot.vase.days),
+                                                  variance = var(tot.vase.days)) 
+```
+
+
+```{r}
+library(parallel)
+
+```
+
+
+Parallel programming is achieved by the `parallel::mclapply()` function. This function does not however work if you are running on windows like I am. For that, you'd have to use `parallel::parLapply()`. First you register available processors. If using windows:
+
+
+```{r}
+cl = makeCluster(detectCores())
+```
+
+If in Linux/Damian systems:
+
+```{r, eval=FALSE}
+numcores = detectCores()
+```
+
+I used parallel programming in a sample-size simulation that saved considerable amount of time, running 1000 simulations at each sample size. 
+
+
+```{r}
+set.seed(0123)
+sample_power = function(n_sample = seq(50, 450, 25),
+                        n_simulations = 1:1000,
+                        alpha = 0.05 / 14,
+                        effect = 26.57964) {
+  set.seed(0123)
+  n = c()
+  pval = c()
+  z = c() # z statistic
+  powr = c()
+  for (j in seq_along(n_sample)) {
+    for (i in seq_along(n_simulations)) {
+      treatment = rpois(n_sample[j], lambda = effect + 1.947)
+      # Mean of the roses in water (mean from pilot study M = 12.53)
+      control = rpois(n_sample[j], lambda = effect)
+      sim_data = data.frame(
+        response = c(treatment, control),
+        treatment = rep(c(0, 1), each = n_sample[j])
+        # ,
+        # species = rep(c(0, 1), each = n_sample[j])
+      )
+      z[i] = summary(glm(
+        response ~ treatment,
+        #+ species,
+        data = sim_data,
+        family = poisson(link = 'log')
+      ))$coeff["treatment", "z value"]
+      pval[i] =  summary(glm(
+        response ~ treatment,
+        #+ species,
+        data = sim_data,
+        family = poisson(link = 'log')
+      ))$coeff["treatment", "Pr(>|z|)"] / 2
+      
+    }
+    n = c(n, n_sample[j])
+    powr = c(powr, sum(pval < alpha) / length(n_simulations))
+    out = data.frame(n, powr)
+    
+  }
+  return(out)
+}
+
+```
+
+
+Running the function in a normal way using `lapply()`:
+
+
+```{r}
+# normal run
+system.time({
+hh = lapply(seq(50, 500, 50),sample_power)
+})
+
+
+```
+
+
+Using `parallel:parLapply()`. Always remember to stop clusters after your task completes.
+
+```{r}
+system.time({
+  out = parLapply(cl, seq(50, 500, 50),sample_power)
+})
+# remember to stop cluster
+stopCluster(cl)
+```
+
+
+Thanks for reading!
+
+
+Distill is a publication format for scientific and technical writing, native to the web.
+
+Learn more about using Distill at <https://rstudio.github.io/distill>.
+
+
