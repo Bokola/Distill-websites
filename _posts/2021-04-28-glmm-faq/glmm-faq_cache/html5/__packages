@@ -1,0 +1,13 @@
+base
+knitr
+pander
+Cairo
+Matrix
+lme4
+equatiomatic
+glmmTMB
+broom.mixed
+dplyr
+nlme
+RLRsim
+ggplot2
