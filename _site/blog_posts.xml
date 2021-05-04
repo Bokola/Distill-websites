@@ -7,7 +7,19 @@
     <description>Basil Okola's personal website
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 27 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 04 May 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Web scraping with R</title>
+      <dc:creator>Basil Okola</dc:creator>
+      <link>https://bokola214.netlify.app/posts/2021-05-05-web-scraping-with-r</link>
+      <description>Web Scraping with rvest, httr and jsonlite packages.</description>
+      <category>web scraping</category>
+      <category>rvest</category>
+      <category>httr</category>
+      <category>jsonlite</category>
+      <guid>https://bokola214.netlify.app/posts/2021-05-05-web-scraping-with-r</guid>
+      <pubDate>Tue, 04 May 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>GLMM FAQ</title>
       <dc:creator>Ben Bolker</dc:creator>
@@ -19,7 +31,7 @@
       <category>logit</category>
       <category>probit</category>
       <guid>https://bokola214.netlify.app/posts/2021-04-28-glmm-faq</guid>
-      <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
       <media:content url="https://bokola214.netlify.app/posts/2021-04-28-glmm-faq/glmm-faq_files/figure-html5/lmepred-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>

@@ -85,635 +85,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Basil Okola: Portfolio</title>
+  <title>Web scraping with R</title>
+
+  <meta property="description" itemprop="description" content="Web Scraping with rvest, httr and jsonlite packages."/>
 
 
-
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-05-05"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-05-05"/>
+  <meta name="article:author" content="Basil Okola"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Basil Okola: Portfolio"/>
+  <meta property="og:title" content="Web scraping with R"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Web Scraping with rvest, httr and jsonlite packages."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="Basil Okola"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Basil Okola: Portfolio"/>
+  <meta property="twitter:title" content="Web scraping with R"/>
+  <meta property="twitter:description" content="Web Scraping with rvest, httr and jsonlite packages."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","listing"]}},"value":[{"type":"character","attributes":{},"value":["Portfolio"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["posts"]}},"value":[{"type":"character","attributes":{},"value":["2021-05-05-web-scraping-with-r","2021-04-28-glmm-faq","2021-04-23-parallel-programming","2021-04-19-sample-size-calculation-for-glmm-model-with-a-log-link","2020-12-04-data-munging-withdatatable"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Web scraping with R"]},{"type":"character","attributes":{},"value":["Web Scraping with rvest, httr and jsonlite packages.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Basil Okola"]},{"type":"character","attributes":{},"value":["https://github.com/Bokola"]}]}]},{"type":"character","attributes":{},"value":["05-05-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["web scraping","rvest","httr","jsonlite"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["web-scraping-with-r_files/anchor-4.2.2/anchor.min.js","web-scraping-with-r_files/bowser-1.9.3/bowser.min.js","web-scraping-with-r_files/distill-2.2.21/template.v2.js","web-scraping-with-r_files/header-attrs-2.7/header-attrs.js","web-scraping-with-r_files/jquery-1.11.3/jquery.min.js","web-scraping-with-r_files/popper-2.6.0/popper.min.js","web-scraping-with-r_files/tippy-6.2.7/tippy-bundle.umd.min.js","web-scraping-with-r_files/tippy-6.2.7/tippy-light-border.css","web-scraping-with-r_files/tippy-6.2.7/tippy.css","web-scraping-with-r_files/tippy-6.2.7/tippy.umd.min.js","web-scraping-with-r_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-
-  <script type="application/javascript">
-
-    window.headroom_prevent_pin = false;
-
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        tolerance: 5,
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-
-  <style type="text/css">
-
-  /* Theme (user-documented overrideables for nav appearance) */
-
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .distill-site-nav a:hover {
-    color: white;
-  }
-
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-
-  .distill-site-header {
-
-  }
-
-  .distill-site-footer {
-
-  }
-
-
-  /* Site Header */
-
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-
-
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-
-  .distill-site-header .logo {
-    padding: 0;
-  }
-
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-
-
-
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-
-
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-dropdown-active {
-    display: block;
-  }
-
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-
-  /* Site Footer */
-
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-
-  /* Headroom */
-
-  d-title {
-    padding-top: 6rem;
-  }
-
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-
-  .headroom--unpinned {
-    top: -100px;
-  }
-
-  .headroom--pinned {
-    top: 0;
-  }
-
-  /* adjust viewport for navbar height */
-  /* helps vertically center bootstrap (non-distill) content */
-  .min-vh-100 {
-    min-height: calc(100vh - 100px) !important;
-  }
-
-  </style>
-
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-  <script type="application/javascript">
-
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-
-  function createFuseIndex() {
-
-    // create fuse index
-    var options = {
-      keys: [
-        { name: 'title', weight: 20 },
-        { name: 'categories', weight: 15 },
-        { name: 'description', weight: 10 },
-        { name: 'contents', weight: 5 },
-      ],
-      ignoreLocation: true,
-      threshold: 0
-    };
-    var fuse = new window.Fuse([], options);
-
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-
-    createFuseIndex()
-      .then(function(fuse) {
-
-        // make search box visible
-        searchEl.classList.remove('hidden');
-
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
-                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
-                : '';
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description || ''}
-                  </div>
-                  <div class="search-item-preview">
-                    ${img}
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-  });
-
-  </script>
-
-  <style type="text/css">
-
-  .nav-search {
-    font-size: x-small;
-  }
-
-  /* Algolioa Autocomplete */
-
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    font-size: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  </style>
-
-
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -2028,693 +1432,380 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </script>
 
-  <style type="text/css">
-  /* base variables */
-
-  /* Edit the CSS properties in this file to create a custom
-     Distill theme. Only edit values in the right column
-     for each row; values shown are the CSS defaults.
-     To return any property to the default,
-     you may set its value to: unset
-     All rows must end with a semi-colon.                      */
-
-  /* Optional: embed custom fonts here with `@import`          */
-  /* This must remain at the top of this file.                 */
-
-
-
-  html {
-    /*-- Main font sizes --*/
-    --title-size:      50px;
-    --body-size:       1.06rem;
-    --code-size:       14px;
-    --aside-size:      12px;
-    --fig-cap-size:    13px;
-    /*-- Main font colors --*/
-    --title-color:     #000000;
-    --header-color:    rgba(0, 0, 0, 0.8);
-    --body-color:      rgba(0, 0, 0, 0.8);
-    --aside-color:     rgba(0, 0, 0, 0.6);
-    --fig-cap-color:   rgba(0, 0, 0, 0.6);
-    /*-- Specify custom fonts ~~~ must be imported above   --*/
-    --heading-font:    sans-serif;
-    --mono-font:       monospace;
-    --body-font:       sans-serif;
-    --navbar-font:     sans-serif;  /* websites + blogs only */
-  }
-
-  /*-- ARTICLE METADATA --*/
-  d-byline {
-    --heading-size:    0.6rem;
-    --heading-color:   rgba(0, 0, 0, 0.5);
-    --body-size:       0.8rem;
-    --body-color:      rgba(0, 0, 0, 0.8);
-  }
-
-  /*-- ARTICLE TABLE OF CONTENTS --*/
-  .d-contents {
-    --heading-size:    18px;
-    --contents-size:   13px;
-  }
-
-  /*-- ARTICLE APPENDIX --*/
-  d-appendix {
-    --heading-size:    15px;
-    --heading-color:   rgba(0, 0, 0, 0.65);
-    --text-size:       0.8em;
-    --text-color:      rgba(0, 0, 0, 0.5);
-  }
-
-  /*-- WEBSITE HEADER + FOOTER --*/
-  /* These properties only apply to Distill sites and blogs  */
-
-  .distill-site-header {
-    --title-size:       18px;
-    --text-color:       rgba(255, 255, 255, 0.8);
-    --text-size:        15px;
-    --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
-  }
-
-  .distill-site-footer {
-    --text-color:       rgba(255, 255, 255, 0.8);
-    --text-size:        15px;
-    --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
-  }
-
-  /*-- Additional custom styles --*/
-  /* Add any additional CSS rules below                      */
-  </style>
-  <style type="text/css">
-  /* base variables */
-
-  /* Edit the CSS properties in this file to create a custom
-     Distill theme. Only edit values in the right column
-     for each row; values shown are the CSS defaults.
-     To return any property to the default,
-     you may set its value to: unset
-     All rows must end with a semi-colon.                      */
-
-  /* Optional: embed custom fonts here with `@import`          */
-  /* This must remain at the top of this file.                 */
-  @import url('https://fonts.googleapis.com/css2?family=Cardo');
-  @import url('https://fonts.googleapis.com/css2?family=Alata');
-
-
-  html {
-    /*-- Main font sizes --*/
-    --title-size:      50px;
-    --body-size:       1.06rem;
-    --code-size:       14px;
-    --aside-size:      12px;
-    --fig-cap-size:    13px;
-    /*-- Main font colors --*/
-    --title-color:     #000000;
-    --header-color:    rgba(0, 0, 0, 0.8);
-    --body-color:      rgba(0, 0, 0, 0.8);
-    --aside-color:     rgba(0, 0, 0, 0.6);
-    --fig-cap-color:   rgba(0, 0, 0, 0.6);
-    /*-- Specify custom fonts ~~~ must be imported above   --*/
-    --heading-font:    'Alata', sans-serif;
-    --mono-font:       monospace;
-    --body-font:       'Cardo', serif;
-    --navbar-font:     'Alata', sans-serif;  /* websites + blogs only */
-  }
-
-  /*-- ARTICLE METADATA --*/
-  d-byline {
-    --heading-size:    0.6rem;
-    --heading-color:   rgba(0, 0, 0, 0.5);
-    --body-size:       0.8rem;
-    --body-color:      rgba(0, 0, 0, 0.8);
-  }
-
-  /*-- ARTICLE TABLE OF CONTENTS --*/
-  .d-contents {
-    --heading-size:    18px;
-    --contents-size:   13px;
-  }
-
-  /*-- ARTICLE APPENDIX --*/
-  d-appendix {
-    --heading-size:    15px;
-    --heading-color:   rgba(0, 0, 0, 0.65);
-    --text-size:       0.8em;
-    --text-color:      rgba(0, 0, 0, 0.5);
-  }
-
-  /*-- WEBSITE HEADER + FOOTER --*/
-  /* These properties only apply to Distill sites and blogs  */
-
-  .distill-site-header {
-    --title-size:       18px;
-    --text-color:       white;
-    --text-size:        15px;
-    --hover-color:      #89ac81;
-    --bkgd-color:       #000;
-  }
-
-  .distill-site-footer {
-    --text-color:       white;
-    --text-size:        15px;
-    --hover-color:      #89ac81;
-    --bkgd-color:       #000;
-  }
-
-  /*-- Additional custom styles --*/
-  /* Add any additional CSS rules below                      */
-  .pull-left {
-    float: left;
-    width: 47%;
-  }
-
-  .pull-right {
-    float: right;
-    width: 47%;
-  }
-  </style>
-  <style type="text/css">
-  /* base style */
-
-  /* FONT FAMILIES */
-
-  :root {
-    --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-    --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-  }
-
-  body,
-  .posts-list .post-preview p,
-  .posts-list .description p {
-    font-family: var(--body-font), var(--body-default);
-  }
-
-  h1, h2, h3, h4, h5, h6,
-  .posts-list .post-preview h2,
-  .posts-list .description h2 {
-    font-family: var(--heading-font), var(--heading-default);
-  }
-
-  d-article div.sourceCode code,
-  d-article pre code {
-    font-family: var(--mono-font), var(--mono-default);
-  }
-
-
-  /*-- TITLE --*/
-  d-title h1,
-  .posts-list > h1 {
-    color: var(--title-color, black);
-  }
-
-  d-title h1 {
-    font-size: var(--title-size, 50px);
-  }
-
-  /*-- HEADERS --*/
-  d-article h1,
-  d-article h2,
-  d-article h3,
-  d-article h4,
-  d-article h5,
-  d-article h6 {
-    color: var(--header-color, rgba(0, 0, 0, 0.8));
-  }
-
-  /*-- BODY --*/
-  d-article > p,  /* only text inside of <p> tags */
-  d-article > ul, /* lists */
-  d-article > ol {
-    color: var(--body-color, rgba(0, 0, 0, 0.8));
-    font-size: var(--body-size, 1.06rem);
-  }
-
-
-  /*-- CODE --*/
-  d-article div.sourceCode code,
-  d-article pre code {
-    font-size: var(--code-size, 14px);
-  }
-
-  /*-- ASIDE --*/
-  d-article aside {
-    font-size: var(--aside-size, 12px);
-    color: var(--aside-color, rgba(0, 0, 0, 0.6));
-  }
-
-  /*-- FIGURE CAPTIONS --*/
-  figure .caption,
-  figure figcaption,
-  .figure .caption {
-    font-size: var(--fig-cap-size, 13px);
-    color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
-  }
-
-  /*-- METADATA --*/
-  d-byline h3 {
-    font-size: var(--heading-size, 0.6rem);
-    color: var(--heading-color, rgba(0, 0, 0, 0.5));
-  }
-
-  d-byline {
-    font-size: var(--body-size, 0.8rem);
-    color: var(--body-color, rgba(0, 0, 0, 0.8));
-  }
-
-  d-byline a,
-  d-article d-byline a {
-    color: var(--body-color, rgba(0, 0, 0, 0.8));
-  }
-
-  /*-- TABLE OF CONTENTS --*/
-  .d-contents nav h3 {
-    font-size: var(--heading-size, 18px);
-  }
-
-  .d-contents nav a {
-    font-size: var(--contents-size, 13px);
-  }
-
-  /*-- APPENDIX --*/
-  d-appendix h3 {
-    font-size: var(--heading-size, 15px);
-    color: var(--heading-color, rgba(0, 0, 0, 0.65));
-  }
-
-  d-appendix {
-    font-size: var(--text-size, 0.8em);
-    color: var(--text-color, rgba(0, 0, 0, 0.5));
-  }
-
-  d-appendix d-footnote-list a.footnote-backlink {
-    color: var(--text-color, rgba(0, 0, 0, 0.5));
-  }
-
-  /*-- WEBSITE HEADER + FOOTER --*/
-  .distill-site-header .title {
-    font-size: var(--title-size, 18px);
-    font-family: var(--navbar-font), var(--heading-default);
-  }
-
-  .distill-site-header a,
-  .nav-dropdown .nav-dropbtn {
-    font-family: var(--navbar-font), var(--heading-default);
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    color: var(--text-color, rgba(255, 255, 255, 0.8));
-    font-size: var(--text-size, 15px);
-  }
-
-  .distill-site-header a:hover,
-  .nav-dropdown:hover .nav-dropbtn {
-    color: var(--hover-color, white);
-  }
-
-  .distill-site-header {
-    font-size: var(--text-size, 15px);
-    color: var(--text-color, rgba(255, 255, 255, 0.8));
-    background-color: var(--bkgd-color, #0F2E3D);
-  }
-
-  .distill-site-footer {
-    font-size: var(--text-size, 15px);
-    color: var(--text-color, rgba(255, 255, 255, 0.8));
-    background-color: var(--bkgd-color, #0F2E3D);
-  }
-
-  .distill-site-footer a:hover {
-    color: var(--hover-color, white);
-  }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
-  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
-  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
-  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
-  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="web-scraping-with-r_files/header-attrs-2.7/header-attrs.js"></script>
+  <script src="web-scraping-with-r_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="web-scraping-with-r_files/popper-2.6.0/popper.min.js"></script>
+  <link href="web-scraping-with-r_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="web-scraping-with-r_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="web-scraping-with-r_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="web-scraping-with-r_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="web-scraping-with-r_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="web-scraping-with-r_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="web-scraping-with-r_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <!--/radix_placeholder_site_in_header-->
 
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Portfolio","authors":[]}
+{"title":"Web scraping with R","description":"Web Scraping with rvest, httr and jsonlite packages.","authors":[{"author":"Basil Okola","authorURL":"https://github.com/Bokola","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-05-05T00:00:00.000+02:00","citationText":"Okola, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">Basil Okola</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="index.html">Home</a>
-<a href="portfolio.html">Portfolio</a>
-<a href="content/docs/CV_withR_Basil Owiti Okola">
-<i class="fa ai ai-cv" aria-hidden="true"></i>
-</a>
-<a href="https://github.com/bokola">
-<i class="fab fa-github" aria-hidden="true"></i>
-</a>
-<a href="https://twitter.com/okolaowiti">
-<i class="fab fa-twitter" aria-hidden="true"></i>
-</a>
-<a href="https://www.linkedin.com/in/basil-owiti-8a32347a/">
-<i class="fab fa-linkedin-in" aria-hidden="true"></i>
-</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).load(function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash && window.location.hash.startsWith("#category:")) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace(/^#category:/, "");
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
-
-      // update the list_caption
-      var list_caption = $('.posts-list-caption');
-      var caption = (page_category || '').toLowerCase() === "articles"
-        ? list_caption.attr('data-caption')
-        : ('Category: ' + page_category.replace(/_/g," "));
-      list_caption.text(caption);
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-      // reset list caption
-      var list_caption = $('.posts-list-caption');
-      list_caption.text(list_caption.attr('data-caption'));
-
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // click handling for tags
-  $('.dt-tag').click(function(ev) {
-    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
-    return false;
-  })
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
-<div class="posts-list">
-<h1 class="posts-list-caption" data-caption="Portfolio">Portfolio</h1>
-<a href="posts/2021-05-05-web-scraping-with-r/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["web scraping","rvest","httr","jsonlite"]}</script>
-<div class="metadata">
-<div class="publishedDate">May 5, 2021</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Web scraping with R</h2>
-<div class="dt-tags">
-<div class="dt-tag">web scraping</div>
-<div class="dt-tag">rvest</div>
-<div class="dt-tag">httr</div>
-<div class="dt-tag">jsonlite</div>
-</div>
-<p>Web Scraping with rvest, httr and jsonlite packages.</p>
-</div>
-</a>
-<a href="posts/2021-04-28-glmm-faq/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["GLMM","poisson","log link","logit","probit"]}</script>
-<div class="metadata">
-<div class="publishedDate">April 28, 2021</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-04-28-glmm-faq/glmm-faq_files/figure-html5/lmepred-1.png"/>
-</div>
-<div class="description">
-<h2>GLMM FAQ</h2>
-<div class="dt-tags">
-<div class="dt-tag">GLMM</div>
-<div class="dt-tag">poisson</div>
-<div class="dt-tag">log link</div>
-<div class="dt-tag">logit</div>
-<div class="dt-tag">probit</div>
-</div>
-<p>an informal GLMM FAQ list for the r-sig-mixed-models mailing list</p>
-</div>
-</a>
-<a href="posts/2021-04-23-parallel-programming/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["parallel programming","simulation","sample size","power"]}</script>
-<div class="metadata">
-<div class="publishedDate">April 23, 2021</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Parallel programming</h2>
-<div class="dt-tags">
-<div class="dt-tag">parallel programming</div>
-<div class="dt-tag">simulation</div>
-<div class="dt-tag">sample size</div>
-<div class="dt-tag">power</div>
-</div>
-<p>Running large tasks in parallel in R: Power and Sample size Simulation with parallel package.</p>
-</div>
-</a>
-<a href="posts/2021-04-19-sample-size-calculation-for-glmm-model-with-a-log-link/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["sample size","power","GLMM","poisson","log link"]}</script>
-<div class="metadata">
-<div class="publishedDate">April 19, 2021</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-04-19-sample-size-calculation-for-glmm-model-with-a-log-link/figures/unnamed-chunk-5-1.png"/>
-</div>
-<div class="description">
-<h2>sample size calculation for GLMM model with a log link</h2>
-<div class="dt-tags">
-<div class="dt-tag">sample size</div>
-<div class="dt-tag">power</div>
-<div class="dt-tag">GLMM</div>
-<div class="dt-tag">poisson</div>
-<div class="dt-tag">log link</div>
-</div>
-<p>A simple guide for sample size and power calculation, with a poisson distribution as a case study.</p>
-</div>
-</a>
-<a href="posts/2020-12-04-data-munging-withdatatable/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Data manipulation"]}</script>
-<div class="metadata">
-<div class="publishedDate">Dec. 4, 2020</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>data munging with data.table</h2>
-<div class="dt-tags">
-<div class="dt-tag">Data manipulation</div>
-</div>
-<p>A quick glimpse into data.table for data manipulation.</p>
-</div>
-</a>
-</div>
-<div class="posts-sidebar">
-<div class="sidebar-section categories">
-<h3>Categories</h3>
-<ul>
-<li>
-<a href="#category:Articles">Articles</a>
-<span class="category-count">(5)</span>
-</li>
-<li>
-<a href="#category:Data_manipulation">Data manipulation</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:GLMM">GLMM</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:httr">httr</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:jsonlite">jsonlite</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:log_link">log link</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:logit">logit</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:parallel_programming">parallel programming</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:poisson">poisson</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:power">power</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:probit">probit</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:rvest">rvest</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:sample_size">sample size</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:simulation">simulation</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:web_scraping">web scraping</a>
-<span class="category-count">(1)</span>
-</li>
-</ul>
-</div>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Portfolio</h1>
+<h1>Web scraping with R</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">web scraping</div>
+<div class="dt=tag">rvest</div>
+<div class="dt=tag">httr</div>
+<div class="dt=tag">jsonlite</div>
+</div>
 <!--/radix_placeholder_categories-->
-
+<p><p>Web Scraping with rvest, httr and jsonlite packages.</p></p>
 </div>
 
+<div class="d-byline">
+  Basil Okola <a href="https://github.com/Bokola" class="uri">https://github.com/Bokola</a> 
+  
+<br/>05-05-2021
+</div>
 
 <div class="d-article">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 id="web-scraping-in-r">Web scraping in R</h1>
+<h2 id="html-data-structure">HTML Data structure</h2>
+<p>Web pages are styles with CSS files: cascade style sheets that determine layout of the webpage. CSS selectors can be used to look for HTML elements of interest. One such is the <a href="https://selectorgadget.com/">SelectorGadget google chrome extension</a>. You need to install it to your browser before proceeding.</p>
+<p>To use it open the page</p>
+<ol type="1">
+<li><p>Click on the element you want to select. SelectorGadget will make a first guess at what css selector you want. It’s likely to be bad since it only has one example to learn from, but it’s a start. Elements that match the selector will be highlighted in yellow.</p></li>
+<li><p>Click on elements that shouldn’t be selected. They will turn red. Click on elements that should be selected. They will turn green.</p></li>
+<li><p>Iterate until only the elements you want are selected. SelectorGadget isn’t perfect and sometimes won’t be able to find a useful css selector. Sometimes starting from a different element helps. More at <a href="https://rvest.tidyverse.org/articles/selectorgadget.html">tidyverse/rvest</a></p></li>
+</ol>
+<p>For example, if we want the actors listed on the IMDB movie page, e.g. <a href="https://www.imdb.com/title/tt0111161/?ref_=adv_li_tt">The Shawshank Redemption</a></p>
+<p>HTML tags can be passed to functions to retrieve the web page elements of interest.</p>
+<h2 id="rvest"><code>rvest</code></h2>
+<p>For scrapping (harvesting) data fro the web in a structured format that can be used in further analysis.</p>
+<h3 id="rvest-functions">rvest functions</h3>
+<ul>
+<li><code>read_html()</code>: collects data from the webpage</li>
+<li><code>html_nodes()</code>: extract the relevant pieces</li>
+<li><code>html_text()</code>: extract tags of the relevant piece</li>
+<li><code>html_attributes()</code>: extract attributes of the relevant piece</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># specify url </span>
+<span class='va'>url</span> <span class='op'>=</span> <span class='st'>'https://www.imdb.com/title/tt0111161/'</span>
+<span class='co'># reading the html code from the </span>
+<span class='va'>webpage</span> <span class='op'>=</span> <span class='fu'>read_html</span><span class='op'>(</span><span class='va'>url</span><span class='op'>)</span>
+<span class='va'>webpage</span>
+</code></pre>
+</div>
+<pre><code>{html_document}
+&lt;html xmlns:og=&quot;http://ogp.me/ns#&quot; xmlns:fb=&quot;http://www.facebook.com/2008/fbml&quot;&gt;
+[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; cha ...
+[2] &lt;body id=&quot;styleguide-v2&quot; class=&quot;fixed&quot;&gt;\n            &lt;img heigh ...</code></pre>
+</div>
+<p>Once we have determined the CSS selector, we use it to extract the information we want</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cast</span> <span class='op'>=</span> <span class='fu'>html_nodes</span><span class='op'>(</span><span class='va'>webpage</span>, <span class='st'>".primary_photo+ td a"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>cast</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 15</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cast</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>{xml_nodeset (2)}
+[1] &lt;a href=&quot;/name/nm0000209/?ref_=tt_cl_t1&quot;&gt; Tim Robbins\n&lt;/a&gt;
+[2] &lt;a href=&quot;/name/nm0000151/?ref_=tt_cl_t2&quot;&gt; Morgan Freeman\n&lt;/a&gt;</code></pre>
+</div>
+<p>Finally, we extract the text from the selected HTML nodes.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>html_text</span><span class='op'>(</span><span class='va'>cast</span>, trim <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;Tim Robbins&quot;       &quot;Morgan Freeman&quot;    &quot;Bob Gunton&quot;       
+ [4] &quot;William Sadler&quot;    &quot;Clancy Brown&quot;      &quot;Gil Bellows&quot;      
+ [7] &quot;Mark Rolston&quot;      &quot;James Whitmore&quot;    &quot;Jeffrey DeMunn&quot;   
+[10] &quot;Larry Brandenburg&quot; &quot;Neil Giuntoli&quot;     &quot;Brian Libby&quot;      
+[13] &quot;David Proval&quot;      &quot;Joseph Ragno&quot;      &quot;Jude Ciccolella&quot;  </code></pre>
+</div>
+<h4 id="extracting-a-table">Extracting a table</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>all_tables</span> <span class='op'>=</span> <span class='fu'>html_table</span><span class='op'>(</span><span class='va'>webpage</span>, <span class='st'>"table"</span>, header <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>casttable</span> <span class='op'>=</span> <span class='fu'>html_table</span><span class='op'>(</span><span class='va'>webpage</span>, <span class='st'>".cast_list"</span>, header <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>casttable</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>                                 X1                                X2
+1 Cast overview, first billed only: Cast overview, first billed only:
+2                      \n                  \n Tim Robbins\n          
+3                      \n               \n Morgan Freeman\n          
+4                      \n                   \n Bob Gunton\n          
+5                      \n               \n William Sadler\n          
+6                      \n                 \n Clancy Brown\n          
+                                 X3
+1 Cast overview, first billed only:
+2   \n              ...\n          
+3   \n              ...\n          
+4   \n              ...\n          
+5   \n              ...\n          
+6   \n              ...\n          
+                                                                       X4
+1                                       Cast overview, first billed only:
+2            \n            Andy Dufresne \n                  \n          
+3 \n            Ellis Boyd &#39;Red&#39; Redding \n                  \n          
+4            \n            Warden Norton \n                  \n          
+5                  \n            Heywood \n                  \n          
+6           \n            Captain Hadley \n                  \n          </code></pre>
+</div>
+<h4 id="attributes-of-an-element">Attributes of an element</h4>
+<p>If say we are also interested in extracting the links to the actor’s pages, we can acces html attributes of the selected nodes using <code>html_attrs( )</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cast_attrs</span> <span class='op'>=</span> <span class='fu'>html_attrs</span><span class='op'>(</span><span class='va'>cast</span><span class='op'>)</span>
+<span class='va'>cast_attrs</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[[1]]
+                            href 
+&quot;/name/nm0000209/?ref_=tt_cl_t1&quot; 
+
+[[2]]
+                            href 
+&quot;/name/nm0000151/?ref_=tt_cl_t2&quot; </code></pre>
+</div>
+<p>As we can see there’s only one attribute called <code>href</code> which contains relative url to the actor’s page. We can extract it using <code>html_attr()</code>, indicating the name of the attribute of interest. Relative urls can be turned into absolute urls using <code>url_absolute()</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cast_rel_urls</span> <span class='op'>=</span> <span class='fu'>html_attr</span><span class='op'>(</span><span class='va'>cast</span>, <span class='st'>"href"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>cast_rel_urls</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 15</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cast_rel_urls</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;/name/nm0000209/?ref_=tt_cl_t1&quot; &quot;/name/nm0000151/?ref_=tt_cl_t2&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cast_abs_urls</span> <span class='op'>=</span> <span class='fu'>html_attr</span><span class='op'>(</span><span class='va'>cast</span>, <span class='st'>"href"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>url_absolute</span><span class='op'>(</span><span class='va'>url</span><span class='op'>)</span>
+<span class='va'>cast_abs_urls</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;https://www.imdb.com/name/nm0000209/?ref_=tt_cl_t1&quot;
+[2] &quot;https://www.imdb.com/name/nm0000151/?ref_=tt_cl_t2&quot;</code></pre>
+</div>
+<h2 id="making-api-requests-in-r">Making API Requests in R</h2>
+<ul>
+<li>Application Program Interface: Places where a computer interacts with another, or with itself:
+<ul>
+<li>the client requests data, the server provide data.</li>
+</ul></li>
+<li>Applicable R packages: <code>httr</code> and <code>jsonlite</code></li>
+</ul>
+<h3 id="httr"><code>httr</code></h3>
+<ul>
+<li><p>Create request with <code>GET()</code> function. Input is a url which specifies the address of the server.</p></li>
+<li><p>Example: current number of people in space</p></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>res</span> <span class='op'>=</span> <span class='fu'>GET</span><span class='op'>(</span><span class='st'>'http://api.open-notify.org/astros.json'</span><span class='op'>)</span>
+<span class='va'>res</span>
+</code></pre>
+</div>
+<pre><code>Response [http://api.open-notify.org/astros.json]
+  Date: 2021-05-04 22:51
+  Status: 200
+  Content-Type: application/json
+  Size: 355 B</code></pre>
+</div>
+<h4 id="json-format">JSON Format</h4>
+<ul>
+<li>Different formats to share data on the internet</li>
+<li>Currently, JavaScript Object notation is being widely adopted</li>
+</ul>
+<p>[ { “name”: “Miguel”, “student_id”: 1, “exam_1”: 85, “exam_2”: 86 }, { “name”: “Sofia”, “student_id”: 2, “exam_1”: 94, “exam_2”: 93</p>
+<h3 id="jsonlite">jsonlite</h3>
+<ul>
+<li>Several organizations provide a JSON API or a web service</li>
+<li>The <code>jsonlite</code> package provides parser and generator functions:
+<ul>
+<li><code>fromJSON()</code><br />
+</li>
+<li><code>toJSON()</code></li>
+</ul></li>
+<li><code>fromJSON()</code>:
+<ul>
+<li>Input is a JSON string, URL, JSON file</li>
+<li>Returns a list of data.frames</li>
+</ul></li>
+<li><code>toJSON()</code>:
+<ul>
+<li>Input is any object</li>
+<li>Returns a JSON string</li>
+</ul></li>
+</ul>
+<h4 id="fromjson"><code>fromJSON()</code></h4>
+<ul>
+<li>convert the raw Unicode of the GET request into a JSON string</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/rawConversion.html'>rawToChar</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>$</span><span class='va'>content</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;{\&quot;number\&quot;: 7, \&quot;message\&quot;: \&quot;success\&quot;, \&quot;people\&quot;: [{\&quot;name\&quot;: \&quot;Mark Vande Hei\&quot;, \&quot;craft\&quot;: \&quot;ISS\&quot;}, {\&quot;name\&quot;: \&quot;Oleg Novitskiy\&quot;, \&quot;craft\&quot;: \&quot;ISS\&quot;}, {\&quot;name\&quot;: \&quot;Pyotr Dubrov\&quot;, \&quot;craft\&quot;: \&quot;ISS\&quot;}, {\&quot;name\&quot;: \&quot;Thomas Pesquet\&quot;, \&quot;craft\&quot;: \&quot;ISS\&quot;}, {\&quot;name\&quot;: \&quot;Megan McArthur\&quot;, \&quot;craft\&quot;: \&quot;ISS\&quot;}, {\&quot;name\&quot;: \&quot;Shane Kimbrough\&quot;, \&quot;craft\&quot;: \&quot;ISS\&quot;}, {\&quot;name\&quot;: \&quot;Akihiko Hoshide\&quot;, \&quot;craft\&quot;: \&quot;ISS\&quot;}]}&quot;</code></pre>
+</div>
+<ul>
+<li>convert the JSON format to a list of data.frames</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span> <span class='op'>=</span> <span class='fu'>fromJSON</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rawConversion.html'>rawToChar</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>$</span><span class='va'>content</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>data</span>
+</code></pre>
+</div>
+<pre><code>$number
+[1] 7
+
+$message
+[1] &quot;success&quot;
+
+$people
+             name craft
+1  Mark Vande Hei   ISS
+2  Oleg Novitskiy   ISS
+3    Pyotr Dubrov   ISS
+4  Thomas Pesquet   ISS
+5  Megan McArthur   ISS
+6 Shane Kimbrough   ISS
+7 Akihiko Hoshide   ISS</code></pre>
+</div>
+<p>Read directly from a url</p>
+<ul>
+<li>for example: read from a github page</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'>fromJSON</span><span class='op'>(</span><span class='st'>"https://api.github.com/users/hadley/orgs"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;login&quot;              &quot;id&quot;                 &quot;node_id&quot;           
+ [4] &quot;url&quot;                &quot;repos_url&quot;          &quot;events_url&quot;        
+ [7] &quot;hooks_url&quot;          &quot;issues_url&quot;         &quot;members_url&quot;       
+[10] &quot;public_members_url&quot; &quot;avatar_url&quot;         &quot;description&quot;       </code></pre>
+</div>
+<h4 id="tojson"><code>toJSON()</code></h4>
+<ul>
+<li>Write a dataframe to JSON format</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>jsondata</span> <span class='op'>=</span> <span class='fu'>toJSON</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>jsondata</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;[{\&quot;login\&quot;:\&quot;ggobi\&quot;,\&quot;id\&quot;:423638,\&quot;node_id\&quot;:\&quot;MDEyOk9yZ2FuaXphdGlvbjQyMzYzOA==\&quot;,\&quot;url\&quot;:\&quot;https://api.github.com/orgs/ggobi\&quot;,\&quot;repos_url\&quot;:\&quot;https://api.github.com/orgs/ggobi/repos\&quot;,\&quot;events_url\&quot;:\&quot;https://api.github.com/orgs/ggobi/events\&quot;,\&quot;hooks_url\&quot;:\&quot;https://api.github.com/orgs/ggobi/hooks\&quot;,\&quot;issues_url\&quot;:\&quot;https://api.github.com/orgs/ggobi/issues\&quot;,\&quot;members_url\&quot;:\&quot;https://api.github.com/orgs/ggobi/members{/member}\&quot;,\&quot;public_members_url\&quot;:\&quot;https://api.github.com/orgs/ggobi/public_members{/member}\&quot;,\&quot;avatar_url\&quot;:\&quot;https://avatars.githubusercontent.com/u/423638?v=4\&quot;,\&quot;description\&quot;:\&quot;\&quot;},{\&quot;login\&quot;:\&quot;rstudio\&quot;,\&quot;id\&quot;:513560,\&quot;node_id\&quot;:\&quot;MDEyOk9yZ2FuaXphdGlvbjUxMzU2MA==\&quot;,\&quot;url\&quot;:\&quot;https://api.github.com/orgs/rstudio\&quot;,\&quot;repos_url\&quot;:\&quot;https://api.github.com/orgs/rstudio/repos\&quot;,\&quot;events_url\&quot;:\&quot;https://api.github.com/orgs/rstudio/events\&quot;,\&quot;hooks_url\&quot;:\&quot;https://api.github.com/orgs/rstudio/hooks\&quot;,\&quot;issues_url\&quot;:\&quot;https://api.github.com/orgs/rstudio/issues\&quot;,\&quot;members_url\&quot;:\&quot;https://api.github.com/orgs/rstudio/members{/member}\&quot;,\&quot;public_members_url\&quot;:\&quot;https://api.github.com/orgs/rstudio/public_members{/member}\&quot;,\&quot;avatar_url\&quot;:\&quot;https://avatars.githubusercontent.com/u/513560?v=4\&quot;,\&quot;description\&quot;:\&quot;\&quot;},{\&quot;login\&quot;:\&quot;rstats\&quot;,\&quot;id\&quot;:722735,\&quot;node_id\&quot;:\&quot;MDEyOk9yZ2FuaXphdGlvbjcyMjczNQ==\&quot;,\&quot;url\&quot;:\&quot;https://api.github.com/orgs/rstats\&quot;,\&quot;repos_url\&quot;:\&quot;https://api.github.com/orgs/rstats/repos\&quot;,\&quot;events_url\&quot;:\&quot;https://api.github.com/orgs/rstats/events\&quot;,\&quot;hooks_url\&quot;:\&quot;https://api.github.com/orgs/rstats/hooks\&quot;,\&quot;issues_url\&quot;:\&quot;https://api.github.com/orgs/rstats/issues\&quot;,\&quot;members_url\&quot;:\&quot;https://api.github.com/orgs/rstats/members{/member}\&quot;,\&quot;public_members_url\&quot;:\&quot;https://api.github.com/orgs/rstats/public_members{/member}\&quot;,\&quot;avatar_url\&quot;:\&quot;https://avatars.githubusercontent.com/u/722735?v=4\&quot;},{\&quot;login\&quot;:\&quot;ropensci\&quot;,\&quot;id\&quot;:1200269,\&quot;node_id\&quot;:\&quot;MDEyOk9yZ2FuaXphdGlvbjEyMDAyNjk=\&quot;,\&quot;url\&quot;:\&quot;https://api.github.com/orgs/ropensci\&quot;,\&quot;repos_url\&quot;:\&quot;https://api.github.com/orgs/ropensci/repos\&quot;,\&quot;events_url\&quot;:\&quot;https://api.github.com/orgs/ropensci/events\&quot;,\&quot;hooks_url\&quot;:\&quot;https://api.github.com/orgs/ropensci/hooks\&quot;,\&quot;issues_url\&quot;:\&quot;https://api.github.com/orgs/ropensci/issues\&quot;,\&quot;members_url\&quot;:\&quot;https://api.github.com/orgs/ropensci/members{/member}\&quot;,\&quot;public_members_url\&quot;:\&quot;https://api.github.com/orgs/ropensci/public_members{/member}\&quot;,\&quot;avatar_url\&quot;:\&quot;https://avatars.githubusercontent.com/u/1200269?v=4\&quot;,\&quot;description\&quot;:\&quot;\&quot;},{\&quot;login\&quot;:\&quot;rjournal\&quot;,\&quot;id\&quot;:3330561,\&quot;node_id\&quot;:\&quot;MDEyOk9yZ2FuaXphdGlvbjMzMzA1NjE=\&quot;,\&quot;url\&quot;:\&quot;https://api.github.com/orgs/rjournal\&quot;,\&quot;repos_url\&quot;:\&quot;https://api.github.com/orgs/rjournal/repos\&quot;,\&quot;events_url\&quot;:\&quot;https://api.github.com/orgs/rjournal/events\&quot;,\&quot;hooks_url\&quot;:\&quot;https://api.github.com/orgs/rjournal/hooks\&quot;,\&quot;issues_url\&quot;:\&quot;https://api.github.com/orgs/rjournal/issues\&quot;,\&quot;members_url\&quot;:\&quot;https://api.github.com/orgs/rjournal/members{/member}\&quot;,\&quot;public_members_url\&quot;:\&quot;https://api.github.com/orgs/rjournal/public_members{/member}\&quot;,\&quot;avatar_url\&quot;:\&quot;https://avatars.githubusercontent.com/u/3330561?v=4\&quot;},{\&quot;login\&quot;:\&quot;r-dbi\&quot;,\&quot;id\&quot;:5695665,\&quot;node_id\&quot;:\&quot;MDEyOk9yZ2FuaXphdGlvbjU2OTU2NjU=\&quot;,\&quot;url\&quot;:\&quot;https://api.github.com/orgs/r-dbi\&quot;,\&quot;repos_url\&quot;:\&quot;https://api.github.com/orgs/r-dbi/repos\&quot;,\&quot;events_url\&quot;:\&quot;https://api.github.com/orgs/r-dbi/events\&quot;,\&quot;hooks_url\&quot;:\&quot;https://api.github.com/orgs/r-dbi/hooks\&quot;,\&quot;issues_url\&quot;:\&quot;https://api.github.com/orgs/r-dbi/issues\&quot;,\&quot;members_url\&quot;:\&quot;https://api.github.com/orgs/r-dbi/members{/member}\&quot;,\&quot;public_members_url\&quot;:\&quot;https://api.github.com/orgs/r-dbi/public_members{/member}\&quot;,\&quot;avatar_url\&quot;:\&quot;https://avatars.githubusercontent.com/u/5695665?v=4\&quot;,\&quot;description\&quot;:\&quot;R + databases\&quot;},{\&quot;login\&quot;:\&quot;RConsortium\&quot;,\&quot;id\&quot;:15366137,\&quot;node_id\&quot;:\&quot;MDEyOk9yZ2FuaXphdGlvbjE1MzY2MTM3\&quot;,\&quot;url\&quot;:\&quot;https://api.github.com/orgs/RConsortium\&quot;,\&quot;repos_url\&quot;:\&quot;https://api.github.com/orgs/RConsortium/repos\&quot;,\&quot;events_url\&quot;:\&quot;https://api.github.com/orgs/RConsortium/events\&quot;,\&quot;hooks_url\&quot;:\&quot;https://api.github.com/orgs/RConsortium/hooks\&quot;,\&quot;issues_url\&quot;:\&quot;https://api.github.com/orgs/RConsortium/issues\&quot;,\&quot;members_url\&quot;:\&quot;https://api.github.com/orgs/RConsortium/members{/member}\&quot;,\&quot;public_members_url\&quot;:\&quot;https://api.github.com/orgs/RConsortium/public_members{/member}\&quot;,\&quot;avatar_url\&quot;:\&quot;https://avatars.githubusercontent.com/u/15366137?v=4\&quot;,\&quot;description\&quot;:\&quot;The R Consortium, Inc was established to provide support to the R Foundation and R Community, using maintaining and distributing R software.\&quot;},{\&quot;login\&quot;:\&quot;tidyverse\&quot;,\&quot;id\&quot;:22032646,\&quot;node_id\&quot;:\&quot;MDEyOk9yZ2FuaXphdGlvbjIyMDMyNjQ2\&quot;,\&quot;url\&quot;:\&quot;https://api.github.com/orgs/tidyverse\&quot;,\&quot;repos_url\&quot;:\&quot;https://api.github.com/orgs/tidyverse/repos\&quot;,\&quot;events_url\&quot;:\&quot;https://api.github.com/orgs/tidyverse/events\&quot;,\&quot;hooks_url\&quot;:\&quot;https://api.github.com/orgs/tidyverse/hooks\&quot;,\&quot;issues_url\&quot;:\&quot;https://api.github.com/orgs/tidyverse/issues\&quot;,\&quot;members_url\&quot;:\&quot;https://api.github.com/orgs/tidyverse/members{/member}\&quot;,\&quot;public_members_url\&quot;:\&quot;https://api.github.com/orgs/tidyverse/public_members{/member}\&quot;,\&quot;avatar_url\&quot;:\&quot;https://avatars.githubusercontent.com/u/22032646?v=4\&quot;,\&quot;description\&quot;:\&quot;The tidyverse is a collection of R packages that share common principles and are designed to work together seamlessly\&quot;},{\&quot;login\&quot;:\&quot;r-lib\&quot;,\&quot;id\&quot;:22618716,\&quot;node_id\&quot;:\&quot;MDEyOk9yZ2FuaXphdGlvbjIyNjE4NzE2\&quot;,\&quot;url\&quot;:\&quot;https://api.github.com/orgs/r-lib\&quot;,\&quot;repos_url\&quot;:\&quot;https://api.github.com/orgs/r-lib/repos\&quot;,\&quot;events_url\&quot;:\&quot;https://api.github.com/orgs/r-lib/events\&quot;,\&quot;hooks_url\&quot;:\&quot;https://api.github.com/orgs/r-lib/hooks\&quot;,\&quot;issues_url\&quot;:\&quot;https://api.github.com/orgs/r-lib/issues\&quot;,\&quot;members_url\&quot;:\&quot;https://api.github.com/orgs/r-lib/members{/member}\&quot;,\&quot;public_members_url\&quot;:\&quot;https://api.github.com/orgs/r-lib/public_members{/member}\&quot;,\&quot;avatar_url\&quot;:\&quot;https://avatars.githubusercontent.com/u/22618716?v=4\&quot;,\&quot;description\&quot;:\&quot;\&quot;},{\&quot;login\&quot;:\&quot;rstudio-education\&quot;,\&quot;id\&quot;:34165516,\&quot;node_id\&quot;:\&quot;MDEyOk9yZ2FuaXphdGlvbjM0MTY1NTE2\&quot;,\&quot;url\&quot;:\&quot;https://api.github.com/orgs/rstudio-education\&quot;,\&quot;repos_url\&quot;:\&quot;https://api.github.com/orgs/rstudio-education/repos\&quot;,\&quot;events_url\&quot;:\&quot;https://api.github.com/orgs/rstudio-education/events\&quot;,\&quot;hooks_url\&quot;:\&quot;https://api.github.com/orgs/rstudio-education/hooks\&quot;,\&quot;issues_url\&quot;:\&quot;https://api.github.com/orgs/rstudio-education/issues\&quot;,\&quot;members_url\&quot;:\&quot;https://api.github.com/orgs/rstudio-education/members{/member}\&quot;,\&quot;public_members_url\&quot;:\&quot;https://api.github.com/orgs/rstudio-education/public_members{/member}\&quot;,\&quot;avatar_url\&quot;:\&quot;https://avatars.githubusercontent.com/u/34165516?v=4\&quot;,\&quot;description\&quot;:\&quot;\&quot;}]&quot;</code></pre>
+</div>
+<p>And back from JSON format to dataframe</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>backagain</span> <span class='op'>=</span> <span class='fu'>fromJSON</span><span class='op'>(</span><span class='va'>jsondata</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>backagain</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+</div>
+<h4 id="api-with-query-parameters">API with Query Parameters</h4>
+<ul>
+<li>When is the ISS was going to pass over a given location on earth?</li>
+</ul>
+<p><strong>The ISS and the Brooklynn Bridge</strong></p>
+<ul>
+<li>Query parameters:
+<ul>
+<li>longitude</li>
+<li>latitude</li>
+</ul></li>
+<li>Combine with the original URL</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>res</span> <span class='op'>=</span> <span class='fu'>GET</span><span class='op'>(</span><span class='st'>"http://api.open-notify.org/iss-pass.json"</span>,
+query <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>lat <span class='op'>=</span> <span class='fl'>40.7</span>, lon <span class='op'>=</span> <span class='op'>-</span><span class='fl'>74</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>res</span>
+</code></pre>
+</div>
+<pre><code>Response [http://api.open-notify.org/iss-pass.json?lat=40.7&amp;lon=-74]
+  Date: 2021-05-04 22:51
+  Status: 200
+  Content-Type: application/json
+  Size: 518 B
+{
+  &quot;message&quot;: &quot;success&quot;, 
+  &quot;request&quot;: {
+    &quot;altitude&quot;: 100, 
+    &quot;datetime&quot;: 1620167911, 
+    &quot;latitude&quot;: 40.7, 
+    &quot;longitude&quot;: -74.0, 
+    &quot;passes&quot;: 5
+  }, 
+  &quot;response&quot;: [
+...</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>data</span> <span class='op'>=</span> <span class='fu'>fromJSON</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rawConversion.html'>rawToChar</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>$</span><span class='va'>content</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>data</span><span class='op'>$</span><span class='va'>response</span>
+</code></pre>
+</div>
+<pre><code>  duration   risetime
+1      564 1620188939
+2      654 1620194681
+3      592 1620200551
+4      566 1620206436
+5      632 1620212262</code></pre>
+</div>
+<ul>
+<li>Check the documentation of the API you are using
+<ul>
+<li>required and optional parameters</li>
+<li>authentication</li>
+</ul></li>
+<li>Not every API works with query parameters
+<ul>
+<li>Note the “?{var}=” construction in the URL of the ISS</li>
+<li>Study the URL before building your function Distill is a publication format for scientific and technical writing, native to the web.</li>
+</ul></li>
+</ul>
+<p>Learn more about using Distill at <a href="https://rstudio.github.io/distill" class="uri">https://rstudio.github.io/distill</a>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
