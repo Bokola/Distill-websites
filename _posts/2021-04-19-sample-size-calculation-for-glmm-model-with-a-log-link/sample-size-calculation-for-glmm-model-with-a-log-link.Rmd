@@ -69,54 +69,156 @@ overall = data %>% summarise(mean = mean(tot.vase.days),
 
 We sampled from a poisson distribution ($Y \sim poisson(\lambda)$) to simulate sample size and power but did not however include random intercepts in the sample size calculation, which overestimated our overall variability.
 
+
 ```{r}
-# flower_1 = ests$mean[1]
-# flower_2 = ests$mean[2]
-n_sample = seq(50, 600, 50)
-n = c()
-pval = c()
-powr = c()
-alpha = .05 / 14
-n_simulations = 1:1000
-set.seed(0123)
-for (j in seq_along(n_sample)) {
-  for (i in seq_along(n_simulations)) {
-    treatment = rpois(n_sample[j], lambda = overall$mean + 1)
-    control = rpois(n_sample[j], lambda = overall$mean)
-    sim_data = data.frame(
-      response = c(treatment, control),
-      treatment = rep(c(0, 1), each = n_sample[j]),
-      species = rep(c(0, 1), each = n_sample[j])
-    )
-    pval[i] = summary(glm(
-      response ~ treatment + species,
-      data = sim_data,
-      family = poisson(link = 'log')
-    ))$coeff["treatment", "Pr(>|z|)"]
-    
+Poisson_sims <-
+  function(n_grid = seq(50, 1500, 50),
+           lambda0 = 26,
+           lambda1 = 27,
+           alpha = 0.05/14,
+           test = "two_sided",
+           n_sims = 10000,
+           seed_nr = 1234) {
+    # power_vec <- matrix(nrow = 1, ncol = length(n_grid))
+    power_vec = vector(mode = 'integer')
+    for (j in 1:length(n_grid)) {
+      # 1. Choose sample size per group
+      N <- n_grid[j]
+      # 2. Select parameters
+      lambda.control = lambda0
+      lambda.treated = lambda1
+      alpha = alpha
+      # 3. Simulate huge number of experiments and test
+      numberSimulation <- n_sims
+      pval <- numeric(numberSimulation)
+      zval <- numeric(numberSimulation)
+      set.seed(seed_nr)
+      for (i in 1:numberSimulation) {
+        # We simulate from Poisson distribution
+        controlGroup <- rpois(N, lambda = lambda.control)
+        treatedGroup <- rpois(N, lambda = lambda.treated)
+        simData <- data.frame(
+          response = c(controlGroup, treatedGroup),
+          treatment = rep(c(0, 1), each = N)
+        )
+        # We use a GLM model for Poisson regression to test effect of treatment
+        # (Wald test)
+        glm_fit <-
+          summary(glm(
+            response ~ treatment,
+            data = simData,
+            family = poisson()
+          ))
+        pval[i] <- glm_fit$coeff["treatment", "Pr(>|z|)"]
+        zval[i] <- glm_fit$coeff["treatment", "z value"]
+        if (test == "greater" & zval[i] > 0) {
+          pval[i] <- pval[i] / 2
+        }
+        if (test == "greater" & zval[i] < 0) {
+          pval[i] <- 1 - (pval[i] / 2)
+        }
+        if (test == "less" & zval[i] < 0) {
+          pval[i] <- pval[i] / 2
+        }
+        if (test == "less" & zval[i] > 0) {
+          pval[i] <- 1 - (pval[i] / 2)
+        }
+      }
+      # 4. Estimate power
+      power_vec[j] = sum(pval < alpha) / numberSimulation
+    }
+    return(list(n_grid = n_grid, power_vec = power_vec))
   }
-  n = c(n, n_sample[j])
-  powr = c(powr, sum(pval < alpha) / length(n_simulations))
-  out = data.frame(n, powr)
-}
 
+library(parallel)
+# for Linux os
+numcores = detectCores()
+# windows
+cl = makeCluster(detectCores())
+# normal rune
+# system.time({
+# hh = lapply(seq(200, 250, 1),sample_power)
+# })
 
-knitr::kable(out, caption = "Power as simulated for different sample sizes")
+# clustermap for supplying additional arguments
 
+system.time({
+  out_list = clusterMap(cl,test = 'greater',Poisson_sims)
+  # out_list = parLapply(cl, n_sample = seq(50, 150, 50), sample_power)
+})
+# remember to stop cluster
+stopCluster(cl)
+out = do.call(cbind, out_list$greater) %>% as.data.frame()
+names(out) = c('n', 'powr')
+# split out to portions of 10 rows
+outb = split(out, (seq(nrow(out))-1) %/% 10)
+out_tab = do.call(cbind, outb)
+names(out_tab) = sub('^.[^1-9]', "", names(out_tab))
+# knitr::kable(out_tab, caption = "Power as simulated for different sample sizes")
 ```
 
+## Effect size of 1
 
-A visualization of the simulated sample sizes and power is presented:
 
-```{r}
-ggplot(out,aes(x = n, y = powr)) +
+```{r, echo=FALSE}
+p = ggplot(out,aes(x = n, y = powr)) +
   geom_line(color = 'red', size = 1.5) +
   geom_hline(aes(yintercept = .85), linetype = 'dashed') +
   theme_minimal() +
   # cowplot::theme_minimal_hgrid(rel_small = 1) +
   scale_y_continuous(labels = scales::percent) +
   labs(x = "Sample size", y = 'Power')
+print(p)
+ggsave(p, filename = file.path(data_dir, "sample size.png"))
 ```
+<!-- Links: -->
+<!-- https://nickch-k.github.io/EconometricsSlides/Week_08/Power_Simulations.html -->
+<!-- https://cran.r-project.org/web/packages/paramtest/vignettes/Simulating-Power.html -->
+
+
+## Effect size of 2
+
+
+```{r}
+cl = makeCluster(detectCores())
+# normal run
+# system.time({
+# hh = lapply(seq(200, 250, 1),sample_power)
+# })
+
+system.time({
+  # out_list = parLapply(cl, seq(1051, 1200, 1),sample_power)
+  out_list = clusterMap(cl, n_grid = seq(101, 250, 10), test = 'greater',lambda1 = 28,Poisson_sims)
+})
+# remember to stop cluster
+stopCluster(cl)
+out = do.call(rbind.data.frame, out_list) %>% as.data.frame()
+names(out) = c('n', 'powr')
+outb = split(out, (seq(nrow(out))-1) %/% 30)
+out_tab = do.call(cbind, outb)
+names(out_tab) = sub('^.[^1-9]', "", names(out_tab))
+# knitr::kable(out_tab, caption = "Power as simulated for different sample sizes")
+```
+
+
+```{r}
+p2 = ggplot(out,aes(x = n, y = powr)) +
+  geom_line(color = 'red', size = 1) +
+  geom_hline(aes(yintercept = .80), linetype = 'dashed') +
+  geom_hline(aes(yintercept = .85), linetype = 'dashed') +
+  geom_hline(aes(yintercept = .90), linetype = 'dashed') +
+  theme_minimal() +
+  # cowplot::theme_minimal_hgrid(rel_small = 1) +
+  scale_y_continuous(labels = scales::percent) + #, limits = c(0.0, 1)) +
+  scale_x_continuous(breaks = seq(101, 250, 10)) +
+  # theme(axis.text.x = element_text(angle = 90, vjust = 0.1, hjust = 1)) +
+  labs(x = "Sample size", y = 'Power') #+expand_limits(y = 0)
+print(p2)
+ggsave(p2, filename = file.path(data_dir, "sample size zoom.png"))
+```
+
+
+
 
 Additional links on sample size determination:
 

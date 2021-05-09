@@ -7,7 +7,7 @@
     <description>Basil Okola's personal website
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 04 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 May 2021 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Web scraping with R</title>
       <dc:creator>Basil Okola</dc:creator>
@@ -18,7 +18,7 @@
       <category>httr</category>
       <category>jsonlite</category>
       <guid>https://bokola214.netlify.app/posts/2021-05-05-web-scraping-with-r</guid>
-      <pubDate>Tue, 04 May 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 05 May 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>GLMM FAQ</title>
@@ -57,7 +57,7 @@
       <category>poisson</category>
       <category>log link</category>
       <guid>https://bokola214.netlify.app/posts/2021-04-19-sample-size-calculation-for-glmm-model-with-a-log-link</guid>
-      <pubDate>Mon, 19 Apr 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 18 Apr 2021 00:00:00 +0000</pubDate>
       <media:content url="https://bokola214.netlify.app/posts/2021-04-19-sample-size-calculation-for-glmm-model-with-a-log-link/figures/unnamed-chunk-5-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>

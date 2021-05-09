@@ -131,7 +131,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["figures/unnamed-chunk-5-1.png","sample-size-calculation-for-glmm-model-with-a-log-link_files/anchor-4.2.2/anchor.min.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/bowser-1.9.3/bowser.min.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/distill-2.2.21/template.v2.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/header-attrs-2.7/header-attrs.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/jquery-1.11.3/jquery.min.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/popper-2.6.0/popper.min.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/tippy-6.2.7/tippy-bundle.umd.min.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/tippy-6.2.7/tippy-light-border.css","sample-size-calculation-for-glmm-model-with-a-log-link_files/tippy-6.2.7/tippy.css","sample-size-calculation-for-glmm-model-with-a-log-link_files/tippy-6.2.7/tippy.umd.min.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["figures/unnamed-chunk-5-1.png","figures/unnamed-chunk-7-1.png","sample-size-calculation-for-glmm-model-with-a-log-link_files/anchor-4.2.2/anchor.min.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/bowser-1.9.3/bowser.min.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/distill-2.2.21/template.v2.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/header-attrs-2.7/header-attrs.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/jquery-1.11.3/jquery.min.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/popper-2.6.0/popper.min.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/tippy-6.2.7/tippy-bundle.umd.min.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/tippy-6.2.7/tippy-light-border.css","sample-size-calculation-for-glmm-model-with-a-log-link_files/tippy-6.2.7/tippy.css","sample-size-calculation-for-glmm-model-with-a-log-link_files/tippy-6.2.7/tippy.umd.min.js","sample-size-calculation-for-glmm-model-with-a-log-link_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2471,118 +2471,160 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>We sampled from a poisson distribution (<span class="math inline">\(Y \sim poisson(\lambda)\)</span>) to simulate sample size and power but did not however include random intercepts in the sample size calculation, which overestimated our overall variability.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># flower_1 = ests$mean[1]</span>
-<span class='co'># flower_2 = ests$mean[2]</span>
-<span class='va'>n_sample</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>50</span>, <span class='fl'>600</span>, <span class='fl'>50</span><span class='op'>)</span>
-<span class='va'>n</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>pval</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>powr</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>alpha</span> <span class='op'>=</span> <span class='fl'>.05</span> <span class='op'>/</span> <span class='fl'>14</span>
-<span class='va'>n_simulations</span> <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>1000</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>0123</span><span class='op'>)</span>
-<span class='kw'>for</span> <span class='op'>(</span><span class='va'>j</span> <span class='kw'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span><span class='op'>(</span><span class='va'>n_sample</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span><span class='op'>(</span><span class='va'>n_simulations</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-    <span class='va'>treatment</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Poisson.html'>rpois</a></span><span class='op'>(</span><span class='va'>n_sample</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span>, lambda <span class='op'>=</span> <span class='va'>overall</span><span class='op'>$</span><span class='va'>mean</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>)</span>
-    <span class='va'>control</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Poisson.html'>rpois</a></span><span class='op'>(</span><span class='va'>n_sample</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span>, lambda <span class='op'>=</span> <span class='va'>overall</span><span class='op'>$</span><span class='va'>mean</span><span class='op'>)</span>
-    <span class='va'>sim_data</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
-      response <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>treatment</span>, <span class='va'>control</span><span class='op'>)</span>,
-      treatment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>, each <span class='op'>=</span> <span class='va'>n_sample</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span><span class='op'>)</span>,
-      species <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>, each <span class='op'>=</span> <span class='va'>n_sample</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span><span class='op'>)</span>
-    <span class='op'>)</span>
-    <span class='va'>pval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span><span class='op'>(</span>
-      <span class='va'>response</span> <span class='op'>~</span> <span class='va'>treatment</span> <span class='op'>+</span> <span class='va'>species</span>,
-      data <span class='op'>=</span> <span class='va'>sim_data</span>,
-      family <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/family.html'>poisson</a></span><span class='op'>(</span>link <span class='op'>=</span> <span class='st'>'log'</span><span class='op'>)</span>
-    <span class='op'>)</span><span class='op'>)</span><span class='op'>$</span><span class='va'>coeff</span><span class='op'>[</span><span class='st'>"treatment"</span>, <span class='st'>"Pr(&gt;|z|)"</span><span class='op'>]</span>
-    
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Poisson_sims</span> <span class='op'>&lt;-</span>
+  <span class='kw'>function</span><span class='op'>(</span><span class='va'>n_grid</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>50</span>, <span class='fl'>1500</span>, <span class='fl'>50</span><span class='op'>)</span>,
+           <span class='va'>lambda0</span> <span class='op'>=</span> <span class='fl'>26</span>,
+           <span class='va'>lambda1</span> <span class='op'>=</span> <span class='fl'>27</span>,
+           <span class='va'>alpha</span> <span class='op'>=</span> <span class='fl'>0.05</span><span class='op'>/</span><span class='fl'>14</span>,
+           <span class='va'>test</span> <span class='op'>=</span> <span class='st'>"two_sided"</span>,
+           <span class='va'>n_sims</span> <span class='op'>=</span> <span class='fl'>10000</span>,
+           <span class='va'>seed_nr</span> <span class='op'>=</span> <span class='fl'>1234</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='co'># power_vec &lt;- matrix(nrow = 1, ncol = length(n_grid))</span>
+    <span class='va'>power_vec</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span><span class='op'>(</span>mode <span class='op'>=</span> <span class='st'>'integer'</span><span class='op'>)</span>
+    <span class='kw'>for</span> <span class='op'>(</span><span class='va'>j</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>n_grid</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+      <span class='co'># 1. Choose sample size per group</span>
+      <span class='va'>N</span> <span class='op'>&lt;-</span> <span class='va'>n_grid</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span>
+      <span class='co'># 2. Select parameters</span>
+      <span class='va'>lambda.control</span> <span class='op'>=</span> <span class='va'>lambda0</span>
+      <span class='va'>lambda.treated</span> <span class='op'>=</span> <span class='va'>lambda1</span>
+      <span class='va'>alpha</span> <span class='op'>=</span> <span class='va'>alpha</span>
+      <span class='co'># 3. Simulate huge number of experiments and test</span>
+      <span class='va'>numberSimulation</span> <span class='op'>&lt;-</span> <span class='va'>n_sims</span>
+      <span class='va'>pval</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span><span class='va'>numberSimulation</span><span class='op'>)</span>
+      <span class='va'>zval</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span><span class='op'>(</span><span class='va'>numberSimulation</span><span class='op'>)</span>
+      <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='va'>seed_nr</span><span class='op'>)</span>
+      <span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='va'>numberSimulation</span><span class='op'>)</span> <span class='op'>{</span>
+        <span class='co'># We simulate from Poisson distribution</span>
+        <span class='va'>controlGroup</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Poisson.html'>rpois</a></span><span class='op'>(</span><span class='va'>N</span>, lambda <span class='op'>=</span> <span class='va'>lambda.control</span><span class='op'>)</span>
+        <span class='va'>treatedGroup</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Poisson.html'>rpois</a></span><span class='op'>(</span><span class='va'>N</span>, lambda <span class='op'>=</span> <span class='va'>lambda.treated</span><span class='op'>)</span>
+        <span class='va'>simData</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+          response <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>controlGroup</span>, <span class='va'>treatedGroup</span><span class='op'>)</span>,
+          treatment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>, each <span class='op'>=</span> <span class='va'>N</span><span class='op'>)</span>
+        <span class='op'>)</span>
+        <span class='co'># We use a GLM model for Poisson regression to test effect of treatment</span>
+        <span class='co'># (Wald test)</span>
+        <span class='va'>glm_fit</span> <span class='op'>&lt;-</span>
+          <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span><span class='op'>(</span>
+            <span class='va'>response</span> <span class='op'>~</span> <span class='va'>treatment</span>,
+            data <span class='op'>=</span> <span class='va'>simData</span>,
+            family <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/family.html'>poisson</a></span><span class='op'>(</span><span class='op'>)</span>
+          <span class='op'>)</span><span class='op'>)</span>
+        <span class='va'>pval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>glm_fit</span><span class='op'>$</span><span class='va'>coeff</span><span class='op'>[</span><span class='st'>"treatment"</span>, <span class='st'>"Pr(&gt;|z|)"</span><span class='op'>]</span>
+        <span class='va'>zval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>glm_fit</span><span class='op'>$</span><span class='va'>coeff</span><span class='op'>[</span><span class='st'>"treatment"</span>, <span class='st'>"z value"</span><span class='op'>]</span>
+        <span class='kw'>if</span> <span class='op'>(</span><span class='va'>test</span> <span class='op'>==</span> <span class='st'>"greater"</span> <span class='op'>&amp;</span> <span class='va'>zval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&gt;</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>{</span>
+          <span class='va'>pval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>pval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>/</span> <span class='fl'>2</span>
+        <span class='op'>}</span>
+        <span class='kw'>if</span> <span class='op'>(</span><span class='va'>test</span> <span class='op'>==</span> <span class='st'>"greater"</span> <span class='op'>&amp;</span> <span class='va'>zval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>{</span>
+          <span class='va'>pval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>1</span> <span class='op'>-</span> <span class='op'>(</span><span class='va'>pval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>/</span> <span class='fl'>2</span><span class='op'>)</span>
+        <span class='op'>}</span>
+        <span class='kw'>if</span> <span class='op'>(</span><span class='va'>test</span> <span class='op'>==</span> <span class='st'>"less"</span> <span class='op'>&amp;</span> <span class='va'>zval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>{</span>
+          <span class='va'>pval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>pval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>/</span> <span class='fl'>2</span>
+        <span class='op'>}</span>
+        <span class='kw'>if</span> <span class='op'>(</span><span class='va'>test</span> <span class='op'>==</span> <span class='st'>"less"</span> <span class='op'>&amp;</span> <span class='va'>zval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&gt;</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>{</span>
+          <span class='va'>pval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>1</span> <span class='op'>-</span> <span class='op'>(</span><span class='va'>pval</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>/</span> <span class='fl'>2</span><span class='op'>)</span>
+        <span class='op'>}</span>
+      <span class='op'>}</span>
+      <span class='co'># 4. Estimate power</span>
+      <span class='va'>power_vec</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>pval</span> <span class='op'>&lt;</span> <span class='va'>alpha</span><span class='op'>)</span> <span class='op'>/</span> <span class='va'>numberSimulation</span>
+    <span class='op'>}</span>
+    <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>n_grid <span class='op'>=</span> <span class='va'>n_grid</span>, power_vec <span class='op'>=</span> <span class='va'>power_vec</span><span class='op'>)</span><span class='op'>)</span>
   <span class='op'>}</span>
-  <span class='va'>n</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='va'>n_sample</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span><span class='op'>)</span>
-  <span class='va'>powr</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>powr</span>, <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>pval</span> <span class='op'>&lt;</span> <span class='va'>alpha</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>n_simulations</span><span class='op'>)</span><span class='op'>)</span>
-  <span class='va'>out</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='va'>powr</span><span class='op'>)</span>
-<span class='op'>}</span>
 
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>parallel</span><span class='op'>)</span>
+<span class='co'># for Linux os</span>
+<span class='va'>numcores</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/parallel/detectCores.html'>detectCores</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'># windows</span>
+<span class='va'>cl</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/parallel/makeCluster.html'>makeCluster</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/parallel/detectCores.html'>detectCores</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># normal rune</span>
+<span class='co'># system.time({</span>
+<span class='co'># hh = lapply(seq(200, 250, 1),sample_power)</span>
+<span class='co'># })</span>
 
-<span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>out</span>, caption <span class='op'>=</span> <span class='st'>"Power as simulated for different sample sizes"</span><span class='op'>)</span>
+<span class='co'># clustermap for supplying additional arguments</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='op'>{</span>
+  <span class='va'>out_list</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterMap</a></span><span class='op'>(</span><span class='va'>cl</span>,test <span class='op'>=</span> <span class='st'>'greater'</span>,<span class='va'>Poisson_sims</span><span class='op'>)</span>
+  <span class='co'># out_list = parLapply(cl, n_sample = seq(50, 150, 50), sample_power)</span>
+<span class='op'>}</span><span class='op'>)</span>
 </code></pre>
 </div>
-<table>
-<caption><span id="tab:unnamed-chunk-4">Table 1: </span>Power as simulated for different sample sizes</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">n</th>
-<th style="text-align: right;">powr</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">50</td>
-<td style="text-align: right;">0.067</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">0.156</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">150</td>
-<td style="text-align: right;">0.272</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">200</td>
-<td style="text-align: right;">0.457</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">250</td>
-<td style="text-align: right;">0.551</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">300</td>
-<td style="text-align: right;">0.671</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">350</td>
-<td style="text-align: right;">0.774</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">400</td>
-<td style="text-align: right;">0.823</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">450</td>
-<td style="text-align: right;">0.903</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">500</td>
-<td style="text-align: right;">0.924</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">550</td>
-<td style="text-align: right;">0.942</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">600</td>
-<td style="text-align: right;">0.974</td>
-</tr>
-</tbody>
-</table>
+<pre><code>   user  system elapsed 
+   0.19    0.45 6207.24 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># remember to stop cluster</span>
+<span class='fu'><a href='https://rdrr.io/r/parallel/makeCluster.html'>stopCluster</a></span><span class='op'>(</span><span class='va'>cl</span><span class='op'>)</span>
+<span class='va'>out</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>cbind</span>, <span class='va'>out_list</span><span class='op'>$</span><span class='va'>greater</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>out</span><span class='op'>)</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'n'</span>, <span class='st'>'powr'</span><span class='op'>)</span>
+<span class='co'># split out to portions of 10 rows</span>
+<span class='va'>outb</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/split.html'>split</a></span><span class='op'>(</span><span class='va'>out</span>, <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>out</span><span class='op'>)</span><span class='op'>)</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>%/%</span> <span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>out_tab</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>cbind</span>, <span class='va'>outb</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>out_tab</span><span class='op'>)</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span><span class='op'>(</span><span class='st'>'^.[^1-9]'</span>, <span class='st'>""</span>, <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>out_tab</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># knitr::kable(out_tab, caption = "Power as simulated for different sample sizes")</span>
+</code></pre>
 </div>
-<p>A visualization of the simulated sample sizes and power is presented:</p>
+</div>
+<h2 id="effect-size-of-1">Effect size of 1</h2>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="figures/unnamed-chunk-5-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<!-- Links: -->
+<!-- https://nickch-k.github.io/EconometricsSlides/Week_08/Power_Simulations.html -->
+<!-- https://cran.r-project.org/web/packages/paramtest/vignettes/Simulating-Power.html -->
+<h2 id="effect-size-of-2">Effect size of 2</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>out</span>,<span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>n</span>, y <span class='op'>=</span> <span class='va'>powr</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_line</span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'red'</span>, size <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_hline</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>yintercept <span class='op'>=</span> <span class='fl'>.85</span><span class='op'>)</span>, linetype <span class='op'>=</span> <span class='st'>'dashed'</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='co'># cowplot::theme_minimal_hgrid(rel_small = 1) +</span>
-  <span class='fu'>scale_y_continuous</span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_percent.html'>percent</a></span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Sample size"</span>, y <span class='op'>=</span> <span class='st'>'Power'</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cl</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/parallel/makeCluster.html'>makeCluster</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/parallel/detectCores.html'>detectCores</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># normal run</span>
+<span class='co'># system.time({</span>
+<span class='co'># hh = lapply(seq(200, 250, 1),sample_power)</span>
+<span class='co'># })</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='op'>{</span>
+  <span class='co'># out_list = parLapply(cl, seq(1051, 1200, 1),sample_power)</span>
+  <span class='va'>out_list</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/parallel/clusterApply.html'>clusterMap</a></span><span class='op'>(</span><span class='va'>cl</span>, n_grid <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>101</span>, <span class='fl'>250</span>, <span class='fl'>10</span><span class='op'>)</span>, test <span class='op'>=</span> <span class='st'>'greater'</span>,lambda1 <span class='op'>=</span> <span class='fl'>28</span>,<span class='va'>Poisson_sims</span><span class='op'>)</span>
+<span class='op'>}</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="figures/unnamed-chunk-5-1.png" width="624" style="display: block; margin: auto;" /></p>
+<pre><code>   user  system elapsed 
+   0.03    0.00  185.35 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># remember to stop cluster</span>
+<span class='fu'><a href='https://rdrr.io/r/parallel/makeCluster.html'>stopCluster</a></span><span class='op'>(</span><span class='va'>cl</span><span class='op'>)</span>
+<span class='va'>out</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind.data.frame</span>, <span class='va'>out_list</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>out</span><span class='op'>)</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'n'</span>, <span class='st'>'powr'</span><span class='op'>)</span>
+<span class='va'>outb</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/split.html'>split</a></span><span class='op'>(</span><span class='va'>out</span>, <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>out</span><span class='op'>)</span><span class='op'>)</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>%/%</span> <span class='fl'>30</span><span class='op'>)</span>
+<span class='va'>out_tab</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>cbind</span>, <span class='va'>outb</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>out_tab</span><span class='op'>)</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span><span class='op'>(</span><span class='st'>'^.[^1-9]'</span>, <span class='st'>""</span>, <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>out_tab</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># knitr::kable(out_tab, caption = "Power as simulated for different sample sizes")</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p2</span> <span class='op'>=</span> <span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>out</span>,<span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>n</span>, y <span class='op'>=</span> <span class='va'>powr</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'red'</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_hline</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>yintercept <span class='op'>=</span> <span class='fl'>.80</span><span class='op'>)</span>, linetype <span class='op'>=</span> <span class='st'>'dashed'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_hline</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>yintercept <span class='op'>=</span> <span class='fl'>.85</span><span class='op'>)</span>, linetype <span class='op'>=</span> <span class='st'>'dashed'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_hline</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>yintercept <span class='op'>=</span> <span class='fl'>.90</span><span class='op'>)</span>, linetype <span class='op'>=</span> <span class='st'>'dashed'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='co'># cowplot::theme_minimal_hgrid(rel_small = 1) +</span>
+  <span class='fu'>scale_y_continuous</span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_percent.html'>percent</a></span><span class='op'>)</span> <span class='op'>+</span> <span class='co'>#, limits = c(0.0, 1)) +</span>
+  <span class='fu'>scale_x_continuous</span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>101</span>, <span class='fl'>250</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='co'># theme(axis.text.x = element_text(angle = 90, vjust = 0.1, hjust = 1)) +</span>
+  <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Sample size"</span>, y <span class='op'>=</span> <span class='st'>'Power'</span><span class='op'>)</span> <span class='co'>#+expand_limits(y = 0)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>p2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="figures/unnamed-chunk-7-1.png" width="624" style="display: block; margin: auto;" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggsave</span><span class='op'>(</span><span class='va'>p2</span>, filename <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>data_dir</span>, <span class='st'>"sample size zoom.png"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <p>Additional links on sample size determination:</p>
 <p><a href="https://nickch-k.github.io/EconometricsSlides/Week_08/Power_Simulations.html" class="uri">https://nickch-k.github.io/EconometricsSlides/Week_08/Power_Simulations.html</a> <a href="https://cran.r-project.org/web/packages/paramtest/vignettes/Simulating-Power.html" class="uri">https://cran.r-project.org/web/packages/paramtest/vignettes/Simulating-Power.html</a></p>
 <p>Learn more about using Distill at <a href="https://rstudio.github.io/distill" class="uri">https://rstudio.github.io/distill</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">
